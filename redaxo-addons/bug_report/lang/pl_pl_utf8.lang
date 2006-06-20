@@ -1,0 +1,19 @@
+bug_report = Raport błędów
+bugs = Błędy
+bug_name = Błąd
+function = Funkcja
+
+hdl_bugs = Wprowadzenie błędu
+title = Tytuł
+description = Opis
+status = Stan
+status0 = Znaleziono błąd
+status1 = B��d został usunięty
+status2 = Nie ma już takiego błędu
+
+
+create_bug = Zgłoś błąd
+
+back_to_list = Powrót do listy
+delete = usunięcie
+sicherdel = na pewno usunąć?

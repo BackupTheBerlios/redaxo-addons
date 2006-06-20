@@ -1,0 +1,19 @@
+bug_report = Fehler Report
+bugs = Fehler
+bug_name = Fehler
+function = Funktion
+
+hdl_bugs = Fehler eintragen
+title = Titel
+description = Beschreibung
+status = Status
+status0 = Fehler gefunden
+status1 = Fehler technisch behoben
+status2 = Fehler existiert nicht mehr
+
+
+create_bug = Fehler melden
+
+back_to_list = Zur&uuml;ck zur Liste
+delete = l&ouml;schen
+sicherdel = sicher l&ouml;schen?

@@ -1,0 +1,19 @@
+bug_report = Raport b³êdów
+bugs = B³êdy
+bug_name = B³¹d
+function = Funkcja
+
+hdl_bugs = Wprowadzenie b³êdu
+title = Tytu³
+description = Opis
+status = Stan
+status0 = Znaleziono b³¹d
+status1 = B³¹d zosta³ usuniêty
+status2 = Nie ma ju¿ takiego b³êdu
+
+
+create_bug = Zg³oœ b³¹d
+
+back_to_list = Powrót do listy
+delete = usuniêcie
+sicherdel = na pewno usun¹æ?
