@@ -1,0 +1,12 @@
+
+ACHTUNG :: BISHER IST NICHTS ÜBERPRÜFT WORDEN.. DESWEGEN DIESES ADDON MIT VORSICHT GENIESSEN
+
+
+TODOS:
+
+- Bilder durch texte ersetzen
+- Download in Ordnung bringen . kein redaxo header und footer zeugs
+- Komplett überprüfen.
+- verschiedene sprachen mit redaxo sprachen verknüpfen
+
+

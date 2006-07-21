@@ -1,0 +1,56 @@
+simple_shop = Prosty sklep
+catverwaltung = Zarządzanie produktami
+bestverwaltung = Zarzązanie zamówieniami
+header_article = Produkt
+header_relations = Zależnośi produktów
+header_priority = Priorytet
+header_edit = edycja
+header_status = stan
+header_article_edit = edycja/usunięcie
+mainconfig = Preferencje
+header_order_edit = Podgląd zamówienia
+header_order = Zamówienie
+status_0 = wpłynęło
+status_1 = w trakcie
+status_2 = załatwione
+header_relation_add = Dodaj zależność
+error = Wystąpił błąd.
+product_added = Produkt został dodany
+product_saved = Produkt został zapisany
+product_deleted = Produkt został usunięty
+back_overview = Powrót
+languages = Języki
+please_choose_a_cat = Proszę wybrać kategorię
+product_overview = Produkty
+show = pokaż
+show_all = pokaż wszystkie
+show_wo_cat = pokaż bez kategorii
+
+edit_products = Edycja produktu
+products = Produkty
+
+product_id = Produkt nr.
+product_name = Nazwa
+product_cats = Kategorie
+product_desc = Opis
+product_ddesc =  Opis sczegółowy
+
+product_price = Cena [np. 150,50]
+product_price_old = Stara cena [z.B. 210,70]
+product_price_order = Wysyłka [z.B. 5,10]
+product_tax = VAT (w %) [np. 22,00]
+product_image = Obrazek
+relations = Zależności
+relation = Zależność
+relation_msg = By dodać zależność należy najpierw zapisać produkt. By to zrobić naciśnij 'zatwierdź'.
+status = Stan
+save_back = zapisz
+save = zatwierdź
+
+instock = Dostępny
+stockinfo = Magazyn (Dostępny ..)
+
+date = Data
+customer = Klient
+orders = Zamówienia
+email = email

@@ -1,0 +1,57 @@
+simple_shop = Prosty sklep
+catverwaltung = Zarz¹dzanie produktami
+bestverwaltung = Zarz¹dzanie zamówieniami
+header_article = Produkt
+header_relations = Zale¿noœci produktów
+header_priority = Priorytet
+header_edit = edycja
+header_status = stan
+header_article_edit = edycja/usuniêcie
+mainconfig = Preferencje
+header_order_edit = Podgl¹d zamówienia
+header_order = Zamówienie
+status_0 = wp³ynê³o
+status_1 = w trakcie
+status_2 = za³atwione
+header_relation_add = Dodaj zale¿noœæ
+
+error = Wyst¹pi³ b³¹d.
+product_added = Produkt zosta³ dodany
+product_saved = Produkt zosta³ zapisany
+product_deleted = Produkt zosta³ usuniêty
+back_overview = Powrót
+languages = Jêzyki
+please_choose_a_cat = Proszê wybraæ kategoriê
+product_overview = Produkty
+show = poka¿
+show_all = poka¿ wszystkie
+show_wo_cat = poka¿ bez kategorii
+
+edit_products = Edycja produktu
+products = Produkty
+
+product_id = Produkt nr.
+product_name = Nazwa
+product_cats = Kategorie
+product_desc = Opis
+product_ddesc =  Opis sczegó³owy
+
+product_price = Cena [np. 150,50]
+product_price_old = Stara cena [z.B. 210,70]
+product_price_order = Wysy³ka [z.B. 5,10]
+product_tax = VAT (w %) [np. 22,00]
+product_image = Obrazek
+relations = Zale¿noœci
+relation = Zale¿noœæ
+relation_msg = By dodaæ zale¿noœæ nale¿y najpierw zapisaæ produkt. By to zrobiæ naciœnij 'zatwierdŸ'.
+status = Stan
+save_back = zapisz
+save = zatwierdŸ
+
+instock = Dostêpny
+stockinfo = Magazyn (Dostêpny ..)
+
+date = Data
+customer = Klient
+orders = Zamówienia
+email = email

@@ -1,0 +1,14 @@
+<strong>ToDo:</strong>
+<ul>
+	<li>Bei klick auf "Datei laden" bzw. Datei anlegen, Warnung ausgeben, wenn im Editor-Fenster etwas verändert wurde jedoch noch nicht gespeichert bzw. übernommen wurde.</li>
+	<li>Bearbeitung der CSS-Datei des Backends 
+	-> dadurch Anpassung an das Corporate Design des Kunden möglich.</li>
+	<li>Txt-Editor programmieren.</li>
+	<li>Seite "Einstellungen" anlegen<ul>
+		<li><del>Eingabe eines eigenen Ordnernamens für CSS. Momentan wird angenommen das der Ordner CSS heißt.</del></li>
+		<li>Eingabe von eigenen Highlight-Farben.</li></ul></li>
+	<li>Mehrsprachigkeit</li>
+	<li>Nur Anzeige von Dateien, wo der User Rechte besitzt.</li>
+	<li>Eventuelle Dokumentation zu CSS</li>
+	<li>Suchfunktion</li>
+</ul>
