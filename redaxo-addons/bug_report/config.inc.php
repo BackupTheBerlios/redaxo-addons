@@ -18,5 +18,5 @@ $REX['ADDON']['extras'][$REX['ADDON']['rxid'][$mypage]]['TABLE'] = $TABLE['bug_r
 // IF NECESSARY INCLUDE FUNC/CLASSES ETC
 // INCLUDE IN FRONTEND --- if ($REX[GG]) 
 // INCLUDE IN BACKEND --- if (!$REX[GG]) 
-
+/*COMMENT*/
 ?>
