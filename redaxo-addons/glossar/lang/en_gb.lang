@@ -1,0 +1,25 @@
+#
+# Glossar Addon
+# @author staab[at]public-4u[dot]de Markus Staab
+# @author <a href="http://www.public-4u.de">www.public-4u.de</a>
+# @package redaxo3
+# @version $Id: config.inc.php,v 1.12 2006/01/27 14:17:29 kills Exp $
+#
+
+glossar_title = Glossar
+
+label_list = Shortcutlist
+label_form = Edit shortcut
+label_id = ID
+label_shortcut = Shortcut
+label_description = Description
+label_language = Language
+label_casesens = Exact
+
+miss_shortcut = Shortcut mustn`t be empty!
+miss_description = Description mustn`t be empty!
+miss_language = Please choose a language!
+miss_casesens = Please choose case sensivity!
+
+yes = Yes
+no = No

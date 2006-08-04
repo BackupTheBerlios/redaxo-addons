@@ -1,0 +1,51 @@
+<h2>Changelog:</h2>
+
+<strong>RC5 - 16.05.2006</strong>
+	<em>Der Glossar benötigt das Addon "addon_framework" in der Version <u>RC4</u> um installiert werden zu können!</em>
+
+- rex_glossar_replace: 
++ jetzt UTF-8 valide
++ ersetzt nur noch im Body
+- Uninstall-Routine implementiert
+- Readme handling umgestellt
+- Kleinigkeiten ausgebessert
+    
+<strong>RC4 - 05.10.2005</strong>
+	<em>Der Glossar benötigt das Addon "addon_framework" um installiert werden zu können!</em>
+	
+- Auf Rexextension umgestellt
+- Installationsroutine überarbeitet
+- function_string in der install.inc.php included
+- rex_glossar_replace: 
++ [Browserweiche] IE verwendet nun <acronym> alle anderen Browser <abbr>
++ Bug behoben, wenn im Shortcut "/" vorkommt
++ Bug durch \' mit stripslashes behoben
++ Es wird nicht mehr innerhalb von schon ersetzen Tags, ersetzt
+  
+<strong>RC3 - 29.09.2005</strong>
+	<em>REDAXO Version > 29.09.2005 nötig
+	!KEINE RÜCKWÄRTSKOMPATIBILITÄT!</em>
+	
+- Umgestellt auf OUTPUT_FILTER
+- Readme aktualisiert
+- rex_glossar_replace: Probleme mit Umlauten gelöst
+- Auf neue Addon ID (13) umgestellt
+- rex_glossar_replace: 
++ Tooltipps umformatiert. "<sprache>: <beschreibung>" => "<sprache>, <beschreibung>"
++ Abkürzungen werden jetzt mit <abbr><span> anstatt <abbr> ausgezeichnet (IE bug) (CSS Angepasst)
++ Abkürzungen werden jetzt mit <abbr> anstatt <span> ausgezeichnet
+
+<strong>RC2 - 06.07.2005</strong>
+	<em>Der Glossar ist seit version RC2 nur noch mit redaxo 3.0 kompatibel!</em>
+	
+- Installationsroutine für redaxo 3.0 angepasst
+ 
+<strong>RC1 - 03.06.2005</strong>
+
+- Glossar-Page: Eingabeformular mit 3 Sprachen (Deutsch,Englisch,Französisch)
+- Glossar-Page: Editier und Löschfunktion
+- Ersetzungsfunktion geschrieben
+- Installations-Script erstellt
+- Default CSS erstellt
+
+<strong>initial release - 01.06.2005</strong>

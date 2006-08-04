@@ -1,0 +1,25 @@
+#
+# Glossar Addon
+# @author staab[at]public-4u[dot]de Markus Staab
+# @author <a href="http://www.public-4u.de">www.public-4u.de</a>
+# @package redaxo3
+# @version $Id: pl_pl_utf8.lang,v 1.1 2006/04/25 18:49:08 kristinus Exp $
+#
+
+glossar_title = Słownik
+
+label_list = Lista pojęć
+label_form = edycja wyrażenia
+label_id = ID
+label_shortcut = Wyrażenie
+label_description = Opis
+label_language = Język
+label_casesens = Uwzględnianie wielkości liter
+
+miss_shortcut = Proszę wpisać jakieś wyrażenie!
+miss_description = Proszę wpisać opis!
+miss_language = Proszę wpisać język!
+miss_casesens = Proszę wpisać, czy w wyszukiwaniu uwzględnić wielkość liter!
+
+yes = Tak
+no = Nie

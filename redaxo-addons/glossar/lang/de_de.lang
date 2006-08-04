@@ -1,0 +1,25 @@
+#
+# Glossar Addon
+# @author staab[at]public-4u[dot]de Markus Staab
+# @author <a href="http://www.public-4u.de">www.public-4u.de</a>
+# @package redaxo3
+# @version $Id: config.inc.php,v 1.12 2006/01/27 14:17:29 kills Exp $
+#
+
+glossar_title = Glossar
+
+label_list = Begriffsliste
+label_form = Begriff bearbeiten
+label_id = ID
+label_shortcut = Begriff
+label_description = Beschreibung
+label_language = Sprache
+label_casesens = Exakt
+
+miss_shortcut = Bitte geben Sie einen Begriff an!
+miss_description = Bitte geben Sie eine Beschreibung an!
+miss_language = Bitte w&auml;hlen sie eine Sprache!
+miss_casesens = Bitte w&auml;hlen sie, ob der Begriff exakt gesucht werden soll!
+
+yes = Ja
+no = Nein
