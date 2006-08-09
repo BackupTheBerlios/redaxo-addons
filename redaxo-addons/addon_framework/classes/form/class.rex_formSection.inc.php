@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formSection.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: class.rex_formSection.inc.php,v 1.2 2006/08/09 12:16:13 kills Exp $
  */
 
 class rexFormSection extends rexfieldController
@@ -200,7 +200,7 @@ class rexFormSection extends rexfieldController
       $s .= $colStr;
     }
     
-    $s .= '        <div class="clearer"> </div>'."\n";
+    $s .= '        <div class="rex-clearer"> </div>'."\n";
     
     foreach($fullCols as $colValue)
     {
