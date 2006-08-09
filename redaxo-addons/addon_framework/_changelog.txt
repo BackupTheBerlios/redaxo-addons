@@ -2,10 +2,11 @@
 <strong>Not yet released..</strong>
 - rexFormatter:
   + neuer FormatType "custom", für Benutzer definierte Callbacks
-- selectField:
+- rexSelectField:
   + Gruppierung von Werten möglich
-- multiValueField:
+- rexMultiValueField:
   + Gruppierung von Werten möglich
+  + Alle abgeleiteten Klassen enthalten jetz ein umschließendes div
 - InstallationsAPI erweitert:
   + rex_installModule() implementiert
   + rex_installTemplate() implementiert
@@ -21,9 +22,9 @@
 - popupButtonField für REX CVS Version angepasst
 - rexValidateEngine::has_registered_validators() implementiert
 - Variable LIST_VAR_AFTER_DATA verschoben
-- hiddenField:
+- rexHiddenField:
   + isHidden() entfernt, da nicht genutzt
-- searchBar:
+- rexSearchBar:
   + addColumn(), getColumns(), numColumn() implementiert, 
   	um auch Spalten zur Suchmaske hinzufügen zu können, 
     die selbst nicht in der Liste vorhanden sind
@@ -37,7 +38,8 @@
   + Invalid-Felder jetzt mit rötlicher Background-color markiert
   + Required-Felder jetzt mit gelblicher Background-color markiert
   + Fehlermeldungen hervorgehoben
-- readOnlyField::activateSave() in die Basisklasse verschoben (rexFormField::activateSave())
+  + .clearer in .rex-clearer umbenannt
+- rexReadOnlyField::activateSave() in die Basisklasse verschoben (rexFormField::activateSave())
 - Validierung:
   + Parmaeterübergabe jetzt möglich
   + Bugfixes

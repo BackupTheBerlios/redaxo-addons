@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.radioField.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: field.radioField.inc.php,v 1.2 2006/08/09 12:21:15 kills Exp $
  */
 
 class radioField extends rexFormMultiValueField
@@ -68,6 +68,7 @@ class radioField extends rexFormMultiValueField
     $attributes = $this->getAttributes();
 
     $i = 0;
+    $s = '<div id="'.$id.'">'; 
     foreach ($this->getRadios() as $box)
     {
       $boxid = $id . $i;
@@ -79,6 +80,7 @@ class radioField extends rexFormMultiValueField
       $s .= sprintf('<input type="radio" name="%s" value="%s" id="%s" tabindex="%s"%s%s /><label for="%s">%s</label>', $name, $box[1], $boxid, rex_a22_nextTabindex(), $checked, $attributes, $boxid, $box[0]);
       $i++;
     }
+    $s .= '</div>';
 
     return $s;
   }
