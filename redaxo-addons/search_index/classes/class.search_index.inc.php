@@ -1,10 +1,11 @@
 <?php
 
-
-/** 
- * Klasse zur Generation eines Suchindexes
- * @package redaxo3
- * @version $Id: class.search_index.inc.php,v 1.1 2006/07/21 13:53:10 kills Exp $ 
+/**
+ * Suche Addon
+ *
+ * @author vscope new media design
+ * @author <a href="http://www.vscope.at">www.vscope.at</a>
+ *
  */
 
 class rex_search_index
@@ -13,46 +14,35 @@ class rex_search_index
   var $path = '';
   var $custom_where_conditions = '';
   var $status = '';
-  var $searchIds = false;
   var $surroundchars = 20;
   var $sourround_start_tag = "<b>";
   var $sourround_end_tag = "</b>";
   var $striptags = true;
-  var $debugsql = false;
+  var $limitStart = 0;
+  var $limitEnd = 50;
 
   function rex_indexSite()
   {
-    global $REX;
 
-    $SQL = "SELECT id,path,clang,status,online_from,online_to,keywords,name FROM ". $REX['TABLE_PREFIX'] ."article ";
+    global $REX, $DB;
+
+    $SQL = "SELECT id,path,clang,status,online_from,online_to,keywords,name FROM rex_article ";
 
     $WHERE = "";
-    
+
     // ----- diese artikel filtern
     /*
     $WHERE = " where status=1";
-    
+
     $artikelidfilter = array(1,2,3,4,5,6);
-    foreach($artikelidfilter as $val)
+    foreach($artikelidfilter as $key => $val)
     {
-    	$WHERE .= " and id<>'".$val."'";
-    }
-    
-    $articletypefilter = array(1,2,3);
-    foreach($articletypefilter as $val)
-    {
-      $WHERE .= " and type_id<>'".$val."'";
+    	$WHERE .= " and id<>'".$key."'";
     }
     */
-    
-    if($WHERE != '')
-    {
-      $WHERE = 'WHERE '. $WHERE;
-    }
 
     $LIMIT = "";
     $db2 = new sql;
-    $db2->debugsql =& $this->debugsql;
     $stop = false;
     $oldstart = (int) $_REQUEST["oldstart"];
     $start = (int) $_REQUEST["start"];
@@ -68,13 +58,13 @@ class rex_search_index
     }
     else
     {
-      $db2->query('TRUNCATE TABLE '. $REX['TABLE_PREFIX'].$REX['TEMP_PREFIX'].'12_search_index');
+      $db2->query('TRUNCATE TABLE rex_12_search_index');
     }
 
     if ($stop)
     {
 
-      return "Bei der Indexgenerieung ist ein Fehler unterlaufen. Das kann an eventuell fehlerhaften Artikeln liegen. 
+      return "Bei der Indexgenerieung ist ein Fehler unterlaufen. Das kann an eventuell fehlerhaften Artikeln liegen.
       		Bei folgendem Artikel kam ein Fehler. <a href=index.php?page=content&article_id=".$_REQUEST["errorid"]."&mode=edit&clang=".$_REQUEST["errorclang"].">-> Artikel</a>";
 
     }
@@ -91,13 +81,13 @@ class rex_search_index
         ob_end_clean();
         ob_start();
         echo "<html><head><title>REX SEARCH</title></head><body bgcolor=#fffff3>
-        			Scriptlaufzeit war zu kurz, der Prozess wird sofort 
+        			Scriptlaufzeit war zu kurz, der Prozess wird sofort
         			weitergeführt. Sollten Sie dennoch abbrechen wollen dann <a href=index.php?page=search_index>hier</a>.
         			<br><br>
         			Sollte das Script sich nicht erneut aufrufen, dann <a href=index.php?page=search_index&subpage=gen_index&start=$i&oldstart=$oldstart&errorid=".$var['id']."&errorclang=".$var['clang'].">hier</a> klicken um den Prozess weiterzuführen.
-        			
+
         			<br><br><a href=index.php?page=content&article_id=".$var['id']."&mode=edit&clang=".$var['clang'].">Bei diesem Artikel wurde abgebrochen</a>
-        			
+
         			<br><br><br><br>";
 
         $REX['GG'] = true;
@@ -106,14 +96,13 @@ class rex_search_index
         $REX_ARTICLE->setArticleId($var['id']);
         $artcache = $REX_ARTICLE->getArticle();
         $db2 = new sql; // falls im artikel eine andere datnebank aufgerufen wurde
-        $db2->debugsql =& $this->debugsql;
         $artcache = rex_register_extension_point('OUTPUT_FILTER', $artcache);
         $artcache = rex_register_extension_point('SEARCH_ARTICLE_GENERATED', $artcache);
 
         if ($this->striptags)
           $artcache = preg_replace('@<[\/\!]*?[^<>]*?>@si', '', $artcache);
 
-        $sql = "INSERT INTO ". $REX['TABLE_PREFIX'].$REX['TEMP_PREFIX']. '12_search_index' ." (id,path,clang,status,online_from,online_to,name,keywords,content) VALUES ('$var[id]','$var[path]','$var[clang]','$var[status]','$var[online_from]','$var[online_to]','$var[name]','$var[keywords]','".mysql_escape_string($artcache)."')";
+        $sql = "INSERT INTO rex_12_search_index (id,path,clang,status,online_from,online_to,name,keywords,content) VALUES ('$var[id]','$var[path]','$var[clang]','$var[status]','$var[online_from]','$var[online_to]','$var[name]','$var[keywords]','".mysql_escape_string($artcache)."')";
         $db2->query($sql);
         $i++;
 
@@ -129,15 +118,15 @@ class rex_search_index
 
   function rex_search($keywords)
   {
-    global $REX;    
 
     if (trim($keywords) == '')
       return false;
 
+		$keywords = (isset($keywords) ? htmlspecialchars(stripslashes($keywords)) : '');
     $keywords = mysql_escape_string((trim($keywords)));
-    
+
     $suche = new sql;
-    $suche->debugsql =& $this->debugsql;
+    // $suche->debugsql = true;
 
     // ---------------------- clang check
     if ($this->clang > -1)
@@ -172,42 +161,19 @@ class rex_search_index
       $path_set = '';
     }
 
-    // ---------------------- searchIds check
-    if ($this->searchIds)
-    {
-      $find_set = "(FIND_IN_SET('$keywords',REPLACE(id,' ',',')) * 10000000) +";
-      $like_set = "id = '$keywords' OR";
-    }
-
-    $sql = "
-              SELECT
-        
-              (FIND_IN_SET('$keywords',REPLACE(name,' ',',')) * 10000) +
-              (FIND_IN_SET('$keywords',REPLACE(keywords,' ',',')) * 5) +
-              $find_set
-              (FIND_IN_SET('$keywords',REPLACE(content,' ',',')) * 5)
-              AS COUNTWORD, id , name , content , clang
-        
-              FROM ". $REX['TABLE_PREFIX'].$REX['TEMP_PREFIX'].'12_search_index' ."
-              WHERE
-              (
-              name LIKE ('%$keywords%') OR
-              keywords LIKE ('%$keywords%') OR
-              $like_set
-              content LIKE ('%$keywords%')
-              )
-        
-              $clang_set
-        
-              $path_set
-        
-              $status_set
-
-              ". $this->custom_where_conditions ."
-    
-              ORDER BY COUNTWORD DESC
-              LIMIT 0,50
-              ";
+		$sql = 	"
+						SELECT id , clang, name, keywords, content,
+            MATCH(name) AGAINST ('$keywords') AS score_name, MATCH(name, keywords, content)
+            AGAINST ('$keywords') AS score  FROM rex_12_search_index
+            WHERE MATCH(name, keywords, content)
+            AGAINST ('$keywords')
+            $clang_set
+            $path_set
+            $status_set
+            ". $this->custom_where_conditions ."
+            ORDER BY score_name DESC,score  DESC
+            LIMIT ".$this->limitStart.",".$this->limitEnd."
+            ";
 
     $suche->setQuery($sql);
 
@@ -217,7 +183,7 @@ class rex_search_index
       $regex = "/\b.{0,".$this->surroundchars."}".$keywords.".{0,".$this->surroundchars."}\b/im";
       $regexcontent = $suche->getValue('name').$suche->getValue('keywords').$suche->getValue('content');
 
-      preg_match_all($regex, $regexcontent, $matches = array());
+      preg_match_all($regex, $regexcontent, $matches);
 
       $result[$c]['id'] = $suche->getValue('id');
       $result[$c]['name'] = $suche->getValue('name');
