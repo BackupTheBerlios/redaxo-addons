@@ -4,7 +4,7 @@
 
 - Alle Dateien des Archivs nach "redaxo/include/addons/newsletter" entpacken
 
-- In der Datei pages/newsletter.inc.php Zeile 3 Konfiguration anpassen
+- In der Datei pages/newsletter.inc.php ab Zeile 4 Konfiguration anpassen
 
 - Im Header des Templates die Zeile <base href="http://www.example.org/"> hinzufügen
 

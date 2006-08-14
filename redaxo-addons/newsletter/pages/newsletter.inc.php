@@ -1,8 +1,15 @@
 <?php
 
-class MyMailer extends PHPMailer {
-    var $Host     = "localhost";
-    var $Mailer   = "smtp";
+// Hier Konfiguration vornehmen
+class MyMailer extends PHPMailer 
+{
+  var $Host     = "localhost";
+  var $Mailer   = "smtp";
+  
+  // var $Username = "username";
+  // var $Password = "password";
+
+  // var $SMTPAuth = true;
 }
 
 // Newsletter senden
