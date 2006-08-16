@@ -1,11 +1,12 @@
 <?php
 
+
 /**
  * Addon Framework Classes 
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: function_rex_common.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: function_rex_common.inc.php,v 1.2 2006/08/16 10:00:28 kills Exp $
  */
 
 /**
@@ -34,7 +35,7 @@ function rex_error($message, $file, $line, $type = E_USER_ERROR)
  */
 function rex_addon_error($addon, $file, $line, $message, $type = E_USER_ERROR)
 {
-  rex_error('rexAddon['.$addon.']: '.$message, $file, $line, $type);
+  rex_error('rexAddon[' . $addon . ']: ' . $message, $file, $line, $type);
 }
 
 /**
@@ -52,31 +53,31 @@ function _rex_type_error($var, $type, $expected, $file, $line)
   switch ($expected)
   {
     case 'class' :
-      rex_error('Unexpected class for Object "'.$var.'"!', $file, $line);
+      rex_error('Unexpected class for Object "' . $var . '"!', $file, $line);
     case 'subclass' :
-      rex_error('Class "'.$var.'" is not a valid subclass!', $file, $line);
+      rex_error('Class "' . $var . '" is not a valid subclass!', $file, $line);
       // filesystem-types
     case 'method' :
-      rex_error('Method "'.$var.'" not exists!', $file, $line);
+      rex_error('Method "' . $var . '" not exists!', $file, $line);
     case 'dir' :
-      rex_error('Folder "'.$var.'" not found!', $file, $line);
+      rex_error('Folder "' . $var . '" not found!', $file, $line);
     case 'file' :
-      rex_error('File "'.$var.'" not found!', $file, $line);
+      rex_error('File "' . $var . '" not found!', $file, $line);
     case 'resource' :
-      rex_error('Var "'.$var.'" is not a valid resource!', $file, $line);
+      rex_error('Var "' . $var . '" is not a valid resource!', $file, $line);
     case 'upload' :
-      rex_error('File "'.$var.'" is no valid uploaded file!', $file, $line);
+      rex_error('File "' . $var . '" is no valid uploaded file!', $file, $line);
     case 'readable' :
-      rex_error('Destination "'.$var.'" not readable!', $file, $line);
+      rex_error('Destination "' . $var . '" not readable!', $file, $line);
     case 'writable' :
-      rex_error('Destination "'.$var.'" not writable!', $file, $line);
+      rex_error('Destination "' . $var . '" not writable!', $file, $line);
     case 'callable' :
       if (is_array($var))
         $var = implode('::', $var);
-      rex_error('Function or Class "'.$var.'" not callable!', $file, $line);
+      rex_error('Function or Class "' . $var . '" not callable!', $file, $line);
 
     default :
-      rex_error('Unexpected type "'.$type.'" for "$'.$var.'"! Expecting type "'.$expected.'"', $file, $line);
+      rex_error('Unexpected type "' . $type . '" for "$' . $var . '"! Expecting type "' . $expected . '"', $file, $line);
   }
 }
 
@@ -266,22 +267,22 @@ function rex_a22_insertCss($content, $files)
       $files
     );
   }
-  
+
   foreach ($files as $file)
   {
-    if($file != '' && !isset($REX['ADDON']['css']['addon_framework'][$file]))
+    if ($file != '' && !isset ($REX['ADDON']['css']['addon_framework'][$file]))
     {
       // CSS-Datei merken, damit jedes nur einmal eingebunden wird
       $REX['ADDON']['css']['addon_framework'][$file] = true;
-      
-      $url = 'index.php?rex_css='. $file;
-      $styles .= '  <link rel="stylesheet" type="text/css" href="'. $url .'" />'. "\n";
+
+      $url = 'index.php?rex_css=' . $file;
+      $styles .= '  <link rel="stylesheet" type="text/css" href="' . $url . '" />' . "\n";
     }
   }
-  
-  if($styles != '')
+
+  if ($styles != '')
   {
-    return str_replace('</head>', $styles.'</head>', $content);
+    return str_replace('</head>', $styles . '</head>', $content);
   }
   else
   {
@@ -301,7 +302,7 @@ function rex_a22_getDefaultGlobalParams()
   global $REX, $page, $subpage, $func, $next;
 
   $params = array ();
-  
+
   if (!$REX['REDAXO'])
   {
     global $article_id, $clang;
@@ -325,14 +326,14 @@ function rex_a22_getDefaultGlobalParams()
  */
 function rex_a22_getTabindex()
 {
-    global $REX;
-    
-    if(empty($REX['tabindex']))
-    {
-      $REX['tabindex'] = 0;
-    }
-    
-    return $REX['tabindex'];
+  global $REX;
+
+  if (empty ($REX['tabindex']))
+  {
+    $REX['tabindex'] = 0;
+  }
+
+  return $REX['tabindex'];
 }
 
 /**
@@ -344,13 +345,45 @@ function rex_a22_getTabindex()
  */
 function rex_a22_nextTabindex()
 {
-    global $REX;
+  global $REX;
 
-    if(empty($REX['tabindex']))
+  if (empty ($REX['tabindex']))
+  {
+    $REX['tabindex'] = 0;
+  }
+
+  return ++ $REX['tabindex'];
+}
+
+/**
+ * Funktion zur formatierung von Nachricht-Listen
+ */
+function rex_a22_formatMessages($messages)
+{
+  $s = '';
+
+  foreach ($messages as $message)
+  {
+    $text = $message[0];
+    $type = $message[1];
+
+    $class = '';
+    switch ($type)
     {
-      $REX['tabindex'] = 0;
+      case 0 :
+        $class = 'info';
+        break;
+      case 1 :
+        $class = 'warning';
+        break;
+      case 2 :
+        $class = 'error';
+        break;
     }
 
-    return ++$REX['tabindex'];
+    $s .= '    <div class="statusmessage"><p class="' . $class . '">' . $text . '</p></div>' . "\n";
+  }
+
+  return $s;
 }
 ?>

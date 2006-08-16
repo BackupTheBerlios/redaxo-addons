@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_list.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: class.rex_list.inc.php,v 1.2 2006/08/16 10:00:28 kills Exp $
  */
 
 // List Komponenten einbinden
@@ -881,6 +881,10 @@ class rexList
     $s .= '<div class="a22-rexlist">'."\n";
     $s .= $this->getVar(LIST_VAR_TOP); // Platzhalter
     $s .= '  <form action="index.php" method="post">'."\n";
+    
+    // Show Messages
+    $s .= $this->formatMessages();
+    
     $s .= '    <fieldset>'."\n";
 
     $label = $this->getLabel();
@@ -1100,6 +1104,20 @@ class rexList
     $s .= '          </colgroup>'."\n";
 
     return $s;
+  }
+  
+  function formatMessages()
+  {
+    $msg = rex_request($this->getName(). '_msg', 'string');
+    $msg_type = rex_request($this->getName(). '_msgtype', 'int', '2');
+    
+    $messages = array();
+    if($msg != '')
+    {
+      $messages[] = array($msg, $msg_type);
+    }
+    
+    return rex_a22_formatMessages($messages);
   }
 }
 ?>

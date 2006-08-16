@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_form.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: class.rex_form.inc.php,v 1.2 2006/08/16 10:00:28 kills Exp $
  */
 
 // Form Komponenten einbinden
@@ -234,12 +234,13 @@ class rexForm extends rexFieldContainer
     $s .= '<!-- rexForm start -->'. "\n";
     $s .= '<div class="a22-rexform">'. "\n";
     $s .= '  <form action="index.php" method="post">'."\n";
-    $s .= '    <div class="a22-rexform-hidden">'."\n";
 
     // Show Messages
     $s .= $this->formatMessages();
 
     // Show Hidden fields
+    $s .= '    <div class="a22-rexform-hidden">'."\n";
+    
     $fields = & $this->getFields();
     $numFields = $this->numFields();
 
@@ -335,33 +336,18 @@ class rexForm extends rexFieldContainer
 
   function formatMessages()
   {
-    $s = '';
     $messages = & $this->getMessages();
-    foreach ($messages as $message)
+    
+    $msg = rex_request($this->getName(). '_msg', 'string');
+    $msg_type = rex_request($this->getName(). '_msgtype', 'int', '2');
+    if($msg != '')
     {
-      $text = $message[0];
-      $type = $message[1];
-
-      $class = '';
-      switch ($type)
-      {
-        case 0 :
-          $class = 'info';
-          break;
-        case 1 :
-          $class = 'warning';
-          break;
-        case 2 :
-          $class = 'error';
-          break;
-      }
-
-      $s .= '    <div class="statusmessage"><p class="'. $class .'">'. $text .'</p></div>'."\n";
+      $messages[] = array($msg, $msg_type);
     }
-
-    return $s;
+    
+    return rex_a22_formatMessages($messages);
   }
-
+  
   function redirect($params = '')
   {
     $url = $this->apply_url;
