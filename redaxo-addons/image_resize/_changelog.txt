@@ -1,0 +1,11 @@
+<h2>Changelog:</h2>
+<strong>Not yet released..</strong>
+
+- GIF workaround
+- gdlib check bei installation
+
+<strong>version 0.2</strong>
+- made addon
+
+<strong>version 0.1</strong>
+-  plugin first release
