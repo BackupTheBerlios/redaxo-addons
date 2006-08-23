@@ -97,7 +97,7 @@ if (isset ($_GET['rex_resize']) and $_GET['rex_resize'] != '')
     // cache is newer? - show cache
     if ($cachetime > $filetime)
     {
-      include ($REX['HTDOCS_PATH']."redaxo/include/addons/image_resize/class.thumbnail.inc.php");
+      include ($REX['INCLUDE_PATH'].'/addons/image_resize/class.thumbnail.inc.php');
       $thumb = new thumbnail($cachepath);
       @ header("Content-Type: image/".$thumb->img["format"]);
       readfile($cachepath);
@@ -129,7 +129,7 @@ if (isset ($_GET['rex_resize']) and $_GET['rex_resize'] != '')
     exit;
   }
 
-  include ($REX['HTDOCS_PATH']."redaxo/include/addons/image_resize/class.thumbnail.inc.php");
+  include ($REX['INCLUDE_PATH'].'/addons/image_resize/class.thumbnail.inc.php');
 
   // start thumb class
   $thumb = new thumbnail($imagepath);
