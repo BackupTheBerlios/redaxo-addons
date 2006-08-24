@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: config.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: config.inc.php,v 1.2 2006/08/24 13:52:50 kills Exp $
  */
 
 $mypage = 'addon_framework'; // only for this file
@@ -67,6 +67,7 @@ require_once $Basedir.'/functions/function_rex_common.inc.php';
 // Im Backendlibs includen
 if ($REX['REDAXO'])
 {
+  require_once $Basedir.'/functions/function_rex_folder.inc.php';
   require_once $Basedir.'/functions/function_rex_string.inc.php';
   require_once $Basedir.'/functions/function_rex_installation.inc.php';
   require_once $Basedir.'/functions/function_rex_compat.inc.php';

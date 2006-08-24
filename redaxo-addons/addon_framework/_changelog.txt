@@ -38,6 +38,7 @@
 	+ Nachrichtenausgabe via GET/POST Parameter: 
 	  <ListName>_msg = Nachricht
 	  <ListName>_msgtype = Nachrichtentyp (0 => info, 1 => warning, 2 => error)
+- rexFolder functions eingefügt
 - rex_db_meta jetzt MySQL5 kompatibel
 - CSS 
   + Includes aktualisiert
