@@ -187,15 +187,15 @@ class rex_search_index
 
 		$sql = 	"
 						SELECT id, clang, name, keywords, content,
-            MATCH(name) AGAINST ('$keywords') AS score_name, MATCH(name, keywords, content)
-            AGAINST ('$keywords') AS score  FROM rex_12_search_index
+            MATCH(name) AGAINST ('$keywords') AS score_name,
+            MATCH(name, keywords, content) AGAINST ('$keywords') AS score FROM rex_12_search_index
             WHERE MATCH(name, keywords, content)
             AGAINST ('$keywords')
             $clang_set
             $path_set
             $status_set
             ". $this->custom_where_conditions ."
-            ORDER BY score_name DESC,score  DESC
+            ORDER BY score_name DESC, score DESC
             LIMIT ".$this->limitStart.",".$this->limitEnd."
             ";
     // $suche->debugsql = true;
