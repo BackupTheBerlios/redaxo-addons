@@ -3,7 +3,7 @@
 /**
  * 
  * @package redaxo3
- * @version $Id: adminsearch.inc.php,v 1.1 2006/07/21 13:53:09 kills Exp $
+ * @version $Id: adminsearch.inc.php,v 1.2 2006/09/01 08:47:28 kills Exp $
  */
  
 ?>

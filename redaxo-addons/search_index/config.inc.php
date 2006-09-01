@@ -1,9 +1,11 @@
 <?php
 
-/** 
- * Klasse zur Generation eines Suchindexes
- * @package redaxo3
- * @version $Id: config.inc.php,v 1.1 2006/07/21 13:53:09 kills Exp $ 
+/**
+ * Suche Addon
+ *
+ * @author vscope new media design
+ * @author <a href="http://www.vscope.at">www.vscope.at</a>
+ *
  */
 
 $mypage = "search_index";                                 // only for this file

@@ -3,7 +3,7 @@
 /**
  * 
  * @package redaxo3
- * @version $Id: module.inc.php,v 1.1 2006/07/21 13:53:09 kills Exp $
+ * @version $Id: module.inc.php,v 1.2 2006/09/01 08:47:28 kills Exp $
  */
 
 print '
@@ -17,7 +17,7 @@ $template = dirname(__FILE__).'/../templates/template.searchmodule.inc.php';
 highlight_file($template);
 
 print '</div>';
-print '&nbsp;&nbsp; addon by <a href="http://www.vscope.at">vscope new media</a> - updated by <a href="http://www.pergopa.de">jan@kristinus.de</a>, <a href="http://www.public-4u.de">staab@public-4u.de</a>';
+print '&nbsp;&nbsp; addon by <a href="http://www.vscope.at">vscope new media</a> version 0.1 beta - updated by jan@kristinus.de, markus@public4u.de';
 print '</td></tr></table>';
 
 ?>

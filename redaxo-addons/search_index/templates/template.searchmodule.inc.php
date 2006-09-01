@@ -4,26 +4,19 @@
  */
 
 $search = new rex_search_index();
-$search->searchIds = true;
 
-// 1 => sucht nur in Online Artikeln, 
-// 0 => sucht nur in Offline Artikeln, 
-// '' => sucht Status unabhängig
-$search->status = 1; 
-// Einschränken auf eine Sprache 
-// $search->clang = 0;
+// 1 => sucht nur in Online Artikeln, 0 => sucht nur in Offline Artikeln, '' => sucht Status unabhängig
+$search->status = 1;
  
+// Auf Sprache eingrenzen
+// $search->clang = $REX['CUR_CLANG']; 
+
 // Beliebige eigene SQL WHERE Bedingung
 // $search->custom_where_conditions = ' AND article_id not in (3,6,7)';
-
-// Anzahl anzuzeigender Buchstaben um den Suchtreffer herum 
+ 
 $search->surroundchars = 20;
-
-// Pre-/Suffix für Suchwortauszeichnung
 $search->sourround_start_tag = "<strong>";
 $search->sourround_end_tag = "</strong>";
-
-// Suche starten
 $result = $search->rex_search($_REQUEST['rexsearch']);
 
 if (is_array($result))
@@ -48,7 +41,7 @@ if (is_array($result))
     print '<a href='.rex_getUrl($hit['id'], $hit['clang']).'>';
     print $hit['name'];
     print '</a>';
-    print '<br />';
+    print '<br/>';
     print $hit['highlightedtext'];
     print '</p>';
   }
