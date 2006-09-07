@@ -60,14 +60,14 @@ class rex_search_index
     {
       // Index erst nach den Daten einfügen, 
       // da in eine Tabelle mit schon bestehendem Index, der Insert viel länger dauert
-      $db2->query('ALTER TABLE `rex_12_search_index` DROP INDEX `full_content`');
-      $db2->query('ALTER TABLE `rex_12_search_index` DROP INDEX `full_name`');
+      $db2->query('ALTER TABLE `'. $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] .'12_search_index` DROP INDEX `full_content`');
+      $db2->query('ALTER TABLE `'. $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] .'12_search_index` DROP INDEX `full_name`');
 
       // Tabelle leeren      
-      $db2->query('TRUNCATE TABLE rex_12_search_index');
+      $db2->query('TRUNCATE TABLE '. $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] .'12_search_index');
       
       // kopiere alle Metadaten
-      $db2->query('INSERT INTO `rex_12_search_index` (`id`,`path`,`clang`,`status`,`name`,`keywords`)
+      $db2->query('INSERT INTO `'. $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] .'12_search_index` (`id`,`path`,`clang`,`status`,`name`,`keywords`)
                    SELECT `id`,`path`,`clang`,`status`,`name`,`keywords`
                    FROM `rex_article`');
     }
@@ -117,7 +117,7 @@ class rex_search_index
         if ($this->striptags)
           $artcache = preg_replace('@<[\/\!]*?[^<>]*?>@si', '', $artcache);
 
-        $sql = "UPDATE rex_12_search_index SET content='".mysql_escape_string($artcache)."' WHERE id=". $art_id ." AND clang=". $art_clang;
+        $sql = "UPDATE ". $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] ."12_search_index SET content='".mysql_escape_string($artcache)."' WHERE id=". $art_id ." AND clang=". $art_clang;
         
         // falls im artikel eine andere datnebank aufgerufen wurde
         $db_insert = new sql; 
@@ -129,8 +129,8 @@ class rex_search_index
       
       // Index erst nach den Daten einfügen, 
       // da in eine Tabelle mit schon bestehendem Index, der Insert viel länger dauert
-      $db2->query('ALTER TABLE `rex_12_search_index` ADD FULLTEXT `full_content` (`name` ,`keywords` ,`content`)');
-      $db2->query('ALTER TABLE `rex_12_search_index` ADD FULLTEXT `full_name` (`name`)');
+      $db2->query('ALTER TABLE `'. $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] .'12_search_index` ADD FULLTEXT `full_content` (`name` ,`keywords` ,`content`)');
+      $db2->query('ALTER TABLE `'. $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] .'12_search_index` ADD FULLTEXT `full_name` (`name`)');
 
       ob_end_clean();
       echo $CONTENT;

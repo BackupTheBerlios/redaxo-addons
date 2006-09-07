@@ -3,7 +3,7 @@
 // CREATE/UPDATE DATABASE AND CREATE/UPDATE MODULES
 $sql = new sql();
 $sql->query("
-CREATE TABLE `rex_12_search_index` (
+CREATE TABLE `". $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] ."12_search_index` (
   `id` int(100) NOT NULL default '0',
   `path` varchar(100) NOT NULL default '',
   `status` tinyint(2) NOT NULL default '0',
