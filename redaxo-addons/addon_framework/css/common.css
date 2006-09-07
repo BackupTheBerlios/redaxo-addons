@@ -3,7 +3,7 @@
  @author staab[at]public-4u[dot]de Markus Staab
  @author www.public-4u.de
  @package redaxo3
- @version $Id: common.css,v 1.1 2006/08/04 17:46:28 kills Exp $
+ @version $Id: common.css,v 1.2 2006/09/07 08:42:03 kills Exp $
  
  
  CSS by Thomas Blum
@@ -173,19 +173,23 @@
 	float:right;
 }
 
-.a22-rexform div.statusmessage {
+.a22-rexform div.statusmessage,
+.a22-rexlist div.statusmessage {
 	width:770px;
 	margin-bottom:10px;
 }
 
 .a22-rexform div.statusmessage p.error, 
-.a22-rexform div.statusmessage p.warning {
+.a22-rexform div.statusmessage p.warning,
+.a22-rexlist div.statusmessage p.error, 
+.a22-rexlist div.statusmessage p.warning {
 	padding:5px;
 	background-color: #fae9e5;
 	color: #ea1144;
 }
 
-.a22-rexform div.statusmessage p.info{
+.a22-rexform div.statusmessage p.info,
+.a22-rexlist div.statusmessage p.info {
 	padding:5px;
 	background-color:#d2efd9;
 	color:#107c2c; 
