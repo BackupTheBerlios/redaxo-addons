@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formField.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: class.rex_formField.inc.php,v 1.2 2006/09/07 08:42:18 kills Exp $
  */
 
 class rexFormField
@@ -289,6 +289,11 @@ class rexFormField
 
   /**
    * Fügt einen Validator hinzu
+   * 
+   * @param $criteria
+   * "criteria" determines the rule, which is used for validation.
+   * It is possible to add paramters with colon separated:
+   *  e.g. isDate:year:month:day with transform makeDate
    * 
    * @param $empty
    * "empty" determines if the field is allowed to be empty or not. If
