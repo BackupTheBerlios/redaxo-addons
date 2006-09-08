@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: structure.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: structure.inc.php,v 1.2 2006/09/08 08:11:38 kills Exp $
  */
 
 
@@ -40,8 +40,8 @@ if ($func == '')
   // Icon Spalte
   $colIcon = new staticColumn('<img src="pics/folder.gif"/>', '<img src="pics/folder_plus.gif"/>');
   // Icons zentrieren
-  $colIcon->setHeadTags('style="text-align: center"');
-  $colIcon->setBodyTags('style="text-align: center"');
+  $colIcon->setHeadAttributes('style="text-align: center"');
+  $colIcon->setBodyAttributes('style="text-align: center"');
   // Bearbeiten Spalte
   $colEdit = new staticColumn('Kategorie editieren/löschen', 'Kategorie editieren');
   // Online/Offline Spalte
