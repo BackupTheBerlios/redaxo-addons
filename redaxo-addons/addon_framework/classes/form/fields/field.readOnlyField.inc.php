@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.readOnlyField.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: field.readOnlyField.inc.php,v 1.2 2006/09/08 15:04:28 kills Exp $
  */
 
 class readOnlyField extends rexFormField
@@ -51,6 +51,18 @@ class readOnlyField extends rexFormField
       $value = rexFormatter :: format($value, $format_type, $this->getFormat());
     }
     return $value;
+  }
+  
+  function getAttributes()
+  {
+    $attributes = parent::getAttributes();
+    
+    // strip required/invalid css-class attribute, da der user die Werte
+    // eines read-only fields sowieso nicht beeinflussen kann
+    $attributes = str_replace('class="required"', '', $attributes);
+    $attributes = str_replace('class="invalid"', '', $attributes);
+    
+    return $attributes;
   }
 
   function get()
