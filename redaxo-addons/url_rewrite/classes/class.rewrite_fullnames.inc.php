@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rewrite_fullnames.inc.php,v 1.1 2006/07/21 13:53:09 kills Exp $
+ * @version $Id: class.rewrite_fullnames.inc.php,v 1.2 2006/09/14 14:33:59 kills Exp $
  */
 
 /**
@@ -54,9 +54,12 @@ if ($REX['REDAXO'])
 
 class myUrlRewriter extends rexUrlRewriter
 {
+  var $use_levenshtein;
+  
   // Konstruktor
-  function myUrlRewriter()
+  function myUrlRewriter($use_levenshtein = true)
   {
+    $this->use_levenshtein = $use_levenshtein;
     // Parent Konstruktor aufrufen
     $this->rexUrlRewriter();
   }
@@ -74,11 +77,8 @@ class myUrlRewriter extends rexUrlRewriter
       include_once ($pathlist);
 
       $script_path = dirname($_SERVER['PHP_SELF']);
-      if (isset ($_SERVER['REQUEST_URI']))
-      {
-        $path = str_replace($script_path, "", $_SERVER['REQUEST_URI']);
-      }
-      $path = substr($path, 1);
+      $length = strlen($script_path);
+      $path = substr($_SERVER['REQUEST_URI'], $length);
 
       if ($path == '')
       {
@@ -115,7 +115,7 @@ class myUrlRewriter extends rexUrlRewriter
       }
 
       // Check levenshtein
-      if (!$article_id)
+      if ($this->use_levenshtein && !$article_id)
       {
         foreach ($REXPATH as $key => $var)
         {
@@ -132,7 +132,7 @@ class myUrlRewriter extends rexUrlRewriter
 
       if (!$article_id)
       {
-        $article_id = $REX['START_ARTICLE_ID'];
+        $article_id = $REX['NOTFOUND_ARTICLE_ID'];
         return true;
       }
     }
