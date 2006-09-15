@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rewrite_fullnames.inc.php,v 1.2 2006/09/14 14:33:59 kills Exp $
+ * @version $Id: class.rewrite_fullnames.inc.php,v 1.3 2006/09/15 14:20:20 kills Exp $
  */
 
 /**
@@ -80,6 +80,10 @@ class myUrlRewriter extends rexUrlRewriter
       $length = strlen($script_path);
       $path = substr($_SERVER['REQUEST_URI'], $length);
 
+      // Parameter zählen nicht zum Pfad -> abschneiden
+      if(($pos = strpos($path, '?')) !== false)
+         $path = substr($path, 0, $pos);
+         
       if ($path == '')
       {
         $article_id = $REX['START_ARTICLE_ID'];
