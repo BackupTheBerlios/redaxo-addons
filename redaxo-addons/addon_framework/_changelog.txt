@@ -2,6 +2,10 @@
 <strong>Not yet released..</strong>
 - rexFormatter:
   + neuer FormatType "custom", für Benutzer definierte Callbacks
+- rexPasswordField:
+  + neues Handling:
+	  Um ein Passwort zu ändern, im Passwortfeld ein neues eingeben.
+    Wenn man das Feld leer lässt, wird das alte/vorherige Passwort beibehalten. 
 - rexSelectField:
   + Gruppierung von Werten möglich
 - rexMultiValueField:

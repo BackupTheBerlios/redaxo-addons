@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formField.inc.php,v 1.2 2006/09/07 08:42:18 kills Exp $
+ * @version $Id: class.rex_formField.inc.php,v 1.3 2006/10/14 12:48:21 kills Exp $
  */
 
 class rexFormField
@@ -364,6 +364,7 @@ require_once $FormBasedir.'/class.rex_formMultiValueField.inc.php';
 
 // Allgemeine Field-Klassen
 require_once $FieldBasedir.'/fields/field.textField.inc.php';
+require_once $FieldBasedir.'/fields/field.passwordField.inc.php';
 require_once $FieldBasedir.'/fields/field.textAreaField.inc.php';
 require_once $FieldBasedir.'/fields/field.selectField.inc.php';
 require_once $FieldBasedir.'/fields/field.buttonField.inc.php';
