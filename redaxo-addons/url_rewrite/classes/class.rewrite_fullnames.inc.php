@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rewrite_fullnames.inc.php,v 1.3 2006/09/15 14:20:20 kills Exp $
+ * @version $Id: class.rewrite_fullnames.inc.php,v 1.4 2006/10/23 19:32:57 kills Exp $
  */
 
 /**
@@ -34,24 +34,6 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  */
 
-if ($REX['REDAXO'])
-{
-  // Die Pathnames bei folgenden Extension Points aktualisieren
-  rex_register_extension('CAT_ADDED', 'rex_rewriter_generate_pathnames');
-  rex_register_extension('CAT_UPDATED', 'rex_rewriter_generate_pathnames');
-  rex_register_extension('CAT_DELETED', 'rex_rewriter_generate_pathnames');
-
-  rex_register_extension('ART_ADDED', 'rex_rewriter_generate_pathnames');
-  rex_register_extension('ART_UPDATED', 'rex_rewriter_generate_pathnames');
-  rex_register_extension('ART_DELETED', 'rex_rewriter_generate_pathnames');
-
-  rex_register_extension('CLANG_ADDED', 'rex_rewriter_generate_pathnames');
-  rex_register_extension('CLANG_UPDATED', 'rex_rewriter_generate_pathnames');
-  rex_register_extension('CLANG_DELETED', 'rex_rewriter_generate_pathnames');
-
-  rex_register_extension('ALL_GENERATED', 'rex_rewriter_generate_pathnames');
-}
-
 class myUrlRewriter extends rexUrlRewriter
 {
   var $use_levenshtein;
@@ -67,7 +49,6 @@ class myUrlRewriter extends rexUrlRewriter
   // Parameter aus der URL für das Script verarbeiten
   function prepare()
   {
-
     global $article_id, $clang, $REX, $REXPATH;
 
     if (!$REX['REDAXO'])
@@ -105,7 +86,11 @@ class myUrlRewriter extends rexUrlRewriter
       // Check Clang StartArtikel
       if (!$article_id)
       {
-        include ($REX['INCLUDE_PATH']."/clang.inc.php");
+        if(!isset($REX['CLANG']))
+        {
+          include($REX['INCLUDE_PATH']."/clang.inc.php");
+        }
+        
         if (is_array($REX['CLANG']))
         {
           foreach ($REX['CLANG'] as $key => $var)
@@ -159,6 +144,20 @@ class myUrlRewriter extends rexUrlRewriter
     $url = $REXPATH[$id][$clang].$params;
     return $url;
   }
+}
+
+if ($REX['REDAXO'])
+{
+  // Die Pathnames bei folgenden Extension Points aktualisieren
+  $extension = 'rex_rewriter_generate_pathnames';
+  $extensionPoints = array(
+    'CAT_ADDED',   'CAT_UPDATED',   'CAT_DELETED',
+    'ART_ADDED',   'ART_UPDATED',   'ART_DELETED',
+    'CLANG_ADDED', 'CLANG_UPDATED', 'CLANG_DELETED',
+    'ALL_GENERATED');
+  
+  foreach($extensionPoints as $extensionPoint)
+    rex_register_extension($extensionPoint, $extension);
 }
 
 function rex_rewriter_generate_pathnames($params = array ())
