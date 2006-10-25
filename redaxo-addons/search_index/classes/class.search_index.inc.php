@@ -106,6 +106,8 @@ class rex_search_index
         			<br><br><br><br>";
 
         $REX['GG'] = true;
+        $REX['REDAXO'] = false;
+        
         $article = new article($art_id, $art_clang);
         $artcache = $article->getArticle();
         // Da dieser Prozess recht speicherintensiv ist, variable manuell löschen
@@ -134,6 +136,8 @@ class rex_search_index
 
       ob_end_clean();
       echo $CONTENT;
+      
+      $REX['REDAXO'] = true;
       $REX['GG'] = false;
 
       return "Suchindex wurde erneuert!";
