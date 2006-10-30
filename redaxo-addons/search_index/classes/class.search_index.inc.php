@@ -116,6 +116,9 @@ class rex_search_index
         $artcache = rex_register_extension_point('OUTPUT_FILTER', $artcache);
         $artcache = rex_register_extension_point('SEARCH_ARTICLE_GENERATED', $artcache);
 
+        $REX['REDAXO'] = true;
+        $REX['GG'] = false;
+      
         if ($this->striptags)
           $artcache = preg_replace('@<[\/\!]*?[^<>]*?>@si', '', $artcache);
 
@@ -137,9 +140,6 @@ class rex_search_index
       ob_end_clean();
       echo $CONTENT;
       
-      $REX['REDAXO'] = true;
-      $REX['GG'] = false;
-
       return "Suchindex wurde erneuert!";
     }
   }
