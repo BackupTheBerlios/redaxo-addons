@@ -160,7 +160,7 @@ function print_table($dir, $list, $allow) {	// print table of files
 		/*if($link!="") */ echo"<A HREF=\"".$link."\" TARGET=\"".$target."\">";
 		//else echo "<A>";
 		echo "<IMG border=\"0\" width=\"16\" height=\"16\" ";
-		echo "align=\"ABSMIDDLE\" src=\"_img/".get_mime_type($dir, $item, "img")."\" ALT=\"\">&nbsp;";
+		echo "align=\"ABSMIDDLE\" src=\"../files/quixexplorer/".get_mime_type($dir, $item, "img")."\" ALT=\"\">&nbsp;";
 		$s_item=$item;	if(strlen($s_item)>50) $s_item=substr($s_item,0,47)."...";
 		echo htmlspecialchars($s_item)."</A></TD>\n";	// ...$extra...
 	// Size
@@ -185,32 +185,32 @@ function print_table($dir, $list, $allow) {	// print table of files
 			if($allow) {
 				echo "<TD><A HREF=\"".make_link("edit",$dir,$item)."\">";
 				echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-				echo "src=\"_img/_edit.gif\" ALT=\"".$GLOBALS["messages"]["editlink"]."\" TITLE=\"";
+				echo "src=\"../files/quixexplorer/_edit.gif\" ALT=\"".$GLOBALS["messages"]["editlink"]."\" TITLE=\"";
 				echo $GLOBALS["messages"]["editlink"]."\"></A></TD>\n";
 			} else {
 				echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-				echo "src=\"_img/_edit_.gif\" ALT=\"".$GLOBALS["messages"]["editlink"]."\" TITLE=\"";
+				echo "src=\"../files/quixexplorer/_edit_.gif\" ALT=\"".$GLOBALS["messages"]["editlink"]."\" TITLE=\"";
 				echo $GLOBALS["messages"]["editlink"]."\"></TD>\n";
 			}
 		} else {
 			echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-			echo "src=\"_img/_.gif\" ALT=\"\"></TD>\n";
+			echo "src=\"../files/quixexplorer/_.gif\" ALT=\"\"></TD>\n";
 		}
 		// DOWNLOAD
 		if(get_is_file($dir,$item)) {
 			if($allow) {
 				echo "<TD><A HREF=\"".make_link("download",$dir,$item)."\">";
 				echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-				echo "src=\"_img/_download.gif\" ALT=\"".$GLOBALS["messages"]["downlink"];
+				echo "src=\"../files/quixexplorer/_download.gif\" ALT=\"".$GLOBALS["messages"]["downlink"];
 				echo "\" TITLE=\"".$GLOBALS["messages"]["downlink"]."\"></A></TD>\n";
 			} else if(!$allow) {
 				echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-				echo "src=\"_img/_download_.gif\" ALT=\"".$GLOBALS["messages"]["downlink"];
+				echo "src=\"../files/quixexplorer/_download_.gif\" ALT=\"".$GLOBALS["messages"]["downlink"];
 				echo "\" TITLE=\"".$GLOBALS["messages"]["downlink"]."\"></TD>\n";
 			}
 		} else {
 			echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-			echo "src=\"_img/_.gif\" ALT=\"\"></TD>\n";
+			echo "src=\"../files/quixexplorer/_.gif\" ALT=\"\"></TD>\n";
 		}
 		echo "</TABLE>\n</TD></TR>\n";
 	}
@@ -239,7 +239,7 @@ function list_dir($dir) {			// list directory contents
 	include $QUIXPATH.".include/javascript.php";
 	
 	// Sorting of items
-	$_img = "&nbsp;<IMG width=\"10\" height=\"10\" border=\"0\" align=\"ABSMIDDLE\" src=\"_img/";
+	$_img = "&nbsp;<IMG width=\"10\" height=\"10\" border=\"0\" align=\"ABSMIDDLE\" src=\"../files/quixexplorer/";
 	if($GLOBALS["srt"]=="yes") {
 		$_srt = "no";	$_img .= "_arrowup.gif\" ALT=\"^\">";
 	} else {
@@ -251,19 +251,19 @@ function list_dir($dir) {			// list directory contents
 	
 	// PARENT DIR
 	echo "<TD><A HREF=\"".make_link("list",$dir_up,NULL)."\">";
-	echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"_img/_up.gif\" ";
+	echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"../files/quixexplorer/_up.gif\" ";
 	echo "ALT=\"".$GLOBALS["messages"]["uplink"]."\" TITLE=\"".$GLOBALS["messages"]["uplink"]."\"></A></TD>\n";
 	// HOME DIR
 	echo "<TD><A HREF=\"".make_link("list",NULL,NULL)."\">";
-	echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"_img/_home.gif\" ";
+	echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"../files/quixexplorer/_home.gif\" ";
 	echo "ALT=\"".$GLOBALS["messages"]["homelink"]."\" TITLE=\"".$GLOBALS["messages"]["homelink"]."\"></A></TD>\n";
 	// RELOAD
 	echo "<TD><A HREF=\"javascript:location.reload();\"><IMG border=\"0\" width=\"16\" height=\"16\" ";
-	echo "align=\"ABSMIDDLE\" src=\"_img/_refresh.gif\" ALT=\"".$GLOBALS["messages"]["reloadlink"];
+	echo "align=\"ABSMIDDLE\" src=\"../files/quixexplorer/_refresh.gif\" ALT=\"".$GLOBALS["messages"]["reloadlink"];
 	echo "\" TITLE=\"".$GLOBALS["messages"]["reloadlink"]."\"></A></TD>\n";
 	// SEARCH
 	echo "<TD><A HREF=\"".make_link("search",$dir,NULL)."\">";
-	echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"_img/_search.gif\" ";
+	echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"../files/quixexplorer/_search.gif\" ";
 	echo "ALT=\"".$GLOBALS["messages"]["searchlink"]."\" TITLE=\"".$GLOBALS["messages"]["searchlink"];
 	echo "\"></A></TD>\n";
 	
@@ -272,49 +272,49 @@ function list_dir($dir) {			// list directory contents
 	if($allow) {
 		// COPY
 		echo "<TD><A HREF=\"javascript:Copy();\"><IMG border=\"0\" width=\"16\" height=\"16\" ";
-		echo "align=\"ABSMIDDLE\" src=\"_img/_copy.gif\" ALT=\"".$GLOBALS["messages"]["copylink"];
+		echo "align=\"ABSMIDDLE\" src=\"../files/quixexplorer/_copy.gif\" ALT=\"".$GLOBALS["messages"]["copylink"];
 		echo "\" TITLE=\"".$GLOBALS["messages"]["copylink"]."\"></A></TD>\n";
 		// MOVE
 		echo "<TD><A HREF=\"javascript:Move();\"><IMG border=\"0\" width=\"16\" height=\"16\" ";
-		echo "align=\"ABSMIDDLE\" src=\"_img/_move.gif\" ALT=\"".$GLOBALS["messages"]["movelink"];
+		echo "align=\"ABSMIDDLE\" src=\"../files/quixexplorer/_move.gif\" ALT=\"".$GLOBALS["messages"]["movelink"];
 		echo "\" TITLE=\"".$GLOBALS["messages"]["movelink"]."\"></A></TD>\n";
 		// DELETE
 		echo "<TD><A HREF=\"javascript:Delete();\"><IMG border=\"0\" width=\"16\" height=\"16\" ";
-		echo "align=\"ABSMIDDLE\" src=\"_img/_delete.gif\" ALT=\"".$GLOBALS["messages"]["dellink"];
+		echo "align=\"ABSMIDDLE\" src=\"../files/quixexplorer/_delete.gif\" ALT=\"".$GLOBALS["messages"]["dellink"];
 		echo "\" TITLE=\"".$GLOBALS["messages"]["dellink"]."\"></A></TD>\n";
 		// UPLOAD
 		if(get_cfg_var("file_uploads")) {
 			echo "<TD><A HREF=\"".make_link("upload",$dir,NULL)."\">";
 			echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-			echo "src=\"_img/_upload.gif\" ALT=\"".$GLOBALS["messages"]["uploadlink"];
+			echo "src=\"../files/quixexplorer/_upload.gif\" ALT=\"".$GLOBALS["messages"]["uploadlink"];
 			echo "\" TITLE=\"".$GLOBALS["messages"]["uploadlink"]."\"></A></TD>\n";
 		} else {
 			echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-			echo "src=\"_img/_upload_.gif\" ALT=\"".$GLOBALS["messages"]["uploadlink"];
+			echo "src=\"../files/quixexplorer/_upload_.gif\" ALT=\"".$GLOBALS["messages"]["uploadlink"];
 			echo "\" TITLE=\"".$GLOBALS["messages"]["uploadlink"]."\"></TD>\n";
 		}
 		// ARCHIVE
 		if($GLOBALS["zip"] || $GLOBALS["tar"] || $GLOBALS["tgz"]) {
 			echo "<TD><A HREF=\"javascript:Archive();\"><IMG border=\"0\" width=\"16\" height=\"16\" ";
-			echo "align=\"ABSMIDDLE\" src=\"_img/_archive.gif\" ALT=\"".$GLOBALS["messages"]["comprlink"];
+			echo "align=\"ABSMIDDLE\" src=\"../files/quixexplorer/_archive.gif\" ALT=\"".$GLOBALS["messages"]["comprlink"];
 			echo "\" TITLE=\"".$GLOBALS["messages"]["comprlink"]."\"></A></TD>\n";
 		}
 	} else {
 		// COPY
 		echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-		echo "src=\"_img/_copy_.gif\" ALT=\"".$GLOBALS["messages"]["copylink"]."\" TITLE=\"";
+		echo "src=\"../files/quixexplorer/_copy_.gif\" ALT=\"".$GLOBALS["messages"]["copylink"]."\" TITLE=\"";
 		echo $GLOBALS["messages"]["copylink"]."\"></TD>\n";
 		// MOVE
 		echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-		echo "src=\"_img/_move_.gif\" ALT=\"".$GLOBALS["messages"]["movelink"]."\" TITLE=\"";
+		echo "src=\"../files/quixexplorer/_move_.gif\" ALT=\"".$GLOBALS["messages"]["movelink"]."\" TITLE=\"";
 		echo $GLOBALS["messages"]["movelink"]."\"></TD>\n";
 		// DELETE
 		echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-		echo "src=\"_img/_delete_.gif\" ALT=\"".$GLOBALS["messages"]["dellink"]."\" TITLE=\"";
+		echo "src=\"../files/quixexplorer/_delete_.gif\" ALT=\"".$GLOBALS["messages"]["dellink"]."\" TITLE=\"";
 		echo $GLOBALS["messages"]["dellink"]."\"></TD>\n";
 		// UPLOAD
 		echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-		echo "src=\"_img/_upload_.gif\" ALT=\"".$GLOBALS["messages"]["uplink"];
+		echo "src=\"../files/quixexplorer/_upload_.gif\" ALT=\"".$GLOBALS["messages"]["uplink"];
 		echo "\" TITLE=\"".$GLOBALS["messages"]["uplink"]."\"></TD>\n";
 	}
 	
@@ -325,13 +325,13 @@ function list_dir($dir) {			// list directory contents
 		if($admin) {
 			echo "<TD><A HREF=\"".make_link("admin",$dir,NULL)."\">";
 			echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-			echo "src=\"_img/_admin.gif\" ALT=\"".$GLOBALS["messages"]["adminlink"]."\" TITLE=\"";
+			echo "src=\"../files/quixexplorer/_admin.gif\" ALT=\"".$GLOBALS["messages"]["adminlink"]."\" TITLE=\"";
 			echo $GLOBALS["messages"]["adminlink"]."\"></A></TD>\n";
 		}
 		// LOGOUT
 		echo "<TD><A HREF=\"".make_link("logout",NULL,NULL)."\">";
 		echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-		echo "src=\"_img/_logout.gif\" ALT=\"".$GLOBALS["messages"]["logoutlink"]."\" TITLE=\"";
+		echo "src=\"../files/quixexplorer/_logout.gif\" ALT=\"".$GLOBALS["messages"]["logoutlink"]."\" TITLE=\"";
 		echo $GLOBALS["messages"]["logoutlink"]."\"></A></TD>\n";
 	}
 	echo "</TR></TABLE></TD>\n";
