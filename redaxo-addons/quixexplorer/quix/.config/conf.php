@@ -9,7 +9,7 @@
 	$GLOBALS["language"] = "de";
 	
 	// the filename of the QuiXplorer script: (you rarely need to change this)
-	$GLOBALS["script_name"] = "http://".$GLOBALS['__SERVER']['HTTP_HOST'].$GLOBALS['__SERVER']["PHP_SELF"];
+	$GLOBALS["script_name"] = "http://".$_SERVER['HTTP_HOST'].$_SERVER["PHP_SELF"];
 	
 	// allow Zip, Tar, TGz -> Only (experimental) Zip-support
 	$GLOBALS["zip"] = false;	//function_exists("gzcompress");
@@ -22,10 +22,10 @@
 // Global User Variables (used when $require_login==false)
 	
 	// the home directory for the filemanager: (use '/', not '\' or '\\', no trailing '/')
-	$GLOBALS["home_dir"] = "../";
+	$GLOBALS["home_dir"] = "..";
 	
 	// the url corresponding with the home directory: (no trailing '/')
-	$GLOBALS["home_url"] = "http://localhost/~you";
+	$GLOBALS["home_url"] = "http://".$_SERVER['HTTP_HOST'].dirname(dirname($_SERVER["PHP_SELF"]));
 	
 	// show hidden files in QuiXplorer: (hide files starting with '.', as in Linux/UNIX)
 	$GLOBALS["show_hidden"] = true;
