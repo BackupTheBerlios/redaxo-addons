@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formatter.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: class.rex_formatter.inc.php,v 1.2 2006/11/04 16:48:32 kills Exp $
  */
 
 /**
@@ -147,7 +147,7 @@ class rexFormatter
       return '';
     }
 
-    if ($format == '' || $format == 'dateformat')
+    if ($format == '' || $format == 'date')
     {
       // Default REX-Dateformat 
       $format = $I18N->msg('dateformat');
