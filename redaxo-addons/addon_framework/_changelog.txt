@@ -25,6 +25,7 @@
 	  <FormName>_msgtype = Nachrichtentyp (0 => info, 1 => warning, 2 => error)
 - rexFormField: 
 	+ neuer Typ "captchaField" implementiert
+	+ neuer Typ "dateField" implementiert
 - Spaltennamen werden nun von ` Umschlossen, damit dort auch Sonderzeichen vorkommen dürfen
 - popupButtonField für REX CVS Version angepasst
 - rexValidateEngine::has_registered_validators() implementiert
