@@ -17,7 +17,7 @@ $search->status = 1;
 // HTML Tags nicht aus den Suchergebnissen entfernen
 // $search->striptags = false;
 
-// HTML Tags, die nicht entfernt werden
+// HTML Tags, die nicht entfernt werden sollen
 // $search->allowable_tags = '<img><p>';
  
 $search->surroundchars = 20;
