@@ -18,6 +18,7 @@ class rex_search_index
   var $sourround_start_tag = "<b>";
   var $sourround_end_tag = "</b>";
   var $striptags = true;
+  var $allowable_tags = '';
   var $limitStart = 0;
   var $limitEnd = 50;
 
@@ -120,7 +121,7 @@ class rex_search_index
         $REX['GG'] = false;
       
         if ($this->striptags)
-          $artcache = preg_replace('@<[\/\!]*?[^<>]*?>@si', '', $artcache);
+          $artcache = strip_tags($artcache, $this->allowable_tags);
 
         $sql = "UPDATE ". $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] ."12_search_index SET content='".mysql_escape_string($artcache)."' WHERE id=". $art_id ." AND clang=". $art_clang;
         

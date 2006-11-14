@@ -13,6 +13,12 @@ $search->status = 1;
 
 // Beliebige eigene SQL WHERE Bedingung
 // $search->custom_where_conditions = ' AND article_id not in (3,6,7)';
+
+// HTML Tags nicht aus den Suchergebnissen entfernen
+// $search->striptags = false;
+
+// HTML Tags, die nicht entfernt werden
+// $search->allowable_tags = '<img><p>';
  
 $search->surroundchars = 20;
 $search->sourround_start_tag = "<strong>";
