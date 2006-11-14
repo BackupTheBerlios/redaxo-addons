@@ -19,8 +19,8 @@ class rex_search_index
   var $sourround_end_tag = "</b>";
   var $striptags = true;
   var $allowable_tags = '';
-  var $limitStart = 0;
-  var $limitEnd = 50;
+  var $limit_start = 0;
+  var $limit_end = 50;
 
   function rex_indexSite()
   {
@@ -201,7 +201,7 @@ class rex_search_index
             $status_set
             ". $this->custom_where_conditions ."
             ORDER BY score_name DESC, score DESC
-            LIMIT ".$this->limitStart.",".$this->limitEnd."
+            LIMIT ".$this->limit_start.",".$this->limit_end."
             ";
     // $suche->debugsql = true;
     $suche->setQuery($sql);

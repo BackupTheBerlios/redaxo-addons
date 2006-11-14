@@ -19,10 +19,17 @@ $search->status = 1;
 
 // HTML Tags, die nicht entfernt werden sollen
 // $search->allowable_tags = '<img><p>';
- 
+
+// Anzahl der max. Anzuzeigenden Einträge
+// $search->limit_end = 50;
+
+// Anzahl Zeichen, die um den Suchtreffer herum noch mitselektiert werden sollen
 $search->surroundchars = 20;
+
+// Format, mit dem das gefundene Suchwort markiert wird
 $search->sourround_start_tag = "<strong>";
 $search->sourround_end_tag = "</strong>";
+
 $result = $search->rex_search($_REQUEST['rexsearch']);
 
 if (is_array($result))
