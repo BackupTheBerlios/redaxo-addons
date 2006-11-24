@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rewrite_fullnames.inc.php,v 1.4 2006/10/23 19:32:57 kills Exp $
+ * @version $Id: class.rewrite_fullnames.inc.php,v 1.5 2006/11/24 10:14:47 kills Exp $
  */
 
 /**
@@ -71,6 +71,10 @@ class myUrlRewriter extends rexUrlRewriter
         return true;
       }
 
+			// Auch Urls die nicht auf "/" enden, sollen gefunden werden
+      if(substr($path, -1) != '/')
+        $path .= '/';
+        
       foreach ($REXPATH as $key => $var)
       {
         foreach ($var as $k => $v)
