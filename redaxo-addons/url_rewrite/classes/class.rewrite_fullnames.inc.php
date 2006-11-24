@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rewrite_fullnames.inc.php,v 1.5 2006/11/24 10:14:47 kills Exp $
+ * @version $Id: class.rewrite_fullnames.inc.php,v 1.6 2006/11/24 10:21:11 kills Exp $
  */
 
 /**
@@ -63,6 +63,10 @@ class myUrlRewriter extends rexUrlRewriter
 
       // Parameter zählen nicht zum Pfad -> abschneiden
       if(($pos = strpos($path, '?')) !== false)
+         $path = substr($path, 0, $pos);
+      
+      // Anker zählen nicht zum Pfad -> abschneiden
+      if(($pos = strpos($path, '#')) !== false)
          $path = substr($path, 0, $pos);
          
       if ($path == '')
