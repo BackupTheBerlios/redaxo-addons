@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rewrite_simple.inc.php,v 1.1 2006/07/21 13:53:09 kills Exp $
+ * @version $Id: class.rewrite_simple.inc.php,v 1.2 2006/12/18 18:16:06 kills Exp $
  */
 
 /**
@@ -35,7 +35,7 @@ class myUrlRewriter extends rexUrlRewriter
     }
     elseif ((empty( $_GET['article_id'])) && ( empty( $_POST['article_id'])))
     {
-      $article_id = $REX['STARTARTIKEL_ID'];
+      $article_id = $REX['START_ARTICLE_ID'];
     }
   }
 
