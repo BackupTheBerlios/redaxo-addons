@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rewrite_fullnames.inc.php,v 1.6 2006/11/24 10:21:11 kills Exp $
+ * @version $Id: class.rewrite_fullnames.inc.php,v 1.7 2006/12/19 21:19:30 kills Exp $
  */
 
 /**
@@ -54,7 +54,7 @@ class myUrlRewriter extends rexUrlRewriter
     if (!$REX['REDAXO'])
     {
 
-      $pathlist = $REX['INCLUDE_PATH']."/generated/files/pathlist.php";
+      $pathlist = $REX['INCLUDE_PATH'].'/generated/files/pathlist.php';
       include_once ($pathlist);
 
       $script_path = dirname($_SERVER['PHP_SELF']);
@@ -96,14 +96,14 @@ class myUrlRewriter extends rexUrlRewriter
       {
         if(!isset($REX['CLANG']))
         {
-          include($REX['INCLUDE_PATH']."/clang.inc.php");
+          include($REX['INCLUDE_PATH'].'/clang.inc.php');
         }
         
         if (is_array($REX['CLANG']))
         {
           foreach ($REX['CLANG'] as $key => $var)
           {
-            if ($var."/" == $path)
+            if ($var.'/' == $path)
             {
               $clang = $key;
             }
@@ -118,11 +118,11 @@ class myUrlRewriter extends rexUrlRewriter
         {
           foreach ($var as $k => $v)
           {
-            $levenshtein[levenshtein($path, $v)] = $key."#".$k;
+            $levenshtein[levenshtein($path, $v)] = $key.'#'.$k;
           }
         }
         ksort($levenshtein);
-        $best = explode("#", array_shift($levenshtein));
+        $best = explode('#', array_shift($levenshtein));
         $article_id = $best[0];
         $clang = $best[1];
       }
@@ -138,10 +138,17 @@ class myUrlRewriter extends rexUrlRewriter
   // Url neu schreiben
   function rewrite($params)
   {
+  	// Url wurde von einer anderen Extension bereits gesetzt
+  	if($params['subject'] != '')
+  	{
+  		return $params['subject'];
+  	}
+  	
     global $REX, $REXPATH;
+    
     if (!$REXPATH)
     {
-      include_once ($REX['INCLUDE_PATH']."/generated/files/pathlist.php");
+      include_once ($REX['INCLUDE_PATH'].'/generated/files/pathlist.php');
 
     }
     $id = $params['id'];
@@ -172,8 +179,8 @@ function rex_rewriter_generate_pathnames($params = array ())
 {
   global $REX;
 
-  $db = new sql();
-  $result = $db->get_array("SELECT id,name,clang,path FROM rex_article");
+  $db = new rex_sql();
+  $result = $db->getArray('SELECT id,name,clang,path FROM rex_article');
   if (is_array($result))
   {
     foreach ($result as $var)
@@ -182,7 +189,7 @@ function rex_rewriter_generate_pathnames($params = array ())
     }
   }
 
-  $fcontent = "<?php\n";
+  $fcontent = '<?php'."\n";
   if (is_array($result))
   {
     foreach ($result as $var)
@@ -190,31 +197,31 @@ function rex_rewriter_generate_pathnames($params = array ())
       $clang = $var['clang'];
       if (count($REX['CLANG']) > 1)
       {
-        $pathname = $REX['CLANG'][$clang]."/";
+        $pathname = $REX['CLANG'][$clang].'/';
       }
       else
       {
         $pathname = '';
       }
-      $path = explode("|", $var['path']);
+      $path = explode('|', $var['path']);
       $path[] = $var['id'];
       foreach ($path as $p)
       {
-        if ($p != "")
+        if ($p != '')
         {
           $curname = $article_names[$p][$clang]['name'];
           if ($curname != '')
           {
-            $pathname .= $curname."/";
+            $pathname .= $curname.'/';
           }
         }
       }
       $fcontent .= '$REXPATH[\''.$var['id'].'\'][\''.$var['clang'].'\'] = "'.mysql_escape_string($pathname).'";'."\n";
     }
   }
-  $fcontent .= "?>";
+  $fcontent .= '?>';
 
-  $handle = fopen($REX['INCLUDE_PATH']."/generated/files/pathlist.php", "w");
+  $handle = fopen($REX['INCLUDE_PATH'].'/generated/files/pathlist.php', 'w');
   fwrite($handle, $fcontent);
   fclose($handle);
 }

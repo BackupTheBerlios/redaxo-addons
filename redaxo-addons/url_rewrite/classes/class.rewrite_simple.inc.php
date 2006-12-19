@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rewrite_simple.inc.php,v 1.2 2006/12/18 18:16:06 kills Exp $
+ * @version $Id: class.rewrite_simple.inc.php,v 1.3 2006/12/19 21:19:30 kills Exp $
  */
 
 /**
@@ -42,7 +42,13 @@ class myUrlRewriter extends rexUrlRewriter
   // Url neu schreiben
   function rewrite($params)
   {
-    return './?/'.$params['id'].'-'.$params['clang'].'-'.$params['name'].'.htm'.$params['params'];
+  	// Url wurde von einer anderen Extension bereits gesetzt
+  	if($params['subject'] != '')
+  	{
+  		return $params['subject'];
+  	}
+  	
+  	return '?/'.$params['id'].'-'.$params['clang'].'-'.$params['name'].'.htm'.$params['params'];
   }
 }
 ?>

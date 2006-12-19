@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.urlrewriter.inc.php,v 1.1 2006/07/21 13:53:09 kills Exp $
+ * @version $Id: class.urlrewriter.inc.php,v 1.2 2006/12/19 21:19:30 kills Exp $
  */
 
 class rexUrlRewriter
@@ -29,7 +29,7 @@ class rexUrlRewriter
     $name = $params['name'];
     $clang = $params['clang'];
     $params = $params['params'];
-    return rexrewrite_no_rewrite($id, $name, $clang, $params);
+    return rex_no_rewrite($id, $name, $clang, $params);
   }
 }
 ?>
