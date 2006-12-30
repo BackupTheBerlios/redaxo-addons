@@ -5,62 +5,8 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: function_rex_installation.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: function_rex_installation.inc.php,v 1.2 2006/12/30 19:14:42 kills Exp $
  */
-
-/**
- * Installiert ein Addon
- * @param $file Dateiname des SQL Dumps der ausgeführt werden soll
- */
-function rex_installAddon($file, $debug = false)
-{
-  rex_valid_type($file, 'file', __FILE__, __LINE__);
-  rex_valid_type($debug, 'boolean', __FILE__, __LINE__);
-
-  return _rex_installDump($file, $debug);
-}
-
-/**
- * De-Installiert ein Addon
- * @param $file Dateiname des SQL Dumps der ausgeführt werden soll
- */
-function rex_uninstallAddon($file, $debug = false)
-{
-  rex_valid_type($file, 'file', __FILE__, __LINE__);
-  rex_valid_type($debug, 'boolean', __FILE__, __LINE__);
-
-  return _rex_installDump($file, $debug);
-}
-
-function _rex_installDump($file, $debug = false)
-{
-  $sql = new sql();
-  $sql->debugsql = $debug;
-  $error = '';
-
-  foreach (readSqlDump($file) as $query)
-  {
-    $sql->setQuery(_prepare_query($query));
-
-    if (($sqlerr = $sql->getError()) != '')
-    {
-      $error .= $sqlerr."\n<br/>";
-    }
-  }
-
-  return $error;
-}
-
-function _prepare_query($qry)
-{
-  global $REX, $REX_USER;
-  
-  $qry = str_replace('%USER%', $REX_USER->getValue('login'), $qry); 
-  $qry = str_replace('%TIME%', time(), $qry); 
-  $qry = str_replace('%TABLE_PREFIX%', $REX['TABLE_PREFIX'], $qry);
-  
-  return $qry;
-}
 
 /**
  * Installiert ein Modul
