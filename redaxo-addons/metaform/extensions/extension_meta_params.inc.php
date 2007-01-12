@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: extension_meta_params.inc.php,v 1.1 2007/01/12 18:39:38 kills Exp $
+ * @version $Id: extension_meta_params.inc.php,v 1.2 2007/01/12 18:41:29 kills Exp $
  */
 
 rex_register_extension('ART_META_PARAMS', 'rex_a62_meta_params');
@@ -37,8 +37,6 @@ function rex_a62_meta_params($params)
 function rex_a62_meta_query($params)
 {
 	global $REX;
-	
-	var_dump($params);
 	
 	$sql = new rex_sql();
 	$qry = 'SELECT LOWER(CONCAT(s.name,"_", f.name)) as name, value FROM rex_62_section s,rex_62_field f LEFT JOIN rex_62_value v ON (v.field_id = f.id AND article_id = '. $params['article_id'] .' AND clang='. $params['clang'] .') WHERE s.id = f.section_id';
