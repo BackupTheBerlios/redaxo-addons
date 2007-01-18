@@ -1,3 +1,5 @@
+<h2>TODO:</h2>
+- [rexForm] isEditMode() erkennen an der Anzahl der affectedRows()
 <h2>Changelog:</h2>
 <strong>Not yet released..</strong>
 - rexFormatter:
