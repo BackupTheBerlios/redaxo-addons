@@ -6,14 +6,14 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.radioField.inc.php,v 1.2 2006/08/09 12:21:15 kills Exp $
+ * @version $Id: field.radioField.inc.php,v 1.3 2007/01/30 19:21:06 kills Exp $
  */
 
-class radioField extends rexFormMultiValueField
+class radioField extends rexSimpleMultiValueField
 {
   function radioField($name, $label, $attributes = array (), $id = '')
   {
-    $this->rexFormMultiValueField($name, $label, $attributes, $id);
+    $this->rexSimpleMultiValueField($name, $label, $attributes, $id);
   }
 
   /**

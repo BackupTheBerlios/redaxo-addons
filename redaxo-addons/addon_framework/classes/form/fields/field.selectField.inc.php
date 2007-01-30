@@ -5,16 +5,16 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.selectField.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: field.selectField.inc.php,v 1.2 2007/01/30 19:21:06 kills Exp $
  */
 
-class selectField extends rexFormMultiValueField
+class selectField extends rexSimpleMultiValueField
 {
   var $multiple;
 
   function selectField($name, $label, $attributes = array (), $id = '')
   {
-    $this->rexFormMultiValueField($name, $label, $attributes, $id);
+    $this->rexSimpleMultiValueField($name, $label, $attributes, $id);
     $this->multiple = false;
   }
 
