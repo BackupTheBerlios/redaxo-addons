@@ -5,10 +5,10 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formSection.inc.php,v 1.2 2006/08/09 12:16:13 kills Exp $
+ * @version $Id: class.rex_formSection.inc.php,v 1.3 2007/01/30 17:37:08 kills Exp $
  */
 
-class rexFormSection extends rexfieldController
+class rexFormSection extends rexFieldController
 {
   // Section-Label
   var $label;
