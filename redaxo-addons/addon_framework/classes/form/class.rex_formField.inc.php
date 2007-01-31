@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formField.inc.php,v 1.5 2007/01/30 19:21:44 kills Exp $
+ * @version $Id: class.rex_formField.inc.php,v 1.6 2007/01/31 20:20:16 kills Exp $
  */
 
 class rexFormField
@@ -381,6 +381,7 @@ require_once $FieldBasedir.'/fields/field.radioField.inc.php';
 require_once $FieldBasedir.'/fields/field.fieldsetField.inc.php';
 require_once $FieldBasedir.'/fields/field.captchaField.inc.php';
 require_once $FieldBasedir.'/fields/field.dateField.inc.php';
+require_once $FieldBasedir.'/fields/field.wysiwygDateField.inc.php';
 
 // Redaxo Field-Klassen
 require_once $FieldBasedir.'/fields/rex/field.rexSaveField.inc.php';
