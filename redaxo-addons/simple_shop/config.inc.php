@@ -37,7 +37,7 @@ $REX[ADDON][tbl][ord_product][$mypage] = "rex_4_order_product";
 if($page=="simple_shop" && $function == "edit_article" && $send!=1 && $aid<1){
 
 	$article['deliverprice']	= 13;
-	$article['tax']				= 16;
+	$article['tax']				= 19;
 
 }
 
