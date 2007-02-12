@@ -5,9 +5,12 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formSimpleMultiValueField.inc.php,v 1.1 2007/01/30 19:21:07 kills Exp $
+ * @version $Id: class.rex_formSimpleMultiValueField.inc.php,v 1.2 2007/02/12 16:11:33 kills Exp $
  */
 
+/*
+ * MultivalueField, dass die Values in der Spalte mit einem Trenner ablegt
+ */
 class rexSimpleMultiValueField extends rexFormMultiValueField
 {
   var $value_separator;
@@ -40,7 +43,6 @@ class rexSimpleMultiValueField extends rexFormMultiValueField
     {
     	$value = implode($this->value_separator, $value);
     	
-    	// TODO
     	// Mit ValueSeparator davor und danach, damit man leichter mit LIKE selektieren kann
     	if($value != '')
       	$value = $this->value_separator . $value . $this->value_separator;
@@ -57,14 +59,16 @@ class rexSimpleMultiValueField extends rexFormMultiValueField
     $value = parent :: getValue();
     if (!is_array($value))
     {
-    	// TODO
       $value = explode($this->value_separator, $value);
       $count = count($value);
       if($count > 0)
       {
 	    	// Da ValueSeparator davor und danach, erstes und letztes Element rauswerfen
-	      unset($value[0]);
-	      unset($value[$count-1]);
+	    	if($value[0] == $this->value_separator)
+	    	{
+		      unset($value[0]);
+		      unset($value[$count-1]);
+	    	}
       }
     }
     return $value;
