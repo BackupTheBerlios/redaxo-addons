@@ -12,11 +12,11 @@ if ($msg != "") echo "<table border=0 cellpadding=5 cellspacing=1 width=770><tr>
 <?php
 if($function == "sync")
 {
-    $db = new sql();
-    include_once("db_dump.inc.php");
-    $live_db = new sql("live_db");
 
-    //$db->debugsql = true;
+    $db = new sql();
+    include($REX[INCLUDE_PATH]."/addons/live_system/classes/function.syncMySQLData.inc.php");
+    include($REX[INCLUDE_PATH]."/addons/live_system/classes/class.MySQLDump.inc.php");
+    $live_db = new sql("live_db");
 
 		$res = $db->get_array("SHOW TABLES");
 
@@ -24,7 +24,7 @@ if($function == "sync")
 
 		foreach($res as $var)
 		{
-		      $table = $var["Tables_in_".$REX['DB']['1']['NAME']];
+					$table = $var["Tables_in_".$REX['DB']['1']['NAME']];
 	        $sql = "TRUNCATE $table";
 	        $live_db->query($sql);
 		}
@@ -44,7 +44,7 @@ if($function == "sync")
 		<?php
 
 		print "<div id=dbcount style=display:none>";
-		dumpData($db->identifier, $REX['DB']['1']['NAME'], $live_db->identifier);
+		syncMySQLData($db->identifier, $REX['DB']['1']['NAME'], $live_db);
 		print "</div>";
 
 		print "<br>&nbsp;&nbsp;Datenbank gesynct.<br><br>";
@@ -73,7 +73,7 @@ if($function == "sync")
         foreach($replace as $rep){
         	$master = preg_replace("/\['DB'\]\['1'\]\['".$rep."'\] = \"(.*)\";/U",'[\'DB\'][\'1\'][\''.$rep.'\'] = "'.$REX['DB']['live_db'][$rep].'";',$master);
         }
-        $handle = fopen($masterfile, 'w');
+		$handle = fopen($masterfile, 'w');
 		fwrite($handle, $master);
 		fclose($handle);
 
@@ -94,7 +94,7 @@ if($function == "sync")
 function dircpy($source, $dest, $overwrite = false){
   if($handle = opendir($source)){        // if the folder exploration is sucsessful, continue
    while(false !== ($file = readdir($handle))){ // as long as storing the next file to $file is successful, continue
-     if($file != '.' && $file != '..'){
+     if($file != '.' && $file != '..' && $file != '.htaccess'){
        $path = $source . '/' . $file;
        if(is_file($path)){
          if(!is_file($dest . '/' . $file) || $overwrite)
