@@ -86,7 +86,7 @@ PRIMARY KEY ( `id` )
 // REGENERATE SITE
 
 
-$REX[ADDON][install]["simple_user"] = 1;
+$REX['ADDON']['install']["simple_user"] = 1;
 
 // ERRMSG IN CASE: $REX[ADDON][installmsg]["import_export"] = "Leider konnte nichts installiert werden da.";
 
