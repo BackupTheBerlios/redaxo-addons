@@ -1,0 +1,13 @@
+# addon:history de_de
+
+history_articles_size = 15
+history_articles_title = zuletzt bearbeitete Artikel
+
+# history_modules_size = 10
+history_modules_title = zuletzt bearbeitete Module
+
+# history_actions_size = 10
+history_actions_title = zuletzt bearbeitete Aktionen
+
+# history_templates_size = 10
+history_templates_title = zuletzt bearbeitete Templates
