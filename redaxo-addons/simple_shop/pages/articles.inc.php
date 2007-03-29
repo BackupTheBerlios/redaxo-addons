@@ -187,7 +187,7 @@ if($function == "edit_article"){ // ---------------> Artikel wird editiert oder 
       $sql->flush();
       $sql->setTable("rex_4_article");
       $sql->setValue("category", $diecats);
-			$sql->where("id='" . $aid . " and clang='".$clang."'");
+ 			$sql->where("id=" . $aid . " and clang=".$clang);
       $sql->update();
 
 
