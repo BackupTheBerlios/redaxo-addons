@@ -1,5 +1,10 @@
 <h2>Changelog:</h2>
 
+<strong>not yet released..</strong>
+- rex_glossar_replace:
++  performance optimiert
++  in &lt;textareas&gt; wird nicht mehr ersetzt 
+
 <strong>RC5 - 16.05.2006</strong>
 	<em>Der Glossar benötigt das Addon "addon_framework" in der Version <u>RC4</u> um installiert werden zu können!</em>
 

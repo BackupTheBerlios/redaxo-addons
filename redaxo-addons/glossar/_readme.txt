@@ -3,7 +3,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: _readme.txt,v 1.1 2006/08/04 17:46:48 kills Exp $
+ * @version $Id: _readme.txt,v 1.2 2007/05/25 11:45:29 kills Exp $
  */
 
 <a href="?page=addon&amp;spage=help&amp;addonname=glossar&amp;mode=changelog">Changelog</a>
@@ -45,5 +45,7 @@ REDAXO Version > 29.09.2005 nötig</em>
 
 
 <strong>Credits:</strong>
+
+- <a href="http://www.blumbeet.de">Thomas Blum (tbaddade) vom REDAXO-Team</a>
 
     Vielen dank an alle die Bugs gemeldet oder Verbesserungsvorschläge gegeben haben.
