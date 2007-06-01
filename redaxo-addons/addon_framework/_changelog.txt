@@ -1,5 +1,6 @@
 <h2>TODO:</h2>
 - [rexForm] isEditMode() erkennen an der Anzahl der affectedRows()
+
 <h2>Changelog:</h2>
 <strong>Not yet released..</strong>
 - rexFormatter:
@@ -21,7 +22,7 @@
     %TIME%
     %TABLE_PREFIX%
 - rexForm:
-	+ rexForm->edit_mode defaultwert auf geändert "false"
+	+ rexForm->edit_mode defaultwert auf "false" geändert
 	+ Nachrichtenausgabe via GET/POST Parameter: 
 	  <FormName>_msg = Nachricht
 	  <FormName>_msgtype = Nachrichtentyp (0 => info, 1 => warning, 2 => error)
@@ -58,7 +59,7 @@
 - Validierung:
   + Parmaeterübergabe jetzt möglich
   + Bugfixes
-  + ValidateEngine updated to 2.8-dev
+  + ValidateEngine updated to 2.9
   + Pflichtfelder werden nur markiert, wenn diese validen Inhalt enthalten
 
 <strong>RC4 - 01.05.2006</strong>

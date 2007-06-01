@@ -23,7 +23,6 @@
  * @copyright 2001-2005 New Digital Group, Inc.
  * @author Monte Ohrt <monte at newdigitalgroup dot com>
  * @package SmartyValidate
- * @version 2.6-dev
  */
 
 /**

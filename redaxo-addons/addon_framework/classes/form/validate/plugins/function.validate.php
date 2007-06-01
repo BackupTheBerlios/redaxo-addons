@@ -23,7 +23,6 @@
  * @copyright 2001-2005 New Digital Group, Inc.
  * @author Monte Ohrt <monte at newdigitalgroup dot com>
  * @package SmartyValidate
- * @version 2.6-dev
  */
 
 function smarty_function_validate($params, &$smarty) {
@@ -36,8 +35,15 @@ function smarty_function_validate($params, &$smarty) {
     
     static $_halt = array();
     static $_is_init = null;
+    static $_form = 'default';
 
-    $_form = isset($params['form']) ? $params['form'] : 'default';
+    if(isset($params['form']))
+    {
+       if($params['form'] != $_form)
+          $_is_init = null;
+       $_form = $params['form'];
+    } 
+
     $_sess =& $_SESSION['SmartyValidate'][$_form];
 
     if(!isset($_is_init))
@@ -113,7 +119,7 @@ function smarty_function_validate($params, &$smarty) {
                         : false;
                 $_echo = true;
                 if(isset($params['assign'])) {
-                    $smarty->assign($params['assign'], $_sess['validators'][$_validator_key]['message']);                    
+                    $smarty->assign($params['assign'], $_sess['validators'][$_validator_key]['message']);                   
                 } elseif (isset($params['append'])) {
                     $smarty->append($params['append'], $_sess['validators'][$_validator_key]['message']);                                        
                 } else {

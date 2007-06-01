@@ -24,7 +24,7 @@
  * @copyright 2001-2005 New Digital Group, Inc.
  * @author Monte Ohrt <monte at newdigitalgroup dot com>
  * @package SmartyValidate
- * @version 2.8-dev
+ * @version 2.9
  */
 
 if(!defined('SMARTY_VALIDATE_DEFAULT_FORM'))
@@ -141,7 +141,8 @@ class SmartyValidate {
             $_message = isset($_sess[$_key]['message']) ? $_sess[$_key]['message'] : null;
 
             if(is_array($_ret) && in_array($_full_field, $_ret)) {
-                // already failed, skip this test
+                // already found failure, validate ok
+                $_sess[$_key]['valid'] = 1;
                 continue;   
             }
             
@@ -189,8 +190,8 @@ class SmartyValidate {
                             
                         } else {
                             // apply to all keys
-                            for($_x = 0, $_y = count($formvars[$_field]); $_x < $_y; $_x++) {
-                                if(($_new_val = SmartyValidate::_execute_transform($_trans_name, $formvars[$_field][$_x], $_sess[$_key], $formvars, $form)) !== false)
+                            foreach ($formvars[$_field] as $_fv_key => $_fv_value) {
+                                if(($_new_val = SmartyValidate::_execute_transform($_trans_name, $formvars[$_field][$_fv_key], $_sess[$_key], $formvars, $form)) !== false)
                                     $formvars[$_field][$_x] = $_new_val;
                             }
                         }
@@ -224,8 +225,8 @@ class SmartyValidate {
                         $_sess[$_key]['valid'] = SmartyValidate::_is_valid_criteria($_val['criteria'], $formvars[$_field][$_field_key], $_empty, $_sess[$_key], $formvars, $form);
                     } else {
                         // apply to all keys
-                        for($_x = 0, $_y = count($formvars[$_field]); $_x < $_y; $_x++) {
-                            if(! $_sess[$_key]['valid'] = SmartyValidate::_is_valid_criteria($_val['criteria'], $formvars[$_field][$_x], $_empty, $_sess[$_key], $formvars, $form)) {
+                        foreach ($formvars[$_field] as $_fv_key => $_fv_value) {
+                            if(! $_sess[$_key]['valid'] = SmartyValidate::_is_valid_criteria($_val['criteria'], $formvars[$_field][$_fv_key], $_empty, $_sess[$_key], $formvars, $form)) {
                                 // found invalid array element, exit for loop
                                 break;
                             }   
