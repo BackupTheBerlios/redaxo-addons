@@ -17,6 +17,6 @@ CREATE TABLE `". $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] ."12_search_index` (
 
 $REX['ADDON']['install']["search_index"] = 1;
  
-// ERRMSG IN CASE: $REX[ADDON][installmsg]["import_export"] = "Leider konnte nichts installiert werden da.";
+// ERRMSG IN CASE: $REX[ADDON][installmsg]["search_index"] = "Leider konnte nichts installiert werden da.";
 
 ?>
