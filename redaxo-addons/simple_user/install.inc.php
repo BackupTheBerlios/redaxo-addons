@@ -1,7 +1,7 @@
 <?php
 
 // CREATE/UPDATE DATABASE
-$sql = new sql;
+$sql = new rex_sql;
 // $sql->debugsql=1;
 
 

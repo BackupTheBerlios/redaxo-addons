@@ -28,7 +28,7 @@ if($func == "add" || $func == "edit"){
 //------------------------------> User löschen
 if($func == "delete"){
 	$query = "delete from rex_2_group where id='".$oid."' ";
-	$delsql = new sql;
+	$delsql = new rex_sql;
 	$delsql->debugsql=0;
 	$delsql->setQuery($query);
 	$func = "";

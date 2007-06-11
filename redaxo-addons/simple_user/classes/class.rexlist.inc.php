@@ -69,7 +69,7 @@ class rexlist
 	
 	function setQuery($query){
 		$this->query = $query;
-		// $this->sql = new sql($this->DB);
+		// $this->sql = new rex_sql($this->DB);
 		// $this->sql->setQuery($this->query);
 		// $this->rows = $this->sql->getRows();
 	}
@@ -79,7 +79,7 @@ class rexlist
 	function setRowQuery($query)
 	{
 		// select count(id) from table
-		$this->sql = new sql($this->DB);
+		$this->sql = new rex_sql($this->DB);
 		$this->sql->setQuery($query);		
 		if ($this->sql->getRows()==1) $this->rows = $this->sql->getValue("rows");
 	}
@@ -156,7 +156,7 @@ class rexlist
 		
 		if ($this->rows == "")
 		{
-			$this->sql = new sql($this->DB);
+			$this->sql = new rex_sql($this->DB);
 			//$this->sql->debugsql = true;
 			$this->sql->setQuery($this->query);			
 			$this->rows = $this->sql->getRows();
@@ -191,7 +191,7 @@ class rexlist
 		// ------------ QUERY NEU ERSTELLEN MIT LIMIT
 
 		$limit = "LIMIT ".$list_start.",".$this->list_amount;
-		$SQL = new sql($this->DB);
+		$SQL = new rex_sql($this->DB);
 		
 		$SQL->setQuery("$this->query $limit");
 	

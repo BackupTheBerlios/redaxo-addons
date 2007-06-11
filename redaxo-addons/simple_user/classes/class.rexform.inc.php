@@ -67,7 +67,7 @@ class rexform
 		$this->ShowFormAlways = false;
 		$this->cols[0] = 1;
 		
-		$this->sql = new sql;
+		$this->sql = new rex_sql;
 
 	}
 
@@ -109,7 +109,7 @@ class rexform
 				else $FORMVAL[$this->rfid][values][$i] = htmlspecialchars($this->sql->getValue($this->value_tbl[$i]));
 			}else
 			{
-				$selsql = new sql;
+				$selsql = new rex_sql;
 				$selsql->setQuery("select * from ".$this->type_value5[$i]." where ".$this->type_value6[$i]);
 				for ($j=0;$j<$selsql->getRows();$j++)
 				{
@@ -151,7 +151,7 @@ class rexform
 		{
 			if ($errmsg=="")
 			{
-				$aa = new sql;
+				$aa = new rex_sql;
 				 $aa->debugsql = 0;
 				$aa->setTable($this->tbl_name);
 				$aa->where($this->form_where);
@@ -210,7 +210,7 @@ class rexform
 					}elseif ($this->value_type[$i] == "multipleselectsql") 
 					{
 						// multipleselect
-						$ms = new sql;
+						$ms = new rex_sql;
 						$ms->query("delete from ".$this->type_value5[$i]." where ".$this->type_value6[$i]);
 						if (is_Array($FORM[$this->rfid][values][$i]))
 						{
@@ -277,7 +277,7 @@ class rexform
 		{
 			if ($errmsg=="")
 			{
-				$aa = new sql;
+				$aa = new rex_sql;
 				$aa->debugsql = 0;
 				$aa->setTable($this->tbl_name);
 				for ($i=0;$i<$this->counter;$i++)
@@ -386,7 +386,7 @@ class rexform
 						$ausgabe .= "\n\n";
 						$ausgabe .= "<td valign=middle class=grey width=".$this->labelwidth." >".$this->value_form[$i]."</td>";
 	
-						$ssql = new sql;
+						$ssql = new rex_sql;
 						$ssql->setQuery($this->type_value1[$i]);
 	
 						$ssel = new rexselect();
@@ -400,7 +400,7 @@ class rexform
 							$ssql->next();
 						}
 						
-						// $selsql = new sql;
+						// $selsql = new rex_sql;
 						// $selsql->setQuery("select * from ".$this->type_value5[$i]." where ".$this->type_value6[$i]);
 						if (is_Array($FORM[$this->rfid][values][$i]))
 						{
@@ -423,7 +423,7 @@ class rexform
 					$ausgabe .= "\n\n";
 					$ausgabe .= "<td valign=middle class=grey width=".$this->labelwidth." >".$this->value_form[$i]."</td>";
 
-					$ssql = new sql;
+					$ssql = new rex_sql;
 					$ssql->setQuery($this->type_value1[$i]);
 
 					$ssel = new rexselect();
