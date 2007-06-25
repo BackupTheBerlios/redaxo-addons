@@ -15,8 +15,8 @@ class rex_search_index
   var $custom_where_conditions = '';
   var $status = '';
   var $surroundchars = 20;
-  var $sourround_start_tag = "<b>";
-  var $sourround_end_tag = "</b>";
+  var $sourround_start_tag = '<span class="a12_highlighted">';
+  var $sourround_end_tag = '</span>';
   var $striptags = true;
   var $allowable_tags = '';
   var $limit_start = 0;
