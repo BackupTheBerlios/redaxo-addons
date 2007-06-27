@@ -1,2 +1,2 @@
-DROP TABLE IF EXISTS `rex_13_glossar`;
-DROP TABLE IF EXISTS `rex_13_glossar_lang`;
+DROP TABLE IF EXISTS `%TABLE_PREFIX%13_glossar`;
+DROP TABLE IF EXISTS `%TABLE_PREFIX%13_glossar_lang`;

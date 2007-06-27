@@ -1,6 +1,4 @@
-DROP TABLE IF EXISTS `rex_14_setting`;
-
-CREATE TABLE `rex_14_setting` (
+CREATE TABLE `%TABLE_PREFIX%14_setting` (
 `id` INT NOT NULL AUTO_INCREMENT ,
 `showJsElements` tinyint(1) NOT NULL,
 `showProperty` tinyint(1) NOT NULL,
@@ -30,4 +28,4 @@ CREATE TABLE `rex_14_setting` (
 PRIMARY KEY ( `id` )
 ) TYPE=MyISAM;
 
-INSERT INTO `rex_14_setting` (`id`, `showJsElements`, `showProperty`, `showColor`, `showHighlight`, `editorWindow`, `hltSelector`, `hltProperty`, `hltValue`, `hltDeclaration`, `color1`, `color2`, `color3`, `color4`, `color5`, `color6`, `color7`, `color8`, `color9`, `color10`, `color11`, `color12`, `color13`, `color14`, `color15`, `color16`) VALUES (1, '0', '0', '0', '0', '350', 'ff00ff', 'ff0000', '008000', '000080', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+INSERT INTO `%TABLE_PREFIX%14_setting` (`id`, `showJsElements`, `showProperty`, `showColor`, `showHighlight`, `editorWindow`, `hltSelector`, `hltProperty`, `hltValue`, `hltDeclaration`, `color1`, `color2`, `color3`, `color4`, `color5`, `color6`, `color7`, `color8`, `color9`, `color10`, `color11`, `color12`, `color13`, `color14`, `color15`, `color16`) VALUES (1, '0', '0', '0', '0', '350', 'ff00ff', 'ff0000', '008000', '000080', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');

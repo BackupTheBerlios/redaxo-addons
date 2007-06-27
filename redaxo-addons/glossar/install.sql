@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS`rex_13_glossar` (
+CREATE TABLE `%TABLE_PREFIX%13_glossar` (
   `short_id` int(10) unsigned NOT NULL auto_increment,
   `shortcut` varchar(255) NOT NULL default '',
   `description` varchar(255) default NULL,
@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS`rex_13_glossar` (
   PRIMARY KEY  (`short_id`)
 ) TYPE=MyISAM;
 
-CREATE TABLE IF NOT EXISTS `rex_13_glossar_lang` (
+CREATE TABLE `%TABLE_PREFIX%13_glossar_lang` (
   `lang_id` int(10) unsigned NOT NULL auto_increment,
   `lang_name` varchar(255) NOT NULL default '',
   `lang_short` varchar(4) NOT NULL default '',
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `rex_13_glossar_lang` (
 ) TYPE=MyISAM;
 
 
-INSERT INTO `rex_13_glossar` VALUES 
+INSERT INTO `%TABLE_PREFIX%13_glossar` VALUES 
 (0, 'z.B.', 'zum Beispiel', 1, 1),
 (0, 'e.V.', 'eingetragener Verein', 1, 1),
 (0, 'Email', 'elektronische Post', 2, 0),
@@ -71,7 +71,7 @@ INSERT INTO `rex_13_glossar` VALUES
 (0, 'Code', 'Quelldateien einer Programmiersprache', 2, 1);
 
 
-INSERT INTO `rex_13_glossar_lang` VALUES 
+INSERT INTO `%TABLE_PREFIX%13_glossar_lang` VALUES 
 (1, 'Deutsch', 'dt'),
 (2, 'Englisch', 'en'),
 (3, 'Französisch', 'fr');

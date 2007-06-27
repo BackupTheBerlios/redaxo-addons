@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `rex_51_cache_article` (
+CREATE TABLE `%TABLE_PREFIX%51_cache_article` (
   `cache_id` int(10) unsigned NOT NULL auto_increment,
   `article_id` int(11) NOT NULL default '',
   `clang` int(11) NOT NULL default 0,

@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS `rex_51_cache_article`;
+DROP TABLE IF EXISTS `%TABLE_PREFIX%51_cache_article`;
