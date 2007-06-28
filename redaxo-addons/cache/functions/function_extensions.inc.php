@@ -10,7 +10,7 @@
  * @author <a href="http://www.thomas-peterson.de/">http://www.thomas-peterson.de/</a>
  * 
  * @package redaxo3
- * @version $Id: function_extensions.inc.php,v 1.1 2006/06/20 09:24:20 kills Exp $
+ * @version $Id: function_extensions.inc.php,v 1.2 2007/06/28 16:04:04 kills Exp $
  */
 
 function rex_a51_cache_meta_form($params)
@@ -94,7 +94,8 @@ function rex_a51_cache_read($params)
 //  var_dump($cache->isCached());
   if($cache->isActive() && $cache->isCached())
   {
-    exit($cache->read());
+    echo $cache->read();
+    exit();
   }
 }
 ?>
