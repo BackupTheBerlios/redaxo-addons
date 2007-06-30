@@ -43,16 +43,16 @@ class rex_search_index
     */
 
     $LIMIT = "";
-    $db2 = new sql;
+    $db2 = new rex_sql;
     $stop = false;
-    $oldstart = (int) $_REQUEST["oldstart"];
-    $start = (int) $_REQUEST["start"];
-    if ($oldstart == $start && $_REQUEST["start"] != "")
+    $oldstart = rex_request('oldstart', 'int');
+    $start = rex_request('start', 'int');
+    if ($oldstart == $start && $start !== 0)
     {
       $stop = true;
     }
 
-    if ($_REQUEST["start"])
+    if ($start)
     {
       $LIMIT = "LIMIT $start, 4000";
       $oldstart = $start;
@@ -61,23 +61,25 @@ class rex_search_index
     {
       // Index erst nach den Daten einfügen, 
       // da in eine Tabelle mit schon bestehendem Index, der Insert viel länger dauert
-      $db2->query('ALTER TABLE `'. $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] .'12_search_index` DROP INDEX `full_content`');
-      $db2->query('ALTER TABLE `'. $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] .'12_search_index` DROP INDEX `full_name`');
+      $db2->setQuery('ALTER TABLE `'. $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] .'12_search_index` DROP INDEX `full_content`');
+      $db2->setQuery('ALTER TABLE `'. $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] .'12_search_index` DROP INDEX `full_name`');
 
       // Tabelle leeren      
-      $db2->query('TRUNCATE TABLE '. $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] .'12_search_index');
+      $db2->setQuery('TRUNCATE TABLE '. $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] .'12_search_index');
       
       // kopiere alle Metadaten
-      $db2->query('INSERT INTO `'. $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] .'12_search_index` (`id`,`path`,`clang`,`status`,`name`,`keywords`)
-                   SELECT `id`,`path`,`clang`,`status`,`name`,`keywords`
-                   FROM `rex_article`');
+      $db2->setQuery('INSERT INTO `'. $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] .'12_search_index` (`id`,`path`,`clang`,`status`,`name`,`keywords`)
+                      SELECT `id`,`path`,`clang`,`status`,`name`,`keywords`
+                      FROM `rex_article`');
     }
 
     if ($stop)
     {
+      $error_id = rex_request('errorid');
+      $error_clang = rex_request('errorclang');
 
       return "Bei der Indexgenerieung ist ein Fehler unterlaufen. Das kann an eventuell fehlerhaften Artikeln liegen.
-      		Bei folgendem Artikel kam ein Fehler. <a href=index.php?page=content&article_id=".$_REQUEST["errorid"]."&mode=edit&clang=".$_REQUEST["errorclang"].">-> Artikel</a>";
+      		Bei folgendem Artikel kam ein Fehler. <a href=index.php?page=content&article_id=". $error_id ."&mode=edit&clang=". $error_clang .">-> Artikel</a>";
 
     }
     else
@@ -109,7 +111,7 @@ class rex_search_index
         $REX['GG'] = true;
         $REX['REDAXO'] = false;
         
-        $article = new article($art_id, $art_clang);
+        $article = new rex_article($art_id, $art_clang);
         $artcache = $article->getArticle();
         // Da dieser Prozess recht speicherintensiv ist, variable manuell löschen
         unset($article);  
@@ -126,7 +128,7 @@ class rex_search_index
         $sql = "UPDATE ". $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] ."12_search_index SET content='".mysql_escape_string($artcache)."' WHERE id=". $art_id ." AND clang=". $art_clang;
         
         // falls im artikel eine andere datnebank aufgerufen wurde
-        $db_insert = new sql; 
+        $db_insert = new rex_sql; 
         $db_insert->setQuery($sql);
         
         $i++;
@@ -135,8 +137,8 @@ class rex_search_index
       
       // Index erst nach den Daten einfügen, 
       // da in eine Tabelle mit schon bestehendem Index, der Insert viel länger dauert
-      $db2->query('ALTER TABLE `'. $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] .'12_search_index` ADD FULLTEXT `full_content` (`name` ,`keywords` ,`content`)');
-      $db2->query('ALTER TABLE `'. $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] .'12_search_index` ADD FULLTEXT `full_name` (`name`)');
+      $db2->setQuery('ALTER TABLE `'. $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] .'12_search_index` ADD FULLTEXT `full_content` (`name` ,`keywords` ,`content`)');
+      $db2->setQuery('ALTER TABLE `'. $REX['TABLE_PREFIX'] . $REX['TEMP_PREFIX'] .'12_search_index` ADD FULLTEXT `full_name` (`name`)');
 
       ob_end_clean();
       echo $CONTENT;
@@ -154,7 +156,7 @@ class rex_search_index
 		$keywords = (isset($keywords) ? htmlspecialchars(stripslashes($keywords)) : '');
     $keywords = mysql_escape_string((trim($keywords)));
 
-    $suche = new sql;
+    $suche = new rex_sql;
     // $suche->debugsql = true;
 
     // ---------------------- clang check
