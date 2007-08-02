@@ -1,9 +1,9 @@
 <?php
 
 /**
- * 
+ *
  * @package redaxo3
- * @version $Id: module.inc.php,v 1.2 2006/09/01 08:47:28 kills Exp $
+ * @version $Id: module.inc.php,v 1.3 2007/08/02 10:57:13 kills Exp $
  */
 
 print '
@@ -13,8 +13,8 @@ print '
       <td colspan=2>
         <div style="border: solid 1px red; padding: 20px; margin: 20px; font-size:11px">';
 
-$template = dirname(__FILE__).'/../templates/template.searchmodule.inc.php';
-highlight_file($template);
+$module = dirname(__FILE__).'/../modules/module.searchmodule.inc.php';
+highlight_file($module);
 
 print '</div>';
 print '&nbsp;&nbsp; addon by <a href="http://www.vscope.at">vscope new media</a> version 0.1 beta - updated by jan@kristinus.de, markus@public4u.de';
