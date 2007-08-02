@@ -3,53 +3,53 @@
 function backendEdit($params){
     global $REX,$REX_USER;
     if($REX_USER){
-	    if($REX_USER->isValueOf("rights","developer[]")){
-	        $content = $params['subject'];
-	        if($REX[ADDON][DEVELOPER][STATUS][MODULES]=="true") $developer_modules = "checked";
-	        if($REX[ADDON][DEVELOPER][STATUS][TEMPLATES]=="true") $developer_templates = "checked";
-	        $replace = '
-	        <script>
-	        if (document.implementation && document.implementation.createDocument)
-	        {
-	            xmlDoc = document.implementation.createDocument("", "", null);
-	            xmlDoc.onload = function() { alert("Status gesetzt"); };
-	        }
-	        else if (window.ActiveXObject)
-	        {
-	            xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
-	            xmlDoc.onreadystatechange = function () {
-	                if (xmlDoc.readyState == 4) alert("Status gesetzt");
-	            };
-	        }
-	        function saveStatus(obj){
-	            status_modules = obj.developer_modules.checked;
-	            status_templates = obj.developer_templates.checked;
-	            var url = "./index.php?page=developer&function=setStatus&status_modules="+status_modules+"&status_templates="+status_templates;
-	            xmlDoc.load(url);
-	            //prompt("debug",url);
-	            return false;
-	        }
-	        </script>
-	        ';
-	        $replace .= '<form name=addon_developer onSubmit="return saveStatus(this);" style=display:inline>';
-	        $replace .= "<table cellpadding=0 cellspacing=0><tr><th style=color:#000000>";
-	        $replace .= "Redaxo Developer Addon: ";
-	        $replace .= "</th><th>";
-	        $replace .= "<input type=checkbox name=developer_modules value=1 $developer_modules> ";
-	        $replace .= "</th><th style=color:#000000>";
-	        $replace .= "Module automatisch updaten &nbsp;";
-	        $replace .= "</th><th>";
-	        $replace .= "<input type=checkbox name=developer_templates value=1 $developer_templates> ";
-	        $replace .= "</th><th style=color:#000000>";
-	        $replace .= "Templates automatisch updaten &nbsp;";
-	        $replace .= "</th><th>";
-	        $replace .= "<input type=submit value=ok> ";
-	        $replace .= "</th></table>";
-	        $replace .= "</form>";
-	        $content = str_replace('<th colspan="2">&nbsp;</th>','<th colspan="2"><b><div align=left><font color=#000>'.$replace.'</th>',$content);
-	        return $content;
-	    }
-	}
+       if($REX_USER->isValueOf("rights","developer[]")){
+           $content = $params['subject'];
+           if($REX[ADDON][DEVELOPER][STATUS][MODULES]=="true") $developer_modules = "checked";
+           if($REX[ADDON][DEVELOPER][STATUS][TEMPLATES]=="true") $developer_templates = "checked";
+           $replace = '
+           <script>
+           if (document.implementation && document.implementation.createDocument)
+           {
+               xmlDoc = document.implementation.createDocument("", "", null);
+               xmlDoc.onload = function() { alert("Status gesetzt"); };
+           }
+           else if (window.ActiveXObject)
+           {
+               xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+               xmlDoc.onreadystatechange = function () {
+                   if (xmlDoc.readyState == 4) alert("Status gesetzt");
+               };
+           }
+           function saveStatus(obj){
+               status_modules = obj.developer_modules.checked;
+               status_templates = obj.developer_templates.checked;
+               var url = "./index.php?page=developer&function=setStatus&status_modules="+status_modules+"&status_templates="+status_templates;
+               xmlDoc.load(url);
+               //prompt("debug",url);
+               return false;
+           }
+           </script>
+           ';
+           $replace .= '<form name=addon_developer onSubmit="return saveStatus(this);" style=display:inline>';
+           $replace .= "<table cellpadding=0 cellspacing=0><tr><th style=\"padding: 0em 1em 0em 0em; color:#000000\">";
+           $replace .= "Redaxo Developer Addon: ";
+           $replace .= "</th><th style=\"padding: 0em 0.3em 0em 0em;\">";
+           $replace .= "<input type=checkbox name=developer_modules value=1 $developer_modules> ";
+           $replace .= "</th><th style=\"padding: 0em 1em 0em 0em; color:#000000\">";
+           $replace .= "Module automatisch updaten &nbsp;";
+           $replace .= "</th><th style=\"padding: 0em 0.3em 0em 0em;\">";
+           $replace .= "<input type=checkbox name=developer_templates value=1 $developer_templates> ";
+           $replace .= "</th><th style=\"padding: 0em 1em 0em 0em; color:#000000\">";
+           $replace .= "Templates automatisch updaten &nbsp;";
+           $replace .= "</th><th>";
+           $replace .= "<input type=submit value=ok> ";
+           $replace .= "</th></table>";
+           $replace .= "</form>";
+           $content = str_replace('<div id="rex-ftr">','<div id="rex-ftr"><div style="background-color: #AAB9A8; margin: 0em; padding: 0.5em; color: #000000;"><strong>'.$replace.'</strong></div>',$content);
+           return $content;
+       }
+   }
 }
 
 function regenerateArticlesByJavascript($params){
@@ -102,4 +102,4 @@ function regenerateArticlesByJavascript($params){
         return $content;
     }
 }
-?>
+?> 
