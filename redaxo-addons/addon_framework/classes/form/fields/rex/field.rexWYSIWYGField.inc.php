@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.rexWYSIWYGField.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: field.rexWYSIWYGField.inc.php,v 1.2 2007/08/14 16:39:26 kills Exp $
  */
 
 class WYSIWYGField extends textAreaField
@@ -47,13 +47,7 @@ class WYSIWYGField extends textAreaField
   }
 }
 
-class rexEditor extends rex_wysiwyg_editor
+class rexEditor extends tiny2editor
 {
-  var $name;
-
-  function get()
-  {
-    return MEDIA_HTMLAREA_CONFIG($this->name, $this->id, $this->content, $this->width, $this->height, $this->stylesheet, $this->styles, $this->lang, $this->buttonrow1, $this->buttonrow2, $this->buttonrow3, $this->buttonrow4, $this->plugins, $this->theme);
-  }
 }
 ?>
