@@ -2,11 +2,11 @@
 
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formField.inc.php,v 1.6 2007/01/31 20:20:16 kills Exp $
+ * @version $Id: class.rex_formField.inc.php,v 1.7 2007/08/16 17:06:40 kills Exp $
  */
 
 class rexFormField
@@ -69,18 +69,18 @@ class rexFormField
 
   /**
    * Schalter, um die Speicherfunktion dieses Feldes zu aktivieren/deaktvieren.
-   * In der Grundeinstellung zeigt das readOnlyField die Werte nur an, 
+   * In der Grundeinstellung zeigt das readOnlyField die Werte nur an,
    * speichert diese beim save() aber nicht in die DB.
-   * 
+   *
    * @param $activate_save boolean true/false Speicherfunktion aktiviert/deaktiviert
    */
   function activateSave($activateSave)
   {
     rex_valid_type($activateSave, array( 'boolean'), __FILE__, __LINE__);
-    
+
     $this->activateSave = $activateSave;
-  } 
-  
+  }
+
   function _getInsertValue()
   {
     // Werte auf den Insert vorbereiten
@@ -95,7 +95,7 @@ class rexFormField
     {
       return $this->_getInsertValue();
     }
-    
+
     // null zurückgeben, damit der Wert nicht im SQL auftaucht
     return null;
   }
@@ -171,7 +171,7 @@ class rexFormField
 
     $section =& $this->getSection();
     $form =& $section->getForm();
-    
+
     $isInvalid = false;
     if(!empty($_POST))
     {
@@ -180,7 +180,7 @@ class rexFormField
       if(is_array($failed_fields) && in_array($this->getName(), $failed_fields))
       {
         $isInvalid = true;
-        if(empty($attributes['class'])) 
+        if(empty($attributes['class']))
         {
           $attributes['class'] = 'invalid';
         }
@@ -190,11 +190,11 @@ class rexFormField
         }
       }
     }
-    
+
     // Falls das Feld valide ist, Pflichtfelder markieren
     if(!$isInvalid && $this->hasValidator())
     {
-      if(empty($attributes['class'])) 
+      if(empty($attributes['class']))
       {
         $attributes['class'] = 'required';
       }
@@ -203,7 +203,7 @@ class rexFormField
         $attributes['class'] = $attributes['class'] .' required';
       }
     }
-    
+
     // Attribute zu String umwandeln
     if (is_array($attributes))
     {
@@ -220,7 +220,7 @@ class rexFormField
   {
     return is_object($field) && is_a($field, 'rexformfield');
   }
-  
+
   function needFullColumn($needFullColumn = null)
   {
     if($needFullColumn !== null)
@@ -239,10 +239,10 @@ class rexFormField
     for ($i = 0; $i < count($validators); $i++)
     {
       $validator = & $validators[$i];
-      
+
       if(($pos = strpos($validator['criteria'],':')) === false)
       {
-        // Validierung ohne Parameter 
+        // Validierung ohne Parameter
         rexValidateEngine :: register_validator($this->_getValidatorId($validator['criteria']), $this->getName(), $validator['criteria'], $validator['empty'], $validator['halt'], $validator['transform'], $form->getName());
       }
       else
@@ -265,7 +265,7 @@ class rexFormField
       $validator = & $validators[$i];
 //      var_dump('validation_errors_'.$form->getName().'_'.$section->getTableName().'::'.$section->getLabel());
       $params = array (
-        'id' => $this->_getValidatorId($validator['criteria']), 
+        'id' => $this->_getValidatorId($validator['criteria']),
         'message' => $validator['message'],
         'form' => $form->getName(),
         'append' => 'validation_errors_'.$form->getName().'_'.$section->getTableName().'::'.$section->getLabel(),
@@ -289,25 +289,25 @@ class rexFormField
 
   /**
    * Fügt einen Validator hinzu
-   * 
+   *
    * @param $criteria
    * "criteria" determines the rule, which is used for validation.
    * It is possible to add paramters with colon separated:
    *  e.g. isDate:year:month:day with transform makeDate
-   * 
+   *
    * @param $empty
    * "empty" determines if the field is allowed to be empty or not. If
    * allowed, the validation will be skipped when the field is empty.
    * Note this is ignored with the "notEmpty" criteria.
-   * 
+   *
    * @param $halt
    * If the validator fails, "halt" determines if any remaining validators for
    * this form will be processed. If "halt" is yes, validation will stop at this point.
-   * 
+   *
    * @param $transform
    * "transform" is used to apply a transformation to a form value prior to
    * validation. For instance, you may want to trim off extra whitespace from
-   * the form value before validating. 
+   * the form value before validating.
    */
   function addValidator($criteria, $message, $empty = false, $halt = false, $transform = null)
   {
@@ -319,7 +319,7 @@ class rexFormField
       'transform' => $transform
     );
   }
-  
+
   function hasValidator()
   {
     return count($this->getValidators()) > 0;
@@ -382,6 +382,7 @@ require_once $FieldBasedir.'/fields/field.fieldsetField.inc.php';
 require_once $FieldBasedir.'/fields/field.captchaField.inc.php';
 require_once $FieldBasedir.'/fields/field.dateField.inc.php';
 require_once $FieldBasedir.'/fields/field.wysiwygDateField.inc.php';
+require_once $FieldBasedir.'/fields/field.htmlField.inc.php';
 
 // Redaxo Field-Klassen
 require_once $FieldBasedir.'/fields/rex/field.rexSaveField.inc.php';
