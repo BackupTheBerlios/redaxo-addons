@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formMultiValueField.inc.php,v 1.5 2007/08/24 10:35:36 kills Exp $
+ * @version $Id: class.rex_formMultiValueField.inc.php,v 1.6 2007/08/24 16:38:11 kills Exp $
  */
 
 class rexFormMultiValueField extends rexFormField
@@ -30,7 +30,7 @@ class rexFormMultiValueField extends rexFormField
   {
     rex_valid_type($label, array('string', 'scalar'), __FILE__, __LINE__);
     rex_valid_type($value, array('string', 'scalar'), __FILE__, __LINE__);
-    
+
     $this->values[$re_id][] = array (
       $label,
       $value,
@@ -111,7 +111,7 @@ class rexFormMultiValueField extends rexFormField
       {
         $this->addValue($value['label'], $value['value']);
       }
-      
+
 
       // Add remaing Options
       foreach ($values as $value)
@@ -131,7 +131,7 @@ class rexFormMultiValueField extends rexFormField
     {
       // Add first Option
       $this->addValue($value, $value);
-      
+
       // Add remaing Options
       foreach ($values as $value)
       {
@@ -143,7 +143,7 @@ class rexFormMultiValueField extends rexFormField
   /**
    * Fügt dem Feld neue Werte via SQL-Query hinzu.
    * Dieser Query muss ein 2 Spaltiges Resultset beschreiben.
-   * 
+   *
    * @param $query SQL-Query
    * @access protected
    */
@@ -153,6 +153,9 @@ class rexFormMultiValueField extends rexFormField
     //      $sql->debugsql = true;
 
     $result = $sql->getArray($query, MYSQL_NUM);
+
+    if($sql->hasError())
+      echo $sql->getError();
 
     if (is_array($result) && count($result) >= 1)
     {
@@ -193,14 +196,14 @@ class rexFormMultiValueField extends rexFormField
   }
 
   /**
-   * Gibt alle Werte des Feldes zurück 
+   * Gibt alle Werte des Feldes zurück
    * @access protected
    */
   function getValues()
   {
     return $this->values;
   }
-  
+
   function getFirstGroupId()
   {
     foreach($this->getValues() as $id => $group)
@@ -208,9 +211,9 @@ class rexFormMultiValueField extends rexFormField
       return $id;
     }
   }
-  
+
   /**
-   * Gibt alle Werte des Feldes einer Gruppe zurück 
+   * Gibt alle Werte des Feldes einer Gruppe zurück
    * @access protected
    */
   function getValueGroup($group_id, $ignore_main_group = false)
@@ -219,7 +222,7 @@ class rexFormMultiValueField extends rexFormField
     {
       return false;
     }
-    
+
     foreach ($this->getValues() as $id => $group)
     {
       if ($id == $group_id)
