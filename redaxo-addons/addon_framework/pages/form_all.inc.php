@@ -5,10 +5,10 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: form_all.inc.php,v 1.1 2007/08/24 12:18:24 kills Exp $
+ * @version $Id: form_all.inc.php,v 1.2 2007/08/24 12:19:54 kills Exp $
  */
 
-echo '<h1>Diese Demo zeigt wie man Felder validieren kann</h1>';
+echo '<h1>Diese Demo zeigt alle Formularfelder</h1>';
 
 
 // Reihenfolge muss eingehalten werden!
