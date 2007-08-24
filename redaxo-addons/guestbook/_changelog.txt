@@ -1,6 +1,7 @@
 <h2>Changelog:</h2>
 <strong>RC6</strong>
 
+- Auf R3.3 angepasst
 - Auf neuste Addon-Framework Version angepasst
 - Uninstall-Routine implementiert
 - Readme handling umgestellt
