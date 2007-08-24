@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formSection.inc.php,v 1.3 2007/01/30 17:37:08 kills Exp $
+ * @version $Id: class.rex_formSection.inc.php,v 1.4 2007/08/24 10:35:36 kills Exp $
  */
 
 class rexFormSection extends rexFieldController
@@ -28,7 +28,7 @@ class rexFormSection extends rexFieldController
     $this->label = $label;
     $this->columns = $columns;
     $this->anchor = '';
-    
+
     // Parentkonstruktor aufrufen
     $this->rexfieldController($tableName, $whereParams);
   }
@@ -59,7 +59,7 @@ class rexFormSection extends rexFieldController
   {
     $this->label = $label;
   }
-  
+
   /**
    * Gibt die Überschrift des Formularabschnitts
    * @return string Überschrift des Abschnitts
@@ -68,7 +68,7 @@ class rexFormSection extends rexFieldController
   {
     return $this->label;
   }
-  
+
   function isValid($section)
   {
     return is_object($section) && is_a($section, 'rexformsection');
@@ -108,14 +108,14 @@ class rexFormSection extends rexFieldController
       $s .= '      <a name="'.$anchor.'"></a>'."\n";
     }
     $s .= '      <fieldset>'."\n";
-    
+
     // Abschnittsüberschirft
     $label = $this->getLabel();
     if ( $label != '')
     {
       $s .= '        <legend>'. $label .'</legend>'. "\n";
     }
-    
+
     // Hidden fields
     $fields = & $this->getFields();
     $numFields = $this->numFields();
@@ -134,7 +134,7 @@ class rexFormSection extends rexFieldController
     $numFields = count($fields);
 
     // Validierungsfehler
-    $errors = & $this->getErrors();
+    $errors = $this->getErrors();
     $numErrors = $this->numErrors();
 
     if ($numErrors > 0)
@@ -159,7 +159,7 @@ class rexFormSection extends rexFieldController
     for ($t = 0; $t < $numFields; $t ++)
     {
       $field = & $fields[$t];
-      
+
       $field_label = $field->getLabel();
       $field_value = $field->get();
 
@@ -167,24 +167,24 @@ class rexFormSection extends rexFieldController
       {
         $field_label = '<label for="'. $field->getId() .'">'. $field_label .'</label>';
       }
-      
-      $fieldStr = $field_label . $field_value; 
-      
+
+      $fieldStr = $field_label . $field_value;
+
       if($field->needFullColumn())
       {
         $fullCols[] = $fieldStr. "\n";
         continue;
       }
-      
+
       $colData[$i][] = '<p>'. $fieldStr .'</p>'. "\n";
-      
+
       $i++;
       if($i>$numCols)
       {
         $i = 1;
       }
     }
-    
+
     foreach ($colData as $colIndex => $column)
     {
       $colStr = '';
@@ -199,18 +199,18 @@ class rexFormSection extends rexFieldController
       }
       $s .= $colStr;
     }
-    
+
     $s .= '        <div class="rex-clearer"> </div>'."\n";
-    
+
     foreach($fullCols as $colValue)
     {
       $s .= '        '. $colValue;
     }
-    
+
     $s .= '      </fieldset>'."\n";
     $s .= '    </div>'."\n";
     $s .= '    <!-- rexSection end -->'. "\n";
-    
+
     return $s;
   }
 

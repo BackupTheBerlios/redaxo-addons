@@ -1,19 +1,21 @@
 <?php
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: simple.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: simple.inc.php,v 1.2 2007/08/24 10:35:36 kills Exp $
  */
+
+echo '<h1>Diese Demo zeigt eine rexList in der einfachsten Form</h1>';
 
 //------------------------------> Eintragsliste
 
 if ($func == '')
 {
   /*
-   *  Liste anlegen 
+   *  Liste anlegen
    */
   // Standard sortierung nach Name aufsteigend
   // Standard suchspalte ist Name
@@ -22,7 +24,7 @@ if ($func == '')
   //$list->debug = true;
 
   /*
-   *  Spalten aus dem SQL-ResultSet anlegen 
+   *  Spalten aus dem SQL-ResultSet anlegen
    */
   $colId = new resultColumn('id', 'ID');
   $colName = new resultColumn('name', 'Name');
@@ -31,23 +33,23 @@ if ($func == '')
   $colCreate = new resultColumn('createuser', 'Erstellt von');
 
   /*
-   *  Statische Spalten anlegen 
+   *  Statische Spalten anlegen
    */
   // Lösch link
   $colAction = new staticColumn('Aktion', 'l&ouml;schen');
 
   /*
-   *  Links auf die Spalten legen 
+   *  Links auf die Spalten legen
    */
   // Parameter "func" mit dem Wert "edit"
-  // Parameter "id" mit dem Wert "id" aus dem Resultset ("%id%") 
+  // Parameter "id" mit dem Wert "id" aus dem Resultset ("%id%")
   $colName->setParams(array ('func' => 'edit', 'id' => '%id%'));
   // Parameter "func" mit dem Wert "delete"
   // Parameter "id" mit dem Wert "id" aus dem Resultset ("%id%")
   $colAction->setParams(array ('func' => 'delete', 'id' => '%id%'));
 
   /*
-   *  Spalten zur Anzeige hinzufügen 
+   *  Spalten zur Anzeige hinzufügen
    */
   $list->addColumn($colId);
   $list->addColumn($colName);
@@ -57,7 +59,7 @@ if ($func == '')
   $list->addColumn($colAction);
 
   /*
-   *  Tabelle anzeigen 
+   *  Tabelle anzeigen
    */
   $list->show();
 }

@@ -1,20 +1,21 @@
 <?php
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: structure.inc.php,v 1.2 2006/09/08 08:11:38 kills Exp $
+ * @version $Id: structure.inc.php,v 1.3 2007/08/24 10:35:36 kills Exp $
  */
 
+echo '<h1>Diese Demo zeigt eine Nachbildung der Strukturverwaltung</h1>';
 
 //------------------------------> Eintragsliste
 
 if ($func == '')
 {
   /*
-   *  Liste anlegen 
+   *  Liste anlegen
    */
   if (empty ($category_id))
   {
@@ -26,16 +27,16 @@ if ($func == '')
   $list = new rexlist($sql, 'catprior', 'asc', 'name');
 
   /*
-   *  Spalten aus dem SQL-ResultSet anlegen 
+   *  Spalten aus dem SQL-ResultSet anlegen
    */
   $colId = new resultColumn('id', 'ID');
   // ID zentrieren
-  $colId->setBodyTags('style="text-align: center"');
+  $colId->setBodyAttributes('style="text-align: center"');
   $colName = new resultColumn('name', 'Kategorie', '', '%name% [%id%]');
   $colPrio = new resultColumn('catprior', 'Prio');
 
   /*
-   *  Statische Spalten anlegen 
+   *  Statische Spalten anlegen
    */
   // Icon Spalte
   $colIcon = new staticColumn('<img src="pics/folder.gif"/>', '<img src="pics/folder_plus.gif"/>');
@@ -50,9 +51,9 @@ if ($func == '')
   $colOnOffline->addCondition('status', '0', '<span style="color: #aa0000;">offline</span>', array ('func' => 'status', 'mode' => 'online_it', 'category_id' => '%id%'));
 
   /*
-   *  Links auf die Spalten legen 
+   *  Links auf die Spalten legen
    */
-  // Parameter "category_id" mit dem Wert "id" aus dem Resultset ("%id%") 
+  // Parameter "category_id" mit dem Wert "id" aus dem Resultset ("%id%")
   $colName->setParams(array ('category_id' => '%id%'));
   // Parameter "func" mit dem Wert "edit"
   // Parameter "id" mit dem Wert "id" aus dem Resultset ("%id%")
@@ -68,7 +69,7 @@ if ($func == '')
   $colPrio->delOption(OPT_SEARCH);
 
   /*
-   *  Spalten zur Anzeige hinzufügen 
+   *  Spalten zur Anzeige hinzufügen
    */
   $list->addColumn($colIcon);
   $list->addColumn($colId);
@@ -78,7 +79,7 @@ if ($func == '')
   $list->addColumn($colOnOffline);
 
   /*
-   *  Tabelle anzeigen 
+   *  Tabelle anzeigen
    */
   $list->show();
 }

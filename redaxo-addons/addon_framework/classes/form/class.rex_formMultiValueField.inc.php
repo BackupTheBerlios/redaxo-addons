@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formMultiValueField.inc.php,v 1.4 2007/08/24 09:06:22 kills Exp $
+ * @version $Id: class.rex_formMultiValueField.inc.php,v 1.5 2007/08/24 10:35:36 kills Exp $
  */
 
 class rexFormMultiValueField extends rexFormField
@@ -152,7 +152,7 @@ class rexFormMultiValueField extends rexFormField
     $sql = new rex_sql();
     //      $sql->debugsql = true;
 
-    $result = $sql->get_array($query, MYSQL_NUM);
+    $result = $sql->getArray($query, MYSQL_NUM);
 
     if (is_array($result) && count($result) >= 1)
     {

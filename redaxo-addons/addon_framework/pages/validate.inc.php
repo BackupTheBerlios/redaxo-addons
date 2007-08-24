@@ -1,12 +1,15 @@
 <?php
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: validate.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: validate.inc.php,v 1.2 2007/08/24 10:35:36 kills Exp $
  */
+
+echo '<h1>Diese Demo zeigt wie man Felder validieren kann</h1>';
+
 
 // Reihenfolge muss eingehalten werden!
 
@@ -52,7 +55,7 @@ $fieldLang = & new selectField('stuff', 'Sprache');
 $fieldLang->addValidator('notEmpty', 'Die Sprache darf nicht Leer sein!');
 
 // Optionen aus der Datenbank hinzufügen
-$fieldLang->addSQLOptions('SELECT name,id FROM rex_modultyp');
+$fieldLang->addSQLOptions('SELECT name,id FROM rex_clang');
 // Optionen via Array hinzufügen
 $fieldLang->addOptions(array (array ('OPT1', '1'), array ('OPT2', '2')));
 // Einzelne Option hinzufügen

@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formField.inc.php,v 1.7 2007/08/16 17:06:40 kills Exp $
+ * @version $Id: class.rex_formField.inc.php,v 1.8 2007/08/24 10:35:36 kills Exp $
  */
 
 class rexFormField
@@ -117,7 +117,7 @@ class rexFormField
 
     // Werte aus der DB
     $section = & $this->getSection();
-    $dataset = & $section->_getDataSet();
+    $dataset = $section->_getDataSet();
 
     if (isset ($dataset[$name]))
     {
@@ -234,7 +234,7 @@ class rexFormField
   {
     $section = & $this->getSection();
     $form = & $section->getForm();
-    $validators = & $this->getValidators();
+    $validators = $this->getValidators();
 
     for ($i = 0; $i < count($validators); $i++)
     {
@@ -259,7 +259,7 @@ class rexFormField
     $form = & $section->getForm();
     $formValidator = & $form->getValidator();
 
-    $validators = & $this->getValidators();
+    $validators = $this->getValidators();
     for ($i = 0; $i < count($validators); $i++)
     {
       $validator = & $validators[$i];
@@ -369,6 +369,7 @@ require_once $FieldBasedir.'/fields/field.textField.inc.php';
 require_once $FieldBasedir.'/fields/field.passwordField.inc.php';
 require_once $FieldBasedir.'/fields/field.textAreaField.inc.php';
 require_once $FieldBasedir.'/fields/field.selectField.inc.php';
+require_once $FieldBasedir.'/fields/field.selectTableField.inc.php';
 require_once $FieldBasedir.'/fields/field.buttonField.inc.php';
 require_once $FieldBasedir.'/fields/field.saveField.inc.php';
 require_once $FieldBasedir.'/fields/field.hiddenField.inc.php';
@@ -386,7 +387,6 @@ require_once $FieldBasedir.'/fields/field.htmlField.inc.php';
 
 // Redaxo Field-Klassen
 require_once $FieldBasedir.'/fields/rex/field.rexSaveField.inc.php';
-require_once $FieldBasedir.'/fields/rex/field.rexWYSIWYGField.inc.php';
 require_once $FieldBasedir.'/fields/rex/field.rexLinkButtonField.inc.php';
 require_once $FieldBasedir.'/fields/rex/field.rexMediaButtonField.inc.php';
 ?>

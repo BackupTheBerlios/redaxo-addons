@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: index.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: index.inc.php,v 1.2 2007/08/24 10:35:36 kills Exp $
  */
 
 // *************************************** INCLUDES
@@ -23,11 +23,14 @@ require $REX['INCLUDE_PATH']."/layout/top.php";
 //error_reporting(E_ALL);
 
 $subpages = array (
-  //   array( '', 'Einfache Liste'),
-    //   array( 'formats', 'Formatierungen'),
-    //   array( 'options', 'Optionen'),
-       array( '', 'Toolbars'),
-  array ('structure', 'Struktur Nachbildung'), array ('validate', 'Validierung'),);
+  array( '', 'Einfache Liste'),
+  array( 'formats', 'Formatierungen'),
+  array( 'options', 'Optionen'),
+  array( 'toolbars', 'Toolbars'),
+  array ('structure', 'Struktur Nachbildung'),
+  array ('validate', 'Validierung'),
+  array ('listvariables', 'Variablen'),
+);
 
 rex_title('Redaxo Framework Komponenten', $subpages);
 
@@ -52,6 +55,9 @@ switch ($subpage)
   case 'validate' :
     $file = $Basedir.'/validate.inc.php';
     break;
+  case 'listvariables' :
+    $file = $Basedir.'/listvariables.inc.php';
+    break;
   default :
     $file = $Basedir.'/simple.inc.php';
 }
@@ -66,7 +72,7 @@ else
 {
 ?>
 <h3>
-Diese Seite ist nur eine Demo der rexList-/rexForm-Klasse.<br/> 
+Diese Seite ist nur eine Demo der rexList-/rexForm-Klasse.<br/>
 Alle Zugriffe auf die rex_article Tabelle werden ausschliesslich lesend vorgenommen.<br/>
 Deshalb ist z.B. ein on/offline schalten von Kategorien, bzw. editieren/löschen nicht Möglich!<br/>
 Zum Anzeigen des Sourcecodes der aktuellen Seite unten auf "<b>Sourcecode anzeigen</b>" klicken.

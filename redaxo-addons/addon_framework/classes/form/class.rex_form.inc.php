@@ -2,11 +2,11 @@
 
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_form.inc.php,v 1.4 2007/08/24 09:06:22 kills Exp $
+ * @version $Id: class.rex_form.inc.php,v 1.5 2007/08/24 10:35:36 kills Exp $
  */
 
 // Form Komponenten einbinden
@@ -142,7 +142,7 @@ class rexForm extends rexFieldContainer
     $this->section = & $section;
     $this->sections[] = & $section;
   }
-  
+
   function & getSection()
   {
     return $this->section;
@@ -240,7 +240,7 @@ class rexForm extends rexFieldContainer
 
     // Show Hidden fields
     $s .= '    <div class="a22-rexform-hidden">'."\n";
-    
+
     $fields = & $this->getFields();
     $numFields = $this->numFields();
 
@@ -253,7 +253,7 @@ class rexForm extends rexFieldContainer
     }
 
     $s .= '    </div>'."\n";
-    
+
     // Show Sections
     $sections = & $this->getSections();
     for ($i = 0; $i < $this->numSections(); $i++)
@@ -336,18 +336,18 @@ class rexForm extends rexFieldContainer
 
   function formatMessages()
   {
-    $messages = & $this->getMessages();
-    
+    $messages = $this->getMessages();
+
     $msg = rex_request($this->getName(). '_msg', 'string');
     $msg_type = rex_request($this->getName(). '_msgtype', 'int');
     if($msg != '')
     {
       $messages[] = array($msg, $msg_type);
     }
-    
+
     return rex_a22_formatMessages($messages);
   }
-  
+
   function redirect($params = '')
   {
     $url = $this->apply_url;
@@ -371,7 +371,7 @@ class rexForm extends rexFieldContainer
     {
       foreach ($def_params as $name => $value)
       {
-        if (strpos($url, '&'.$name.'=') === false && 
+        if (strpos($url, '&'.$name.'=') === false &&
             strpos($url, '?'.$name.'=') === false)
         {
           if ($hasParams)
@@ -399,8 +399,8 @@ class rexForm extends rexFieldContainer
   /**
    * Durchsucht das Formular nach einem Feld
    * @param string Name des Feldes, wonach gesucht werden soll
-   * @return object|null Bei erfolgreicher Suche wird ein rexFormField-Objekt zurückgegeben, sonst null 
-   * @access public 
+   * @return object|null Bei erfolgreicher Suche wird ein rexFormField-Objekt zurückgegeben, sonst null
+   * @access public
    */
   function searchField($name)
   {
@@ -422,7 +422,7 @@ class rexForm extends rexFieldContainer
     }
     return null;
   }
-  
+
   function toString()
   {
     return 'rexForm: name: "'.$this->getName().'", edit_mode: "'. ($this->isEditMode() ? 'true' : 'false').'", sections: "'.$this->numSections().'"';

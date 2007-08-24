@@ -2,11 +2,11 @@
 
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_list.inc.php,v 1.4 2007/08/24 09:06:22 kills Exp $
+ * @version $Id: class.rex_list.inc.php,v 1.5 2007/08/24 10:35:36 kills Exp $
  */
 
 // List Komponenten einbinden
@@ -32,42 +32,42 @@ rex_register_extension('OUTPUT_FILTER', 'rex_a22_insertRexlistCss');
  */
 define('LIST_VAR_TOP', 1);
 /**
- * Platzhalter: Vor den Kopfleisten 
+ * Platzhalter: Vor den Kopfleisten
  * @see rexList::setVar()
 */
 define('LIST_VAR_BEFORE_HEAD', 2);
 /**
- * Platzhalter: Nach den Kopfleisten 
+ * Platzhalter: Nach den Kopfleisten
  * @see rexList::setVar()
  */
 define('LIST_VAR_AFTER_HEAD', 3);
 /**
- * Platzhalter: Vor dem Kopfbereich der Tabelle 
+ * Platzhalter: Vor dem Kopfbereich der Tabelle
  * @see rexList::setVar()
  */
 define('LIST_VAR_BEFORE_DATAHEAD', 4);
 /**
- * Platzhalter: Nach dem Kopfbereich der Tabelle 
+ * Platzhalter: Nach dem Kopfbereich der Tabelle
  * @see rexList::setVar()
  */
 define('LIST_VAR_AFTER_DATAHEAD', 5);
 /**
- * Platzhalter: Vor dem Datenbereich der Tabelle 
+ * Platzhalter: Vor dem Datenbereich der Tabelle
  * @see rexList::setVar()
  */
 define('LIST_VAR_BEFORE_DATA', 6);
 /**
- * Platzhalter: Nach dem Datenbereich der Tabelle 
+ * Platzhalter: Nach dem Datenbereich der Tabelle
  * @see rexList::setVar()
  */
 define('LIST_VAR_AFTER_DATA', 7);
 /**
- * Platzhalter: Vor den Fußleisten 
+ * Platzhalter: Vor den Fußleisten
  * @see rexList::setVar()
  */
 define('LIST_VAR_BEFORE_FOOT', 8);
 /**
- * Platzhalter: Nach den Fußleisten 
+ * Platzhalter: Nach den Fußleisten
  * @see rexList::setVar()
  */
 define('LIST_VAR_AFTER_FOOT', 9);
@@ -77,14 +77,14 @@ define('LIST_VAR_AFTER_FOOT', 9);
  */
 define('LIST_VAR_BOTTOM', 10);
 /**
- * Platzhalter: Erscheint, wenn die Liste keine Datensätze enthält 
+ * Platzhalter: Erscheint, wenn die Liste keine Datensätze enthält
  * @see rexList::setVar()
  */
 define('LIST_VAR_NO_DATA', 11);
 
 /**
  * Basisklasse zur Darstellung von Datenbanktabellen (Listen).
- * 
+ *
  * Features:
  * - Spalte sortiertbar/suchbar schalten
  * - einzelne Leisten auslagern in ToolBars
@@ -134,13 +134,13 @@ class rexList
    * @access private
    */
   var $params;
-  
+
   /**
    * Bezeichnung der Liste
    * @var string
    */
   var $caption;
-  
+
   /**
    * Attribute der Liste
    * @var string
@@ -156,7 +156,7 @@ class rexList
 
   /**
    * Array der Kopf und Fußleisten
-   * @var array 
+   * @var array
    * @access private
    */
   var $toolbars;
@@ -291,7 +291,7 @@ class rexList
 
     $this->addGlobalParams(rex_a22_getDefaultGlobalParams());
 
-    // Nur die Parameter anhängen, die vom default Wert abweichen      
+    // Nur die Parameter anhängen, die vom default Wert abweichen
     if ($order_col != $default_order_col)
     {
       $this->addGlobalParam('order_col', $order_col);
@@ -308,7 +308,7 @@ class rexList
    * Dieser wird bei allen Links innerhalb der Liste angefügt.
    *
    * @param Name des Parameters
-   * @param Wert des Parameters 
+   * @param Wert des Parameters
    * @access public
    */
   function addGlobalParam($name, $value)
@@ -318,7 +318,7 @@ class rexList
 
   /**
    * Fügt der Liste ein Array von Parametern hinzu.
-   * 
+   *
    * @param array Array von Parametern
    * @access public
    */
@@ -332,7 +332,7 @@ class rexList
 
   /**
    * Gibt die Globalen Parameter zurück.
-   * 
+   *
    * @access protected
    * @return array Die Globalen Parameter
    */
@@ -357,7 +357,7 @@ class rexList
 
   /**
    * Setzt die Standard-Anzahl Zeilen, die pro Seite angezeigt werden
-   * 
+   *
    * @param integer Zeilenanzahl
    * @access protected
    */
@@ -369,7 +369,7 @@ class rexList
   /**
    * Setzt den Fuß der Liste.
    * Damit kann zwischen den unteren Toolbars und der Liste eigener Inhalt eingefügt werden
-   * 
+   *
    * @access public
    * @deprecated version - 27.02.2006
    */
@@ -381,7 +381,7 @@ class rexList
   /**
    * Setzt den Kopf der Liste.
    * Damit kann zwischen den obereb Toolbars und der Liste eigener Inhalt eingefügt werden
-   * 
+   *
    * @access public
    * @deprecated version - 27.02.2006
    */
@@ -389,7 +389,7 @@ class rexList
   {
     $this->setVar(LIST_VAR_TOP, $header);
   }
-  
+
   function setAttributes($attributes)
   {
     if($attributes != '' && !startsWith($attributes, ' '))
@@ -398,14 +398,14 @@ class rexList
     }
     $this->attributes = $attributes;
   }
-  
+
   function getAttributes()
   {
     return $this->attributes;
   }
   /**
    * Setzt die Bezeichnung der Liste
-   * 
+   *
    * @param string die Überschrift
    * @access public
    */
@@ -413,10 +413,10 @@ class rexList
   {
     $this->caption = $caption;
   }
-  
+
   /**
    * Gibt die Bezeichnung der Liste zurück
-   * 
+   *
    * @return string die Überschrift
    * @access protected
    */
@@ -427,7 +427,7 @@ class rexList
 
   /**
    * Setzt die Überschrift der Liste
-   * 
+   *
    * @param string die Überschrift
    * @access public
    */
@@ -438,7 +438,7 @@ class rexList
 
   /**
    * Gibt die Überschrift der Liste zurück
-   * 
+   *
    * @return string die Überschrift
    * @access protected
    */
@@ -449,7 +449,7 @@ class rexList
 
   /**
    * Setzt den Namen der Liste.
-   * 
+   *
    * @param string Name der Liste
    * @access public
    */
@@ -460,7 +460,7 @@ class rexList
 
   /**
    * Gibt den Namen der Liste zurück.
-   *  
+   *
    * @param string Name der Liste
    * @access public
    */
@@ -471,7 +471,7 @@ class rexList
 
   /**
    * Fügt der Liste eine Spalte hinzu.
-   * 
+   *
    * @param object Spaltenobjekt das hinzugefügt werden soll
    * @access public
    */
@@ -488,7 +488,7 @@ class rexList
 
   /**
    * Fügt der Liste ein Array von Spalten hinzu.
-   * 
+   *
    * @param array Array von Spaltenobjekten die hinzugefügt werden sollen
    * @access public
    */
@@ -507,7 +507,7 @@ class rexList
   /**
    * Fügt der Liste eine Toolbar hinzu.
    * Diese muss ein Objekt vom Typ "rexlisttoolbar" sein!
-   * 
+   *
    * @param $direction Stelle an der die Toolbar angefügt werden soll (top|bottom).
    * @param $mode Breite in der die Toolbar angezeigt werden soll (full|half).
    * @access public
@@ -539,7 +539,7 @@ class rexList
 
   /**
    * Gibt ein Array von Toolbars zurück, die der Liste bereits hinzugefügt wurden.
-   * 
+   *
    * @return array Bereits hinzugefügte Toolbars
    * @access public
    */
@@ -562,11 +562,11 @@ class rexList
 
   /**
    * Gibt einen Link zurück mit den Parametern $params und den Attributen $tags
-   * 
+   *
    * @param string Text der verlinkt werden soll
    * @param array Parameter die an die URL des Links angefügt werden sollen
    * @param array Tags, die dem Link Element hinzugefügt werden sollen
-   * 
+   *
    * @return string Gibt einen formatierten HTML-Hyperlink zurück
    * @access protected
    */
@@ -577,11 +577,11 @@ class rexList
 
   /**
    * Gibt die aktuellen Schritte der Liste zurück.
-   * 
+   *
    *     $this->steps['prev']; // vorheriger Schritt
    *     $this->steps['curr']; // aktueller Schritt
    *     $this->steps['next']; // nächster Schritt
-   * 
+   *
    * @return array Assoc-Array mit den Schritten
    * @access protected
    */
@@ -651,7 +651,7 @@ class rexList
       // Ist der nächste Wert größre als Datensätze vorhanden
       if ($curr + $stepping >= $found)
       {
-        // Nur wenn mehr Datensätze vorhanden sind als für einen Schritt benötigt werden 
+        // Nur wenn mehr Datensätze vorhanden sind als für einen Schritt benötigt werden
         if ($found - $stepping +1 > 0)
         {
           $next = $found - $stepping +1;
@@ -672,7 +672,7 @@ class rexList
 
   /**
    * Gibt zurück, wieviele Datensätze pro Seite angezeigt werden
-   * 
+   *
    * @return integer Anzahl der Datensätze pro Seite
    * @access protected
    */
@@ -691,7 +691,7 @@ class rexList
 
   /**
    * Gibt alle Datensätze zurück, die vom Ursprünglichen Query betroffen sind
-   * 
+   *
    * @return array Array von Datensätzen
    * @access protected
    */
@@ -700,16 +700,16 @@ class rexList
     if ($this->rows == '')
     {
       $this->sql->setQuery($this->qry);
-      $this->rows = $this->sql->get_array();
+      $this->rows = $this->sql->getArray();
       //      var_dump( $this->rows);
     }
     return $this->rows;
   }
 
   /**
-   * Gibt die Anzahl der Datensätze zurück, 
+   * Gibt die Anzahl der Datensätze zurück,
    * die vom ursprünglichen Query betroffen sind.
-   * 
+   *
    * @return integer Die Anzahl der Datensätze
    * @access protected
    */
@@ -723,7 +723,7 @@ class rexList
       if (substr($REX['MYSQL_VERSION'], 0, 1) == '4')
       {
          $this->sql->setQuery('SELECT FOUND_ROWS() AS FOUND');
-         $res = $this->sql->get_array();
+         $res = $this->sql->getArray();
          $this->num_rows = $res[0]['FOUND'];
       }
       else
@@ -739,8 +739,8 @@ class rexList
   /**
    * Gibt die Datensätze der aktuellen Seite zurück.
    *
-   * @return array Array von Datensätze der aktuellen Seite 
-   * @access protected  
+   * @return array Array von Datensätze der aktuellen Seite
+   * @access protected
    */
   function getCurrentRows()
   {
@@ -757,7 +757,7 @@ class rexList
       $this->prepareQuery($listsql);
       //$this->sql->debugsql = true;
       $this->sql->setQuery($listsql->getQry());
-      $this->curr_rows = $this->sql->get_array();
+      $this->curr_rows = $this->sql->getArray();
     }
 
     return $this->curr_rows;
@@ -765,8 +765,8 @@ class rexList
 
   /**
    * Gibt die Anzahl der Datensätze, auf der aktuellen Seite zurück.
-   * 
-   * @return integer Anzahl der Datensätze   
+   *
+   * @return integer Anzahl der Datensätze
    * @access protected
    */
   function numCurrentRows()
@@ -780,9 +780,9 @@ class rexList
 
   /**
    * Gibt die Anzahl der Spalten zurück
-   * 
+   *
    * @return integer Anzahl der Spalten
-   * @access protected  
+   * @access protected
    */
   function numColumns()
   {
@@ -792,9 +792,9 @@ class rexList
   /**
    * Bereitet den Query für die Anfrage vor.
    * Hier werden letzte Modifikationen des SQLs vorgenommen.
-   * 
+   *
    * @param object OOSQL Object der Liste
-   * @access protected  
+   * @access protected
    */
   function prepareQuery(& $listsql)
   {
@@ -810,11 +810,11 @@ class rexList
   }
 
   /**
-   * Dieser Methode löst das Event für die Toolbars aus, 
+   * Dieser Methode löst das Event für die Toolbars aus,
    * letzte Modifikationen an der rexList vorzunehmen,
    * bevor die Verarbeitung der Ausgabe beginnt.
-   * 
-   * @access protected  
+   *
+   * @access protected
    */
   function prepareToolbars()
   {
@@ -828,7 +828,7 @@ class rexList
 
   /**
    * Funktion zum setzen von statischen Texten
-   * 
+   *
    * @param integer Name des Platzhalters(Konstante)
    * @param string Statisches HTML, welches an Stelle des Platzhalters erscheint
    * @access public
@@ -840,7 +840,7 @@ class rexList
 
   /**
    * Gibt den Wert eines statischen Textes zurück
-   * 
+   *
    * @param integer Name des Platzhalters(Konstante)
    * @access protected
    */
@@ -855,8 +855,8 @@ class rexList
 
   /**
    * Gibt die gerenderte Liste zurück
-   * 
-   * @param bool [Flag, ob die Standardtoolbars hinzugefügt werden sollen - 
+   *
+   * @param bool [Flag, ob die Standardtoolbars hinzugefügt werden sollen -
    *             true => ja/ false => nein; default:true]
    * @access public
    */
@@ -874,17 +874,17 @@ class rexList
 
     $this->prepareToolbars();
 
-    // Benötigte Variablen definieren      
+    // Benötigte Variablen definieren
     $rows = $this->getCurrentRows();
 
     $s .= '<!-- rexList start -->'."\n";
     $s .= '<div class="a22-rexlist">'."\n";
     $s .= $this->getVar(LIST_VAR_TOP); // Platzhalter
     $s .= '  <form action="index.php" method="post">'."\n";
-    
+
     // Show Messages
     $s .= $this->formatMessages();
-    
+
     $s .= '    <fieldset>'."\n";
 
     $label = $this->getLabel();
@@ -928,7 +928,7 @@ class rexList
       {
         $s .= '        <caption>'.$caption.'</caption>'."\n";
       }
-      
+
       $s .= '          <thead>'."\n";
       $s .= '            <tr>'."\n";
       for ($i = 0; $i < $this->numColumns(); $i++)
@@ -978,10 +978,10 @@ class rexList
     else
     {
       // keine Daten vorhanden
-      $def_message = 'Ihr Abfrage ergab keine Ergebnisse'; 
+      $def_message = 'Ihr Abfrage ergab keine Ergebnisse';
       $s .= '        <p class="a22-rexlist-norows">'. $this->getVar(LIST_VAR_NO_DATA, $def_message) .'</p>'."\n"; // Platzhalter
     }
-    
+
     $s .= '      </div>'."\n";
 
     // ------------ Fußleisten
@@ -1004,8 +1004,8 @@ class rexList
 
   /**
    * Gibt die gerenderte Liste aus
-   * 
-   * @param bool [Flag, ob die Standardtoolbars hinzugefügt werden sollen - 
+   *
+   * @param bool [Flag, ob die Standardtoolbars hinzugefügt werden sollen -
    *             true => ja/ false => nein; default:true]
    * @access public
    */
@@ -1016,7 +1016,7 @@ class rexList
 
   /**
    * Gibt die übergebenen Toolbars auf voller Breite aus
-   * 
+   *
    * @access private
    */
   function _getToolbars($toolbars)
@@ -1063,7 +1063,7 @@ class rexList
    * Setzt die Spaltenbreiten der Tabelle
    *
    * @param array Spaltenbreiten, wobei jeder index des Arrays einer Spalte entspricht
-   * @access public 
+   * @access public
    */
   function setColGroup($colgroup)
   {
@@ -1073,7 +1073,7 @@ class rexList
 
   /**
    * Gibt die Spaltenbreiten zurück
-   * 
+   *
    * @access protected
    */
   function getColGroup()
@@ -1083,7 +1083,7 @@ class rexList
 
   /**
    * Gibt die in HTML formatierte Colgroup zurück
-   * 
+   *
    * @access protected
    */
   function _getColGroup()
@@ -1105,18 +1105,18 @@ class rexList
 
     return $s;
   }
-  
+
   function formatMessages()
   {
     $msg = rex_request($this->getName(). '_msg', 'string');
     $msg_type = rex_request($this->getName(). '_msgtype', 'int');
-    
+
     $messages = array();
     if($msg != '')
     {
       $messages[] = array($msg, $msg_type);
     }
-    
+
     return rex_a22_formatMessages($messages);
   }
 }

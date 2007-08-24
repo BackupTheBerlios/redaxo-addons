@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_validator.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: class.rex_validator.inc.php,v 1.2 2007/08/24 10:35:36 kills Exp $
  */
- 
+
 if (!class_exists('Smarty'))
 {
   // Create Smarty Env Dummy
@@ -128,7 +128,7 @@ class rexValidator extends Smarty
    * @param string $type
    * @return array
    */
-  function & get_template_vars($name = null)
+  function get_template_vars($name = null)
   {
     if (!isset ($name))
     {

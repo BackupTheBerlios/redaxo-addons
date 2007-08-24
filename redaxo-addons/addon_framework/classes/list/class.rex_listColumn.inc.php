@@ -1,12 +1,13 @@
 <?php
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_listColumn.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: class.rex_listColumn.inc.php,v 1.2 2007/08/24 10:35:36 kills Exp $
  */
+
 
 define('OPT_NONE', 0); // 0
 define('OPT_SORT', 1); // 2^0
@@ -43,8 +44,8 @@ class rexListColumn extends rexListComponent
   }
 
   /**
-   * Überschreibt die vorhandenen Optionen mit der/den übergebenen Option/Optionen  
-   * @param $option OPT_* Konstante 
+   * Überschreibt die vorhandenen Optionen mit der/den übergebenen Option/Optionen
+   * @param $option OPT_* Konstante
    */
   function setOptions($options)
   {
@@ -61,7 +62,7 @@ class rexListColumn extends rexListComponent
 
   /**
    * Fügt die übergebene Option hinzu
-   * @param $option OPT_* Konstante 
+   * @param $option OPT_* Konstante
    */
   function addOption($option)
   {
@@ -77,7 +78,7 @@ class rexListColumn extends rexListComponent
 
   /**
    * Entfernt die übergebene Option
-   * @param $option OPT_* Konstante 
+   * @param $option OPT_* Konstante
    */
   function delOption($option)
   {
@@ -86,7 +87,7 @@ class rexListColumn extends rexListComponent
 
   /**
    * Prüft ob die übergebene Option gesetzt ist
-   * @param $option OPT_* Konstante 
+   * @param $option OPT_* Konstante
    */
   function hasOption($option)
   {
@@ -111,7 +112,7 @@ class rexListColumn extends rexListComponent
 
   /**
    * Fügt der Spalte einen Wert hinzu, der von einer Spalte abhängig ist.
-   * 
+   *
    * @param $cond_column Name der Spalte die geprüft werden soll
    * @param $cond_value Wert, auf den geprüft werden soll
    * @param $text Text der ausgegeben werden soll
@@ -132,7 +133,7 @@ class rexListColumn extends rexListComponent
   }
 
   /**
-   * Durchsucht die Parameter nach %VarName% 
+   * Durchsucht die Parameter nach %VarName%
    * und ersetzt diese durch die entsprechenden Werte
    */
   function parseParams($row)
@@ -164,7 +165,7 @@ class rexListColumn extends rexListComponent
 
     foreach ($array as $_name => $_value)
     {
-      // %VAR_NAME% 
+      // %VAR_NAME%
       // Wert beginnt und endet mit '%'
       if (substr($_value, 0, 1) == '%' && substr($_value, -1) == '%')
       {
@@ -227,12 +228,12 @@ class rexListColumn extends rexListComponent
       // $condition[2] Text der ausgegeben werden soll
       // $condition[3] Link-Parameter die auf $text als Link gesetzt werden sollen
 
-      // condition prüfen         
+      // condition prüfen
       if (array_key_exists($condition[0], $row) && $row[$condition[0]] == $condition[1])
       {
         if (is_array($condition[3]))
         {
-          // Text mit den Parametern $condition[3] verlinken  
+          // Text mit den Parametern $condition[3] verlinken
           return $this->link($condition[2], $this->parseArray($condition[3], $row));
         }
         else

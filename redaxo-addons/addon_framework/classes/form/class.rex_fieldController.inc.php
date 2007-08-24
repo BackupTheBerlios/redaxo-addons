@@ -2,11 +2,11 @@
 
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_fieldController.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: class.rex_fieldController.inc.php,v 1.2 2007/08/24 10:35:36 kills Exp $
  */
 
 define('CONTROLLER_INSERT_MODE', 1);
@@ -18,7 +18,7 @@ class rexFieldController extends rexFieldContainer
   var $tableName;
   // Where Bedingungen
   var $whereParams;
-  // Wenn mehrere Sections auf die gleiche Tabelle zeigen, diese als einen Datensatz behandeln  
+  // Wenn mehrere Sections auf die gleiche Tabelle zeigen, diese als einen Datensatz behandeln
   var $join_equal_sections;
 
   // Aktueller Datensatz
@@ -28,13 +28,13 @@ class rexFieldController extends rexFieldContainer
   // Validierungsmeldungen
   var $errors;
 
-  // Referenz zu Rexform 
+  // Referenz zu Rexform
   var $rexform;
 
   /**
    * Klassenkonstruktor
    * @param string Name der Tabelle, auf den dieser Abschnitt gemappt werden soll
-   * @param array Array von Where Parametern, die genau einen Datensatz der Tabelle beschreiben 
+   * @param array Array von Where Parametern, die genau einen Datensatz der Tabelle beschreiben
    */
   function rexfieldController($tableName, $whereParams)
   {
@@ -79,7 +79,7 @@ class rexFieldController extends rexFieldContainer
     {
       $value = substr($value, 11);
     }
-    return sql::escape($value);
+    return rex_sql::escape($value);
   }
 
   function _getWhereString()
@@ -119,7 +119,7 @@ class rexFieldController extends rexFieldContainer
         case 1 :
           {
             $this->mode = CONTROLLER_UPDATE_MODE;
-            $result = $sql->get_array();
+            $result = $sql->getArray();
             $this->dataset = $result[0];
             break;
           }

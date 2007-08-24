@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: toolbar.searchBar.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: toolbar.searchBar.inc.php,v 1.2 2007/08/24 10:35:36 kills Exp $
  */
 
 /**
@@ -16,7 +16,7 @@ class searchBar extends rexListToolbar
   var $column;
   var $key;
   var $mode;
-  
+
   var $add_columns;
 
   function searchBar()
@@ -51,9 +51,8 @@ class searchBar extends rexListToolbar
     }
 
     $s = '';
-    $s .= '<label for="search_key">Suche</label>'."\n";
+    $s .= '<label for="search_key">Suche in</label>'."\n";
     $s .= '          <input type="text" value="'.$search_key.'" id="search_key" title="Suchwort" name="rex_search_key" />'."\n";
-    $s .= '          <label for="search_column">in</label>'."\n";
     $s .= '          <select id="search_column" name="rex_search_column" title="Suchspalte">'."\n";
 
     // Suchspalten anzeigen
@@ -87,7 +86,7 @@ class searchBar extends rexListToolbar
       }
       $s .= sprintf('            <option value="%s"%s>%s</option>'."\n", $column_name, $selected, $column_label);
     }
-    
+
     $s .= '          </select>'."\n";
     $s .= '          <input type="checkbox" value="exact" title="Exakter Suchmodus" name="rex_search_mode"'.$search_mode_checked.' />'."\n";
     $s .= '          <input type="submit" value="Suchen" title="Suche starten" name="rex_search_button" />'."\n";
@@ -99,17 +98,17 @@ class searchBar extends rexListToolbar
 
     return $s;
   }
-  
+
   function getColumns()
   {
     return $this->add_columns;
   }
-  
+
   function numColumns()
   {
     return count($this->add_columns);
   }
-  
+
   function addColumn($name, $label)
   {
     $this->add_columns[] = array($name, $label);
