@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: function_rex_dbmeta.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: function_rex_dbmeta.inc.php,v 1.2 2007/08/24 09:06:22 kills Exp $
  */
  
 /**
@@ -122,7 +122,7 @@ function _rex_dbmeta_get_tables($database)
 
   if (empty ($REX['DB']['META'][$database]['TABLES']))
   {
-    $sql = new sql();
+    $sql = new rex_sql();
     $result = $sql->get_array('SHOW TABLES FROM '.$database, MYSQL_NUM);
     $tables = array ();
 
@@ -150,7 +150,7 @@ function _rex_dbmeta_get_colinfos($table, $database)
 
   if (empty ($REX['DB']['META'][$database]['TABLES'][$table]['COLNAMES']))
   {
-    $sql = new sql();
+    $sql = new rex_sql();
     $result = $sql->get_array('SHOW FULL COLUMNS FROM '.$table.' FROM '.$database, MYSQL_NUM);
 
     $colums = array ();

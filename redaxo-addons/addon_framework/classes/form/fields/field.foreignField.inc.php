@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.foreignField.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: field.foreignField.inc.php,v 1.2 2007/08/24 09:06:22 kills Exp $
  */
 
 class foreignField extends readOnlyField
@@ -81,7 +81,7 @@ class foreignField extends readOnlyField
     $value = $this->formatValue();
 
     $qry = 'SELECT '.$field.' FROM '.$table.' WHERE '.$foreignField.' = "'.$value.'"';
-    $sql = new sql();
+    $sql = new rex_sql();
     // $sql->debugsql = true;
     $sql->setQuery($qry);
 

@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formTableMultiValueField.inc.php,v 1.3 2007/02/12 16:11:33 kills Exp $
+ * @version $Id: class.rex_formTableMultiValueField.inc.php,v 1.4 2007/08/24 09:06:22 kills Exp $
  */
 
 /*
@@ -36,7 +36,7 @@ class rexTableMultiValueField extends rexFormMultiValueField
   		$section =& $this->getSection();
   		
   		// Alle vorhanden Werte löschen
-    	$sql = new sql();
+    	$sql = new rex_sql();
 //    	$sql->debugsql = true;
   		$sql->setTable($this->foreignTable);
   		$sql->where($section->_getWhereString());
@@ -73,7 +73,7 @@ class rexTableMultiValueField extends rexFormMultiValueField
   		$section =& $this->getSection();
   		
   		// Alle vorhanden Werte löschen
-    	$sql = new sql();
+    	$sql = new rex_sql();
 //    	$sql->debugsql = true;
     	$sql->setQuery('SELECT `'. $this->foreignField .'` FROM `'. $this->foreignTable .'` WHERE '. $section->_getWhereString());
     	

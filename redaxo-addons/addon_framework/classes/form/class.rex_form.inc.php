@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_form.inc.php,v 1.3 2006/09/07 10:43:51 kills Exp $
+ * @version $Id: class.rex_form.inc.php,v 1.4 2007/08/24 09:06:22 kills Exp $
  */
 
 // Form Komponenten einbinden
@@ -70,7 +70,7 @@ class rexForm extends rexFieldContainer
     $this->errors = null;
     $this->validator = new rexValidator();
 
-    $this->sql = new sql();
+    $this->sql = new rex_sql();
     $this->debug = & $this->sql->debugsql;
   }
 

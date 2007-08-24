@@ -3,6 +3,7 @@
 
 <h2>Changelog:</h2>
 <strong>Not yet released..</strong>
+- Anpassungen für R3.3
 - rexFormatter:
   + neuer FormatType "custom", für Benutzer definierte Callbacks
 - rexPasswordField:
