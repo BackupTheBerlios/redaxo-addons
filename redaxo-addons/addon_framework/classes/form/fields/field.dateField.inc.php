@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.dateField.inc.php,v 1.1 2006/11/12 12:35:40 kills Exp $
+ * @version $Id: field.dateField.inc.php,v 1.2 2007/08/24 12:18:24 kills Exp $
  */
 
 class dateField extends rexFormField
@@ -18,28 +18,28 @@ class dateField extends rexFormField
   {
     $this->rexFormField($name, $label, $attributes, $id);
 
-    $select = new select();
-    $select->set_name($name . '[]');
-    $select->set_size(1);
-    $select->set_style('width: 24%;');
+    $select = new rex_select();
+    $select->setName($name . '[]');
+    $select->setSize(1);
+    $select->setStyle('width: 24%;');
 
     $this->daySelect = $select;
     $this->monthSelect = $select;
     $this->yearSelect = $select;
 
     foreach (range(1, 31) as $day)
-      $this->daySelect->add_option($day, $day);
+      $this->daySelect->addOption($day, $day);
 
     foreach (range(1, 12) as $month)
-      $this->monthSelect->add_option($month, $month);
+      $this->monthSelect->addOption($month, $month);
 
     foreach (range(2000, 2050) as $year)
-      $this->yearSelect->add_option($year, $year);
+      $this->yearSelect->addOption($year, $year);
 
   }
 
   /*
-   * Prepariert den InsertValue um das Array als String in die DB zu speichern 
+   * Prepariert den InsertValue um das Array als String in die DB zu speichern
    * @access protected
    */
   function getInsertValue()
@@ -54,22 +54,25 @@ class dateField extends rexFormField
   }
 
   /*
-   * Prepariert den Value um den String aus der DB als Array zurückzugeben 
+   * Prepariert den Value um den String aus der DB als Array zurückzugeben
    * @access protected
    */
   function getValue()
   {
     $value = parent :: getValue();
-    
+
+
     if (!is_array($value))
     {
     	// beim add, auf aktuelle Datumswerte zurückgreifen
-      if ($value == 0)
-        $value == time();
+      if ($value == 0 || $value == '')
+      {
+        $value = time();
+      }
 
 			// initialwerte
       $day = date('j', $value);
-      $month = date('m', $value);
+      $month = date('n', $value);
       $year = date('Y', $value);
     }
     else
@@ -79,11 +82,11 @@ class dateField extends rexFormField
       $month = $value[1];
       $year = $value[2];
     }
-    
-    $this->daySelect->set_selected($day);
-    $this->monthSelect->set_selected($month);
-    $this->yearSelect->set_selected($year);
-    
+
+    $this->daySelect->setSelected($day);
+    $this->monthSelect->setSelected($month);
+    $this->yearSelect->setSelected($year);
+
     // Hier immer den aktuellen Timestamp zurückliefern, da daraus der Wert für die DB entsteht
     return mktime(0, 0, 0, $month, $day, $year);
   }
@@ -92,11 +95,11 @@ class dateField extends rexFormField
   {
     $this->getValue();
     // Id kann nur in get() gesetzt werden, da vorher die Referenzen zur Section+Form fehlen
-    $this->daySelect->set_id($this->getId() . '_day');
-    $this->monthSelect->set_id($this->getId() . '_month');
-    $this->yearSelect->set_id($this->getId() . '_year');
+    $this->daySelect->setId($this->getId() . '_day');
+    $this->monthSelect->setId($this->getId() . '_month');
+    $this->yearSelect->setId($this->getId() . '_year');
 
-    return $this->daySelect->out() . $this->monthSelect->out() . $this->yearSelect->out();
+    return $this->daySelect->get() . $this->monthSelect->get() . $this->yearSelect->get();
   }
 }
 ?>

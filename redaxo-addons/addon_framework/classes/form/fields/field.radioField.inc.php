@@ -2,11 +2,11 @@
 
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.radioField.inc.php,v 1.3 2007/01/30 19:21:06 kills Exp $
+ * @version $Id: field.radioField.inc.php,v 1.4 2007/08/24 12:18:24 kills Exp $
  */
 
 class radioField extends rexSimpleMultiValueField
@@ -53,7 +53,9 @@ class radioField extends rexSimpleMultiValueField
    */
   function getRadios()
   {
-    return $this->getValues();
+    // da die Werte nach RE_ID abgelegt werden hier immer den 0. Index zurückgeben
+    $values = $this->getValues();
+    return $values[0];
   }
 
   /**
@@ -68,9 +70,12 @@ class radioField extends rexSimpleMultiValueField
     $attributes = $this->getAttributes();
 
     $i = 0;
-    $s = '<div id="'.$id.'">'; 
+    $s = '<div id="'.$id.'">';
     foreach ($this->getRadios() as $box)
     {
+//      echo '<pre>';
+//      var_dump($box);
+//      echo '</pre>';
       $boxid = $id . $i;
       $checked = '';
       if (in_array($box[1], $value))
