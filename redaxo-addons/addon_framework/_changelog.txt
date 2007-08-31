@@ -9,12 +9,13 @@
 - rexPasswordField:
   + neues Handling:
 	  Um ein Passwort zu ändern, im Passwortfeld ein neues eingeben.
-    Wenn man das Feld leer lässt, wird das alte/vorherige Passwort beibehalten. 
+    Wenn man das Feld leer lässt, wird das alte/vorherige Passwort beibehalten.
 - rexSelectField:
   + Gruppierung von Werten möglich
 - rexMultiValueField:
   + Gruppierung von Werten möglich
   + Alle abgeleiteten Klassen enthalten jetz ein umschließendes div
+  + doSimpleSave implementiert in Kombination mit rexSelectField
 - InstallationsAPI erweitert:
   + rex_installModule() implementiert
   + rex_installTemplate() implementiert
@@ -32,6 +33,7 @@
 	+ neuer Typ "dateField" implementiert
 	+ neuer Typ "wysiwygDateField" implementiert
   + neuer Typ "htmlField" implementiert
+  + neue Methoden: hasAttribute, getAttribute
 - Spaltennamen werden nun von ` Umschlossen, damit dort auch Sonderzeichen vorkommen dürfen
 - popupButtonField für REX CVS Version angepasst
 - rexValidateEngine::has_registered_validators() implementiert

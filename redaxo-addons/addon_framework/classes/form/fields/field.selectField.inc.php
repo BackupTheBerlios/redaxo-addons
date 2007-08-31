@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.selectField.inc.php,v 1.3 2007/08/24 10:35:36 kills Exp $
+ * @version $Id: field.selectField.inc.php,v 1.4 2007/08/31 13:42:59 kills Exp $
  */
 
 class selectField extends rexSimpleMultiValueField
@@ -15,7 +15,7 @@ class selectField extends rexSimpleMultiValueField
   function selectField($name, $label, $attributes = array (), $id = '')
   {
     $this->rexSimpleMultiValueField($name, $label, $attributes, $id);
-    $this->multiple = false;
+    $this->setMultiple(false);
   }
 
   /**
@@ -64,7 +64,11 @@ class selectField extends rexSimpleMultiValueField
    */
   function setMultiple($multiple = true)
   {
+    $this->doSimpleSave(!$multiple);
     $this->multiple = $multiple;
+
+    if($this->hasAttribute('size') && $this->getAttribute('size') <= 1)
+      $this->addAttribute('size', 5);
   }
 
   function outGroup($re_id, $level = 0)
