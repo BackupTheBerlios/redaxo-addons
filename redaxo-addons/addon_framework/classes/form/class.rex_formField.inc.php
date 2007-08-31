@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formField.inc.php,v 1.8 2007/08/24 10:35:36 kills Exp $
+ * @version $Id: class.rex_formField.inc.php,v 1.9 2007/08/31 13:40:21 kills Exp $
  */
 
 class rexFormField
@@ -152,11 +152,20 @@ class rexFormField
 
   function addAttribute($tag_name, $tag_value, $overwrite = true)
   {
-    if ($overwrite === false && array_key_exists($tag_name, $this->attributes))
-    {
+    if ($overwrite === false && $this->hasAttribute($tag_name))
       return;
-    }
+
     $this->attributes[$tag_name] = $tag_value;
+  }
+
+  function getAttribute($tag_name)
+  {
+    return $this->attributes[$tag_name];
+  }
+
+  function hasAttribute($tag_name)
+  {
+    return array_key_exists($tag_name, $this->attributes);
   }
 
   function & _getAttributes()
