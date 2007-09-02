@@ -1,9 +1,9 @@
 <?php
 
 /**
- * 
+ *
  * @package redaxo3
- * @version $Id: field.captchaField.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: field.captchaField.inc.php,v 1.2 2007/09/02 14:00:28 kills Exp $
  */
 class captchaField extends textField
 {
@@ -23,35 +23,35 @@ class captchaField extends textField
   {
     $this->captcha = $captcha;
   }
-  
+
   function registerValidators()
   {
     $section =& $this->getSection();
     $form =& $section->getForm();
-    
+
     rexValidateEngine :: register_object('captcha', $this->captcha);
     rexValidateEngine :: register_criteria('equals', 'captcha->isValidCode', $form->getName());
-    
+
     parent::registerValidators();
   }
-  
-  function getValue()
+
+  function _getValue()
   {
-    // Immer "" zurückgeben, damit nach dem Speichern 
+    // Immer "" zurückgeben, damit nach dem Speichern
     // nicht der eingegebene Wert wieder angezeigt wird
     return '';
   }
 
-  function getInsertValue()
+  function _getInsertValue()
   {
     // Immer null zurückgeben, damit dieses Feld nicht im SQL auftaucht
     return null;
   }
-  
+
   function get()
   {
     global $REX;
-    
+
     $params = '';
     if($REX['REDAXO'])
     {
@@ -62,7 +62,7 @@ class captchaField extends textField
       global $article_id, $clang;
       $params = '&amp;article_id='. $article_id .'&amp;clang='. $clang;
     }
-    
+
     $textfield = parent :: get();
     return '<img src="index.php?rex_captcha=crypt'. $params .'" class="captcha" />'.$textfield;
   }
@@ -103,9 +103,9 @@ class rexCaptcha
     }
     $this->type = $type;
     $this->setText($text);
-    
+
   }
-  
+
   function setText($text)
   {
     if(empty($_SESSION['REX_CAPTCHA']))
@@ -117,7 +117,7 @@ class rexCaptcha
       $text = $_SESSION['REX_CAPTCHA'];
     }
     $this->text = $text;
-    
+
     $width = strlen($text) * REX_CAPTCHA_FONT_CHAR_WIDTH;
     $this->setDimension(25, $width);
   }
@@ -127,16 +127,16 @@ class rexCaptcha
     $this->height = $height;
     $this->width = $width;
   }
-  
+
   function isValidCode($value, $empty, & $params, & $formvars)
   {
     $valid = $_SESSION['REX_CAPTCHA'] == $value;
-    
+
     if($valid)
     {
       $_SESSION['REX_CAPTCHA'] = '';
     }
-    
+
     return $valid;
   }
 
@@ -166,13 +166,13 @@ class rexCaptcha
       ob_end_clean();
       $level--;
     }
-    
+
     $this->sendHeader();
-    
+
     $image = imagecreate($this->width, $this->height);
 
     $bgcolor = imagecolorallocate($image, 222, 222, 222);
-    imagecolortransparent($image, $bgcolor); 
+    imagecolortransparent($image, $bgcolor);
     $stringcolor = imagecolorallocate($image, 0, 0, 0);
     $linecolor = imagecolorallocate($image, 0, 0, 0);
     if (REX_CAPTCHA_FONT)

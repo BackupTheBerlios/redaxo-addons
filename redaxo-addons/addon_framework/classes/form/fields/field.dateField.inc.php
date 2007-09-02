@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.dateField.inc.php,v 1.2 2007/08/24 12:18:24 kills Exp $
+ * @version $Id: field.dateField.inc.php,v 1.3 2007/09/02 14:00:29 kills Exp $
  */
 
 class dateField extends rexFormField
@@ -42,9 +42,9 @@ class dateField extends rexFormField
    * Prepariert den InsertValue um das Array als String in die DB zu speichern
    * @access protected
    */
-  function getInsertValue()
+  function _getInsertValue()
   {
-    $value = parent :: getInsertValue();
+    $value = parent :: _getInsertValue();
     if (is_array($value))
     {
       $value = mktime(0, 0, 0, $value[1], $value[0], $value[2]);
@@ -57,10 +57,9 @@ class dateField extends rexFormField
    * Prepariert den Value um den String aus der DB als Array zurückzugeben
    * @access protected
    */
-  function getValue()
+  function _getValue()
   {
-    $value = parent :: getValue();
-
+    $value = parent :: _getValue();
 
     if (!is_array($value))
     {

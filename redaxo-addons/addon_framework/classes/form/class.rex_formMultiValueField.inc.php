@@ -5,20 +5,17 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formMultiValueField.inc.php,v 1.7 2007/08/31 13:42:59 kills Exp $
+ * @version $Id: class.rex_formMultiValueField.inc.php,v 1.8 2007/09/02 14:00:28 kills Exp $
  */
 
 class rexFormMultiValueField extends rexFormField
 {
   var $values;
-  // Boolean: Umschalter zwischen normalem speichern und multivalue speichern
-  var $doSimpleSave;
 
   function rexFormMultiValueField($name, $label, $tags = array (), $id = '')
   {
     $this->rexFormField($name, $label, $tags, $id);
     $this->values = array ();
-    $this->doSimpleSave(false);
   }
 
   /**
@@ -39,20 +36,6 @@ class rexFormMultiValueField extends rexFormField
       $value,
       $id
     );
-  }
-
-  /**
-   * doSimpleSave() getter/setter
-   *
-   * Simple save bedeutet, dass nur ein Wert gespeichert werden darf
-   * (wie in einem normalen rexFormField)
-   */
-  function doSimpleSave($doSimpleSave = null)
-  {
-    if($doSimpleSave === true || $doSimpleSave === false)
-      $this->doSimpleSave = $doSimpleSave;
-
-    return $this->doSimpleSave;
   }
 
   /**

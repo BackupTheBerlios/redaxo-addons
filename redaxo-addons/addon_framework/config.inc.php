@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: config.inc.php,v 1.3 2007/01/18 19:19:43 kills Exp $
+ * @version $Id: config.inc.php,v 1.4 2007/09/02 14:00:29 kills Exp $
  */
 
 $mypage = 'addon_framework'; // only for this file
@@ -19,50 +19,15 @@ $REX['PERM'][] = 'addon_framework[]';
 
 $Basedir = dirname(__FILE__);
 
-// CSS Datei einbinden
-if(isset($_GET['rex_css']))
-{
-  $file = $_GET['rex_css'];
-  $fileurl = '';
-  $errors = array();
-  
-  // Pfad validieren
-  if(strpos($file, '/') !== false)
-  {
-    $file_parts = explode('/', $file);
-    
-    foreach($file_parts as $part)
-    {
-      if(preg_match('/^[0-9A-Z_\.]*$/i', $part))
-      {
-        $fileurl .= $part. '/';
-      }
-    }
-  }
-  else
-  {
-    $errors[] = 'Datei "'. $file .'" verweist auf keinen Ordner!';
-    $errors[] = 'Beispielpfad: "addon_framework/css/rexform.css"';
-  }
-    
-  // letzte "/" abschneiden
-  $fileurl = substr($fileurl, 0, strlen($fileurl) - 1);
-  
-  $css_file = $Basedir .'/../../addons/'. $fileurl;
-  if(empty($errors) && is_readable($css_file))
-  {
-    header('Content-Type: text/css');
-    readfile($css_file);
-  }
-  else
-  {
-    $errors[] = 'Datei "'. $css_file .'" wurde nicht gefunden!';
-  }
-  exit(implode("<br />\n", $errors));
-}
-
 // Allgemeine libs includen
 require_once $Basedir.'/functions/function_rex_common.inc.php';
+
+// CSS includen
+rex_register_extension('PAGE_HEADER', 'rex_a22_insertCss');
+function rex_a22_insertCss($params)
+{
+  return '  <link rel="stylesheet" type="text/css" href="../files/addon_framework/common.css" />'. "\n";
+}
 
 // Im Backendlibs includen
 if ($REX['REDAXO'])

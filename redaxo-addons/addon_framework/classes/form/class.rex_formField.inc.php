@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formField.inc.php,v 1.9 2007/08/31 13:40:21 kills Exp $
+ * @version $Id: class.rex_formField.inc.php,v 1.10 2007/09/02 14:00:28 kills Exp $
  */
 
 class rexFormField
@@ -21,6 +21,7 @@ class rexFormField
   var $validators;
 
   var $rexsection;
+  var $valueManager;
 
   function rexFormField($name, $label, $attributes = array (), $id = '')
   {
@@ -33,6 +34,13 @@ class rexFormField
     $this->transformators = array ();
     $this->needFullColumn(false);
     $this->activateSave(true);
+
+    $this->setValueManager(new rex_simpleValueManager($this));
+  }
+
+  function setValueManager($valueManager)
+  {
+    $this->valueManager = $valueManager;
   }
 
   function getName()
@@ -83,24 +91,23 @@ class rexFormField
 
   function _getInsertValue()
   {
+    // null zurückgeben, damit der Wert nicht im SQL auftaucht
+    $value = null;
+
     // Werte auf den Insert vorbereiten
     // Aktuell nur den Wert zurückgeben, da die Werte via magic_quotes escaped werden!
-    $value = $this->getValue();
+    if ($this->activateSave === true)
+      $value = $this->_getValue();
+
     return $value;
   }
 
   function getInsertValue()
   {
-    if ($this->activateSave === true)
-    {
-      return $this->_getInsertValue();
-    }
-
-    // null zurückgeben, damit der Wert nicht im SQL auftaucht
-    return null;
+    return $this->valueManager->getInsertValue($this->_getInsertValue());
   }
 
-  function getValue()
+  function _getValue()
   {
     $name = $this->getName();
     if (isset ($_POST[$name]))
@@ -127,6 +134,11 @@ class rexFormField
     {
       return '';
     }
+  }
+
+  function getValue()
+  {
+    return $this->valueManager->getValue($this->_getValue());
   }
 
   function & getSection()
@@ -201,7 +213,7 @@ class rexFormField
     }
 
     // Falls das Feld valide ist, Pflichtfelder markieren
-    if(!$isInvalid && $this->hasValidator())
+    if(!$isInvalid && $this->isRequired())
     {
       if(empty($attributes['class']))
       {
@@ -334,6 +346,22 @@ class rexFormField
     return count($this->getValidators()) > 0;
   }
 
+  /**
+   * Prüft, ob das Feld ein Pflichfeld ist
+   */
+  function isRequired()
+  {
+    foreach($this->getValidators() as $validator)
+    {
+      if($validator['criteria'] == 'notEmpty')
+        return true;
+      else if ($validator['empty'] === false)
+        return true;
+    }
+
+    return false;
+  }
+
   function get()
   {
     return '';
@@ -368,17 +396,17 @@ require_once $FieldBasedir.'/validate/plugins/function.validate.php';
 require_once $FieldBasedir.'/class.rex_validator.inc.php';
 require_once $FieldBasedir.'/validate/rex_ValidateEngine.inc.class.php';
 
-// Field-Basis-Klassen
-require_once $FormBasedir.'/class.rex_formMultiValueField.inc.php';
-require_once $FormBasedir.'/class.rex_formSimpleMultiValueField.inc.php';
-require_once $FormBasedir.'/class.rex_formTableMultiValueField.inc.php';
+// Value Managers
+require_once $FieldBasedir.'/values/class.rex_valueManager.inc.php';
+require_once $FieldBasedir.'/values/class.rex_simpleValueManager.inc.php';
+require_once $FieldBasedir.'/values/class.rex_multiValueManager.inc.php';
+require_once $FieldBasedir.'/values/class.rex_internalMultiValueManager.inc.php';
+require_once $FieldBasedir.'/values/class.rex_externalMultiValueManager.inc.php';
 
 // Allgemeine Field-Klassen
 require_once $FieldBasedir.'/fields/field.textField.inc.php';
 require_once $FieldBasedir.'/fields/field.passwordField.inc.php';
 require_once $FieldBasedir.'/fields/field.textAreaField.inc.php';
-require_once $FieldBasedir.'/fields/field.selectField.inc.php';
-require_once $FieldBasedir.'/fields/field.selectTableField.inc.php';
 require_once $FieldBasedir.'/fields/field.buttonField.inc.php';
 require_once $FieldBasedir.'/fields/field.saveField.inc.php';
 require_once $FieldBasedir.'/fields/field.hiddenField.inc.php';
@@ -386,13 +414,17 @@ require_once $FieldBasedir.'/fields/field.readOnlyField.inc.php';
 require_once $FieldBasedir.'/fields/field.readOnlyTextField.inc.php';
 require_once $FieldBasedir.'/fields/field.foreignField.inc.php';
 require_once $FieldBasedir.'/fields/field.popupButtonField.inc.php';
-require_once $FieldBasedir.'/fields/field.checkboxField.inc.php';
-require_once $FieldBasedir.'/fields/field.radioField.inc.php';
 require_once $FieldBasedir.'/fields/field.fieldsetField.inc.php';
 require_once $FieldBasedir.'/fields/field.captchaField.inc.php';
 require_once $FieldBasedir.'/fields/field.dateField.inc.php';
 require_once $FieldBasedir.'/fields/field.wysiwygDateField.inc.php';
 require_once $FieldBasedir.'/fields/field.htmlField.inc.php';
+
+// MultiValue Field-Klassen
+require_once $FieldBasedir.'/class.rex_formMultiValueField.inc.php';
+require_once $FieldBasedir.'/fields/field.checkboxField.inc.php';
+require_once $FieldBasedir.'/fields/field.radioField.inc.php';
+require_once $FieldBasedir.'/fields/field.selectField.inc.php';
 
 // Redaxo Field-Klassen
 require_once $FieldBasedir.'/fields/rex/field.rexSaveField.inc.php';

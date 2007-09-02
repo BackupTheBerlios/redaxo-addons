@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_list.inc.php,v 1.5 2007/08/24 10:35:36 kills Exp $
+ * @version $Id: class.rex_list.inc.php,v 1.6 2007/09/02 14:00:29 kills Exp $
  */
 
 // List Komponenten einbinden
@@ -22,9 +22,6 @@ require_once $ListBasedir.'/../class.oosql.inc.php';
 
 // Functions
 require_once $ListBasedir.'/../../functions/function_rex_list.inc.php';
-
-// CSS einbinden
-rex_register_extension('OUTPUT_FILTER', 'rex_a22_insertRexlistCss');
 
 /**
  * Platzhalter: Vor der Liste

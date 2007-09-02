@@ -5,16 +5,16 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.selectField.inc.php,v 1.4 2007/08/31 13:42:59 kills Exp $
+ * @version $Id: field.selectField.inc.php,v 1.5 2007/09/02 14:00:29 kills Exp $
  */
 
-class selectField extends rexSimpleMultiValueField
+class selectField extends rexFormMultiValueField
 {
   var $multiple;
 
   function selectField($name, $label, $attributes = array (), $id = '')
   {
-    $this->rexSimpleMultiValueField($name, $label, $attributes, $id);
+    parent::rexFormMultiValueField($name, $label, $attributes, $id);
     $this->setMultiple(false);
   }
 
@@ -64,11 +64,16 @@ class selectField extends rexSimpleMultiValueField
    */
   function setMultiple($multiple = true)
   {
-    $this->doSimpleSave(!$multiple);
-    $this->multiple = $multiple;
+    if($multiple)
+    {
+      $this->setValueManager(new rex_internalMultiValueManager($this));
+    }
+    else
+    {
+      $this->setValueManager(new rex_multiValueManager($this));
+    }
 
-    if($this->hasAttribute('size') && $this->getAttribute('size') <= 1)
-      $this->addAttribute('size', 5);
+    $this->multiple = $multiple;
   }
 
   function outGroup($re_id, $level = 0)
@@ -107,7 +112,7 @@ class selectField extends rexSimpleMultiValueField
   {
     $bsps = '';
     for ($i = 0; $i < $level; $i ++)
-      $bsps .= "&nbsp;&nbsp;&nbsp;";
+      $bsps .= '&nbsp;&nbsp;&nbsp;';
 
     $selected = '';
     if (in_array($value, $this->getValue()))
@@ -117,30 +122,6 @@ class selectField extends rexSimpleMultiValueField
 
     return '    <option value="'.$value.'"'.$selected.'>'.$bsps.$name.'</option>';
   }
-/*
-  function _outOptions($options)
-  {
-
-    foreach ($options as $key => $opt)
-    {
-      $selected = '';
-      if (in_array($opt[1], $value))
-      {
-        $selected = ' selected="selected"';
-      }
-
-      if($opt[3])
-      {
-
-      }
-      $options .= sprintf('<option value="%s"%s>%s</option>', $opt[1], $selected, $opt[0]);
-    }
-  }
-
-  function _outOption($option, $level)
-  {
-
-  }*/
 
   /**
    * Gibt den HTML Content zurück
@@ -162,7 +143,7 @@ class selectField extends rexSimpleMultiValueField
       $this->addAttribute('size', '3', false);
     }
 
-    return sprintf('<select name="%s" id="%s" tabindex="%s"%s>%s</select>', $name, $this->getId(), rex_a22_nextTabindex(), $this->getAttributes(), $options);
+    return sprintf('<select name="%s" id="%s" tabindex="%s"%s>%s</select>', $name, $this->getId(), rex_tabindex(false), $this->getAttributes(), $options);
   }
 }
 ?>

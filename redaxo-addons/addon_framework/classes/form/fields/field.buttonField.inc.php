@@ -2,11 +2,11 @@
 
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.buttonField.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: field.buttonField.inc.php,v 1.2 2007/09/02 14:00:29 kills Exp $
  */
 
 class buttonField extends rexFormField
@@ -69,7 +69,7 @@ class buttonField extends rexFormField
       return '';
     }
 
-    return sprintf('%s<input type="submit" name="%s" value="%s" tabindex="%s"%s />%s', $prefix, $name, $button['label'], rex_a22_nextTabindex(), $attributes, $suffix);
+    return sprintf('%s<input type="submit" name="%s" value="%s" tabindex="%s"%s />%s', $prefix, $name, $button['label'], rex_tabindex(false), $attributes, $suffix);
   }
 
   function getInsertValue()

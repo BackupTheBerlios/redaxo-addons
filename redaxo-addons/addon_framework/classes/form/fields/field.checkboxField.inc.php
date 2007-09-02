@@ -6,14 +6,14 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.checkboxField.inc.php,v 1.4 2007/08/24 12:18:12 kills Exp $
+ * @version $Id: field.checkboxField.inc.php,v 1.5 2007/09/02 14:00:29 kills Exp $
  */
 
-class checkboxField extends rexSimpleMultiValueField
+class checkboxField extends rexFormMultiValueField
 {
   function checkboxField($name, $label, $attributes = array (), $id = '')
   {
-    $this->rexSimpleMultiValueField($name, $label, $attributes, $id);
+    parent::rexFormMultiValueField($name, $label, $attributes, $id);
   }
 
   /**
@@ -80,7 +80,7 @@ class checkboxField extends rexSimpleMultiValueField
       {
         $checked = ' checked="checked"';
       }
-      $s .= sprintf('<input type="checkbox" name="%s[]" value="%s" id="%s" tabindex="%s"%s%s /><label for="%s">%s</label>', $name, $box[1], $boxid, rex_a22_nextTabindex(), $checked, $attributes, $boxid, $box[0]);
+      $s .= sprintf('<input type="checkbox" name="%s[]" value="%s" id="%s" tabindex="%s"%s%s /><label for="%s">%s</label>', $name, $box[1], $boxid, rex_tabindex(false), $checked, $attributes, $boxid, $box[0]);
       $i++;
     }
     $s .= '</div>';

@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formSection.inc.php,v 1.4 2007/08/24 10:35:36 kills Exp $
+ * @version $Id: class.rex_formSection.inc.php,v 1.5 2007/09/02 14:00:28 kills Exp $
  */
 
 class rexFormSection extends rexFieldController
@@ -30,7 +30,7 @@ class rexFormSection extends rexFieldController
     $this->anchor = '';
 
     // Parentkonstruktor aufrufen
-    $this->rexfieldController($tableName, $whereParams);
+    parent::rexfieldController($tableName, $whereParams);
   }
 
   /**

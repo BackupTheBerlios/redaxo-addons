@@ -2,11 +2,11 @@
 
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.rexSaveField.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: field.rexSaveField.inc.php,v 1.2 2007/09/02 14:00:28 kills Exp $
  */
 
 class rexSaveField extends saveField
@@ -53,29 +53,21 @@ class rexSaveField extends saveField
     $s = '';
 
     // linksbündige Buttons
-    
     $s .= '<div class="flLeft">';
-    
     $s .= $this->formatButton($this->saveButtonName);
-    
+
     if ($form->isEditMode())
-    {
       $s .= $this->formatButton($this->updateButtonName, '', '&nbsp;');
-    }
-    
+
     $s .= '</div>';
 
     // rechtsbündige Buttons
-    
     $s .= '<div class="flRight">';
 
     if ($form->isEditMode())
-    {
       $s .= $this->formatButton($this->deleteButtonName, ' onclick="return confirm(\''. $I18N->msg('delete') .' ?\');"', '&nbsp;');
-    }
 
     $s .= $this->formatButton($this->cancelButtonName, '', '&nbsp;');
-
     $s .= '</div>';
 
     return $s;

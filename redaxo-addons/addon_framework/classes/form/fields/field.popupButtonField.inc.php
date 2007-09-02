@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.popupButtonField.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: field.popupButtonField.inc.php,v 1.2 2007/09/02 14:00:28 kills Exp $
  */
 
 class popupButtonField extends readOnlyTextField
@@ -55,7 +55,7 @@ class popupButtonField extends readOnlyTextField
       {
         $button[$attr_name] = str_replace('%id%', $id, $attr_value);
       }
-      $s .= sprintf('      <a href="%s" tabindex="%s"><img src="pics/%s" width="16" height="16" alt="%s" title="%s" /></a>'."\n", $button['href'], rex_a22_nextTabindex(), $button['image'], $button['title'], $button['title']);
+      $s .= sprintf('      <a href="%s" tabindex="%s"><img src="pics/%s" width="16" height="16" alt="%s" title="%s" /></a>'."\n", $button['href'], rex_tabindex(false), $button['image'], $button['title'], $button['title']);
     }
 
     return $s;

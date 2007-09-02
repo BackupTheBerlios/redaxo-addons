@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: function_rex_list.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: function_rex_list.inc.php,v 1.2 2007/09/02 14:00:29 kills Exp $
  */
 
 /**
@@ -42,21 +42,13 @@ function rex_listlink($value, $global_params = array (), $local_params = array (
       $params .= '&amp;'.$_name.'='.$_value;
     }
   }
-  
+
   if (!empty($tags))
   {
     $tags = ' '. $tags;
   }
 
   return sprintf('<a href="%s"%s>%s</a>', $params, $tags, $value);
-}
-
-/**
- * Rex Extension zum einbinden des Stylesheets
- */
-function rex_a22_insertRexlistCss($params)
-{
-  return rex_a22_insertCss( $params['subject'], 'addon_framework/css/common.css');
 }
 
 ?>

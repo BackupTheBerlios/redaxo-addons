@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.textField.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: field.textField.inc.php,v 1.2 2007/09/02 14:00:28 kills Exp $
  */
 
 class textField extends rexFormField
@@ -17,7 +17,7 @@ class textField extends rexFormField
 
   function get()
   {
-    return sprintf('<input type="text" name="%s" value="%s" id="%s" tabindex="%s"%s />', $this->getName(), $this->getValue(), $this->getId(), rex_a22_nextTabindex(), $this->getAttributes());
+    return sprintf('<input type="text" name="%s" value="%s" id="%s" tabindex="%s"%s />', $this->getName(), $this->getValue(), $this->getId(), rex_tabindex(false), $this->getAttributes());
   }
 }
 ?>

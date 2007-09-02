@@ -3,7 +3,7 @@
  @author staab[at]public-4u[dot]de Markus Staab
  @author www.public-4u.de
  @package redaxo3
- @version $Id: common.css,v 1.2 2006/09/07 08:42:03 kills Exp $
+ @version $Id: common.css,v 1.3 2007/09/02 14:00:29 kills Exp $
  
  
  CSS by Thomas Blum
@@ -209,7 +209,7 @@
 
 .a22-rexform .invalid,
 .a22-rexlist .invalid {
-	background-color: #fae9e5;
+	background-color: #ffd0d0;
 }
 
 .a22-rexform .required,
