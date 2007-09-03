@@ -1,17 +1,17 @@
 /*
- Addon Framework Classes 
+ Addon Framework Classes
  @author staab[at]public-4u[dot]de Markus Staab
  @author www.public-4u.de
  @package redaxo3
- @version $Id: common.css,v 1.3 2007/09/02 14:00:29 kills Exp $
- 
- 
+ @version $Id: common.css,v 1.4 2007/09/03 09:57:31 tbaddade Exp $
+
+
  CSS by Thomas Blum
  @author blumbeet - web.studio
 */
 
 
-.a22-rexlist *, 
+.a22-rexlist *,
 .a22-rexform * {
 	margin:0;
 	padding:0;
@@ -22,24 +22,28 @@
 .a22-rexlist img {
 	vertical-align:bottom;
 }
+.a22-rexform img.preview {
+	float:right;
+	margin-right:8px;
+}
 
-.a22-rexlist .flLeft, 
+.a22-rexlist .flLeft,
 .a22-rexform .flLeft {
 	float:left;
 }
 
-.a22-rexlist .flRight, 
+.a22-rexlist .flRight,
 .a22-rexform .flRight {
 	float:right;
 }
 
-.a22-rexlist fieldset, 
+.a22-rexlist fieldset,
 .a22-rexform fieldset {
 	margin-bottom:15px;
 	width:770px;
 	background-color:#e4eff2;
 	border:1px solid #b0bdc3;
-} 
+}
 
 .a22-rexlist table {
   float:left;
@@ -49,7 +53,7 @@
 	background-color:#ccd7dd;
 }
 
-.a22-rexlist fieldset legend,  
+.a22-rexlist fieldset legend,
 .a22-rexform fieldset legend {
 	display:inline;
 	padding:5px 10px;
@@ -59,7 +63,7 @@
 	font-weight:bold;
 }
 
-.a22-rexlist-toolbars-top, 
+.a22-rexlist-toolbars-top,
 .a22-rexlist-toolbars-btm {
 	float:left;
 	width:100%;
@@ -67,7 +71,7 @@
 	border-bottom:1px solid #ccd7dd;
 }
 
-.a22-rexlist-toolbars-top p, 
+.a22-rexlist-toolbars-top p,
 .a22-rexlist-toolbars-btm p {
 	margin:10px;
 	color:#fff;
@@ -99,44 +103,44 @@
 
 
 
-.a22-rexlist input, 
-.a22-rexlist select, 
-.a22-rexlist textarea, 
-.a22-rexform input, 
-.a22-rexform select, 
+.a22-rexlist input,
+.a22-rexlist select,
+.a22-rexlist textarea,
+.a22-rexform input,
+.a22-rexform select,
 .a22-rexform textarea {
-	border:1px solid #999; 
-	background-color:#fff; 
-	padding:0; 
-} 
-.a22-rexform input, 
-.a22-rexform select, 
+	border:1px solid #999;
+	background-color:#fff;
+	padding:0;
+}
+.a22-rexform input,
+.a22-rexform select,
 .a22-rexform textarea {
 	float:left;
-	width: 558px;
+	width: 400px;
 }
 
 .a22-rexlist input[type^="submit"],
-.a22-rexform div.flLeft input, 
+.a22-rexform div.flLeft input,
 .a22-rexform div.flRight input {
 	cursor:pointer;
 }
-.a22-rexform div.flLeft input, 
+.a22-rexform div.flLeft input,
 .a22-rexform div.flRight input {
 	float:none;
 	margin:5px 0;
 	width:auto;
 }
 
-.a22-rexlist input, 
-.a22-rexform input, 
+.a22-rexlist input,
+.a22-rexform input,
 .a22-rexform textarea {
 	padding:2px;
 }
 
-.a22-rexlist input[type^="text"], 
-.a22-rexlist select { 
-	width:150px; 
+.a22-rexlist input[type^="text"],
+.a22-rexlist select {
+	width:150px;
 }
 
 
@@ -154,19 +158,19 @@
 	border-bottom:1px solid #b0bdc3;
 }
 
-.a22-rexform label {
+body div#rex-output .a22-rexform label {
 	display:block;
 	float:left;
 	padding-left:5px;
 	width:200px;
 }
 
- 
+
 .a22-rexform .flLeft {
-  display:inline;
+ 	display:inline;
 	margin-left:205px;
 }
- 
+
 .a22-rexform .flRight {
 	display:inline;
 	margin-right:7px;
@@ -179,9 +183,9 @@
 	margin-bottom:10px;
 }
 
-.a22-rexform div.statusmessage p.error, 
+.a22-rexform div.statusmessage p.error,
 .a22-rexform div.statusmessage p.warning,
-.a22-rexlist div.statusmessage p.error, 
+.a22-rexlist div.statusmessage p.error,
 .a22-rexlist div.statusmessage p.warning {
 	padding:5px;
 	background-color: #fae9e5;
@@ -192,7 +196,7 @@
 .a22-rexlist div.statusmessage p.info {
 	padding:5px;
 	background-color:#d2efd9;
-	color:#107c2c; 
+	color:#107c2c;
 }
 
 .a22-rexform ul.validatormessages {
