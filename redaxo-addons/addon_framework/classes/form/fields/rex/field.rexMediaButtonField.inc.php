@@ -4,7 +4,7 @@
  * Addon Framework Classes by <a href='mailto:staab@public-4u.de'>Markus Staab</a>
  * <a href='http://www.public-4u.de'>www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.rexMediaButtonField.inc.php,v 1.2 2007/08/24 11:43:45 kills Exp $
+ * @version $Id: field.rexMediaButtonField.inc.php,v 1.3 2007/09/03 09:58:42 tbaddade Exp $
  */
 
 class rexMediaButtonField extends popupButtonField
@@ -45,7 +45,7 @@ class rexMediaButtonField extends popupButtonField
 
     $preview = '';
     if($this->isPreviewEnabled() && $this->getValue() != '')
-      $preview = '<img src="'. $REX['MEDIAFOLDER'] .'/'. $this->getValue() .'" />';
+      $preview = '<img class="preview" src="'. $REX['MEDIAFOLDER'] .'/'. $this->getValue() .'" />';
 
     return $preview . parent::get();
   }
