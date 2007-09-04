@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.rexSaveField.inc.php,v 1.2 2007/09/02 14:00:28 kills Exp $
+ * @version $Id: field.rexSaveField.inc.php,v 1.3 2007/09/04 05:50:45 tbaddade Exp $
  */
 
 class rexSaveField extends saveField
@@ -17,13 +17,15 @@ class rexSaveField extends saveField
 
   function rexSaveField($attributes = array ())
   {
+    global $I18N_ADDON_FRAMEWORK;
+    
     $this->updateButtonName = 'rexform_update_button';
     $this->cancelButtonName = 'rexform_cancel_button';
     $this->deleteButtonName = 'rexform_delete_button';
 
-    $this->addButton($this->updateButtonName, 'Übernehmen');
-    $this->addButton($this->cancelButtonName, 'Abbrechen');
-    $this->addButton($this->deleteButtonName, 'Löschen');
+    $this->addButton($this->updateButtonName, $I18N_ADDON_FRAMEWORK->msg('update'));
+    $this->addButton($this->cancelButtonName, $I18N_ADDON_FRAMEWORK->msg('cancel'));
+    $this->addButton($this->deleteButtonName, $I18N_ADDON_FRAMEWORK->msg('delete'));
 
     $this->saveField($attributes);
     $this->needFullColumn(true);

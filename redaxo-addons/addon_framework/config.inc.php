@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: config.inc.php,v 1.4 2007/09/02 14:00:29 kills Exp $
+ * @version $Id: config.inc.php,v 1.5 2007/09/04 05:50:30 tbaddade Exp $
  */
 
 $mypage = 'addon_framework'; // only for this file
@@ -16,6 +16,8 @@ $REX['ADDON']['name'][$mypage] = 'Addon Framework';
 $REX['ADDON']['perm'][$mypage] = 'addon_framework[]';
 
 $REX['PERM'][] = 'addon_framework[]';
+
+$I18N_ADDON_FRAMEWORK = new i18n($REX['LANG'],$REX['INCLUDE_PATH']."/addons/$mypage/lang/");
 
 $Basedir = dirname(__FILE__);
 
