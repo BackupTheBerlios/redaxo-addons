@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_listColumn.inc.php,v 1.2 2007/08/24 10:35:36 kills Exp $
+ * @version $Id: class.rex_listColumn.inc.php,v 1.3 2007/09/06 17:13:11 kills Exp $
  */
 
 
@@ -35,12 +35,12 @@ class rexListColumn extends rexListComponent
 
   function rexListColumn($label = '', $options = OPT_ALL)
   {
-    $this->params = array ();
     $this->conditions = array ();
     $this->setHeadAttributes('');
     $this->setBodyAttributes('');
     $this->setOptions($options);
     $this->setLabel($label);
+    parent::rexListComponent();
   }
 
   /**
