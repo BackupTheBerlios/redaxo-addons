@@ -1,19 +1,18 @@
 <?php
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: function_rex_string.inc.php,v 1.2 2007/06/25 12:01:45 kills Exp $
+ * @version $Id: function_rex_string.inc.php,v 1.3 2007/09/07 15:16:54 kills Exp $
  */
 
 /**
  * Returns true if $string starts with $start
- * 
+ *
  * @param $string String Searchstring
  * @param $start String Prefix to search for
- * @author Markus Staab <staab@public-4u.de>
  */
 if (!function_exists('startsWith'))
 {
@@ -25,10 +24,9 @@ if (!function_exists('startsWith'))
 
 /**
  * Returns true if $string ends with $end
- * 
+ *
  * @param $string String Searchstring
  * @param $start String Suffix to search for
- * @author Markus Staab <staab@public-4u.de>
  */
 if (!function_exists('endsWith'))
 {
@@ -39,37 +37,9 @@ if (!function_exists('endsWith'))
 }
 
 /**
- * Returns the truncated $string
- * 
- * @param $string String Searchstring
- * @param $start String Suffix to search for
- * @author Markus Staab <staab@public-4u.de>
- */
-if (!function_exists('truncate'))
-{
-  function truncate($string, $length = 80, $etc = '...', $break_words = false)
-  {
-    if ($length == 0)
-      return '';
-
-    if (strlen($string) > $length)
-    {
-      $length -= strlen($etc);
-      if (!$break_words)
-        $string = preg_replace('/\s+?(\S+)?$/', '', substr($string, 0, $length +1));
-
-      return substr($string, 0, $length).$etc;
-    }
-    else
-      return $string;
-  }
-}
-
-/**
  * Reads a file and split all statements in it.
- * 
+ *
  * @param $file String Path to the SQL-dump-file
- * @author Markus Staab <staab@public-4u.de>
  */
 if (!function_exists('readSqlDump'))
 {
