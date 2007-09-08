@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formField.inc.php,v 1.13 2007/09/08 10:06:11 kills Exp $
+ * @version $Id: class.rex_formField.inc.php,v 1.14 2007/09/08 10:25:18 kills Exp $
  */
 
 class rexFormField
@@ -129,34 +129,52 @@ class rexFormField
     return $this->valueManager->getInsertValue($this->_getInsertValue());
   }
 
-  function _getValue()
+  function getUserValue($default = '')
   {
-    $name = $this->getName();
-    if (isset ($_POST[$name]))
-    {
-      // Da beim Redraw des Formulars via mquotes slashes hinzugefügt wurden, diese entfernen!
-      return $this->stripslashes($_POST[$name]);
-    }
-
     // Werte vom User gesetzt?
     if ($this->value != '')
-    {
       return $this->value;
-    }
 
+    return $default;
+  }
+
+  function getDataSetValue($default = '')
+  {
     // Werte aus der DB
     $section = & $this->getSection();
     $dataset = $section->_getDataSet();
 
     $name = $this->getRawName();
     if (isset ($dataset[$name]))
-    {
       return $dataset[$name];
-    }
-    else
-    {
-      return '';
-    }
+
+    return $default;
+  }
+
+  function getPostValue($default = '')
+  {
+    $name = $this->getName();
+    if (isset ($_POST[$name]))
+      return $_POST[$name];
+
+    return $default;
+  }
+
+  function _getValue()
+  {
+    $postValue = $this->getPostValue(null);
+
+    // Da beim Redraw des Formulars via mquotes slashes hinzugefügt wurden, diese entfernen!
+    if($postValue !== null)
+      return $this->stripslashes($postValue);
+
+    // Werte vom User gesetzt?
+    $userValue = $this->getUserValue(null);
+    if($userValue !== null)
+      return $userValue;
+
+    // Werte aus der DB
+    return $this->getDataSetValue();
   }
 
   function getValue()
