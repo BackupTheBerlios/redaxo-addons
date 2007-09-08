@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formField.inc.php,v 1.11 2007/09/08 09:40:52 kills Exp $
+ * @version $Id: class.rex_formField.inc.php,v 1.12 2007/09/08 10:01:51 kills Exp $
  */
 
 class rexFormField
@@ -131,7 +131,7 @@ class rexFormField
 
   function _getValue()
   {
-    $name = $this->getName();
+    $name = $this->getRawName();
     if (isset ($_POST[$name]))
     {
       // Da beim Redraw des Formulars via mquotes slashes hinzugefügt wurden, diese entfernen!
@@ -400,7 +400,7 @@ class rexFormField
     {
       $section_str = $section->toString();
     }
-    return 'rexFormField: type: "'.get_class($this).'", name: "'.$this->getName().'", label: "'.$this->getLabel().'", section: "{'.$section_str.'}"';
+    return 'rexFormField: type: "'.get_class($this).'", name: "'.$this->getName().'", rawName: "'.$this->getRawName().'", label: "'.$this->getLabel().'", section: "{'.$section_str.'}"';
   }
 }
 
