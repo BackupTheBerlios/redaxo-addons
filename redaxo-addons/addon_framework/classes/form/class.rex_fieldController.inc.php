@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_fieldController.inc.php,v 1.3 2007/08/24 16:37:52 kills Exp $
+ * @version $Id: class.rex_fieldController.inc.php,v 1.4 2007/09/08 09:40:52 kills Exp $
  */
 
 define('CONTROLLER_INSERT_MODE', 1);
@@ -256,8 +256,12 @@ class rexFieldController extends rexFieldContainer
       {
         $qry .= ',';
       }
-      $qry .= ' `'.$fields[$i]->getName().'`='.$this->_prepareValue($field_value);
+      $qry .= ' `'.$fields[$i]->getRawName().'`='.$this->_prepareValue($field_value);
     }
+
+    // keine Felder, oder nur Felder mit activateSave(false) vorhanden
+    if($first)
+      return '';
 
     if ($mode == CONTROLLER_UPDATE_MODE)
     {

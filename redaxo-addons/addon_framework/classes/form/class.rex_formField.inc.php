@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formField.inc.php,v 1.10 2007/09/02 14:00:28 kills Exp $
+ * @version $Id: class.rex_formField.inc.php,v 1.11 2007/09/08 09:40:52 kills Exp $
  */
 
 class rexFormField
@@ -20,6 +20,11 @@ class rexFormField
 
   var $validators;
 
+  /**
+   * Direkter Vorgänger des Elements
+   * @var rexForm|rexSection
+   */
+  var $parent;
   var $rexsection;
   var $valueManager;
 
@@ -29,6 +34,7 @@ class rexFormField
     $this->label = $label;
     $this->attributes = $attributes;
     $this->id = $id;
+    $this->parent = null;
 
     $this->validators = array ();
     $this->transformators = array ();
@@ -43,9 +49,25 @@ class rexFormField
     $this->valueManager = $valueManager;
   }
 
-  function getName()
+  function &getParent()
+  {
+    return $this->parent;
+  }
+
+  function getRawName()
   {
     return $this->name;
+  }
+
+  function getName()
+  {
+    $prefix = '';
+    if(rexFormSection::isValid($this->getParent()))
+    {
+      $section =& $this->getSection();
+      $prefix = 's'. $section->getId() .'_';
+    }
+    return $prefix . $this->getRawName();
   }
 
   function getLabel()
@@ -152,11 +174,9 @@ class rexFormField
 
     if ($id == '')
     {
-      $section = & $this->getSection();
-      $form = & $section->getForm();
-      $section_label = $section->parseLabel($section->getLabel());
-
-      $id = strtolower($form->getName().'_'.$section_label.'_'.$this->getName());
+//      $section = & $this->getSection();
+//      $id = strtolower($section->getId().'_'.$this->getName());
+      $id = strtolower($this->getName());
     }
 
     return $id;

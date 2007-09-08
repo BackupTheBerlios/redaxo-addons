@@ -24,6 +24,7 @@
     %TIME%
     %TABLE_PREFIX%
 - rexForm:
+  + Es ist jetzt möglich, mehrere rexFormSections auf die gleiche Tabelle innerhalb eines Formulars zu legen
 	+ rexForm->edit_mode defaultwert auf "false" geändert
 	+ Nachrichtenausgabe via GET/POST Parameter: 
 	  <FormName>_msg = Nachricht

@@ -2,11 +2,11 @@
 
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_fieldContainer.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: class.rex_fieldContainer.inc.php,v 1.2 2007/09/08 09:40:52 kills Exp $
  */
 
 /**
@@ -16,6 +16,12 @@
 
 class rexFieldContainer
 {
+  /**
+   * eindeutige id des containers
+   * @var int
+   */
+  var $id;
+
   /**
    * Array von rexFormField-Objekten
    * @var array
@@ -27,6 +33,10 @@ class rexFieldContainer
    */
   function rexFieldContainer()
   {
+    static $containerId = 0;
+    $containerId++;
+    $this->id = $containerId;
+
     $this->fields = array ();
   }
 
@@ -34,7 +44,7 @@ class rexFieldContainer
    * Fügt dem Container ein Feld hinzu.
    * @param object rexFormField-Objekt des hinzugefügt werden soll
    * @param object rexFormSection-Objekt, mit dem das Feld verknüpft werden soll
-   * @access protected 
+   * @access protected
    */
   function addField(& $field, & $section)
   {
@@ -43,6 +53,7 @@ class rexFieldContainer
       trigger_error('rexForm: Unexpected type "'.gettype($field).'" for $field! Expecting "rexformfield"-object.', E_USER_ERROR);
     }
 
+    $field->parent = & $this;
     $field->rexsection = & $section;
     $this->fields[] = & $field;
   }
@@ -50,7 +61,7 @@ class rexFieldContainer
   /**
    * Fügt dem Container mehrere Felder hinzu
    * @param array Array von rexFormField-Objekten
-   * @access public 
+   * @access public
    */
   function addFields(& $fields, & $section)
   {
@@ -63,7 +74,7 @@ class rexFieldContainer
   /**
    * Gibt alle Felder des Containers zurück
    * @return array Array von rexFormField-Objekten
-   * @access public 
+   * @access public
    */
   function & getFields()
   {
@@ -73,7 +84,7 @@ class rexFieldContainer
   /**
    * Gibt die Werte aller Felder des Containers zurück
    * @return array Die Werte der Felder als Array
-   * @access protected 
+   * @access protected
    */
   function getFieldValues()
   {
@@ -91,7 +102,7 @@ class rexFieldContainer
   /**
    * Zählt wieviele Felder sich im Container befinden
    * @return integer Anzahl an Felder im Container
-   * @access public 
+   * @access public
    */
   function numFields()
   {
@@ -101,8 +112,8 @@ class rexFieldContainer
   /**
    * Durchsucht den Fieldcontainer nach einem Feld
    * @param string Name des Feldes, wonach gesucht werden soll
-   * @return object|null Bei erfolgreicher Suche wird ein rexFormField-Objekt zurückgegeben, sonst null 
-   * @access public 
+   * @return object|null Bei erfolgreicher Suche wird ein rexFormField-Objekt zurückgegeben, sonst null
+   * @access public
    */
   function & searchField($name)
   {
@@ -124,6 +135,11 @@ class rexFieldContainer
       }
     }
     return null;
+  }
+
+  function getId()
+  {
+    return $this->id;
   }
 }
 ?>
