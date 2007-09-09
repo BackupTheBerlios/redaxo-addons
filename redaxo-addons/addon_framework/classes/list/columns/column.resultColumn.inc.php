@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: column.resultColumn.inc.php,v 1.1 2006/08/04 17:46:28 kills Exp $
+ * @version $Id: column.resultColumn.inc.php,v 1.2 2007/09/09 10:23:06 kills Exp $
  */
 
 /**
@@ -102,7 +102,7 @@ class resultColumn extends rexListColumn
     }
     else
     {
-      $value = rexFormatter :: format($value, $this->format_type, $this->format);
+      $value = rex_formatter :: format($value, $this->format_type, $this->format);
     }
 
     return $this->link($value, $this->parseParams($row));
