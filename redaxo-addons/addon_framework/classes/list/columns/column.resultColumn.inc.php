@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Addon Framework Classes 
+ * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: column.resultColumn.inc.php,v 1.2 2007/09/09 10:23:06 kills Exp $
+ * @version $Id: column.resultColumn.inc.php,v 1.3 2007/09/09 10:43:02 kills Exp $
  */
 
 /**
@@ -27,7 +27,7 @@ class resultColumn extends rexListColumn
    * @param $label Spaltenüberschrift
    * @param $format Formatstring/Formatarray
    * @param $format_type Formatierungstyp
-   * 
+   *
    * Mögliche Formatierungstypen sind '','sprintf','date','strftime','number'
    */
   function resultColumn($name, $label = '', $format_type = '', $format = '', $options = OPT_ALL)
@@ -56,15 +56,15 @@ class resultColumn extends rexListColumn
     $format = '<img src="%s" alt="%s"/>';
     $next = empty ($_REQUEST['next']) ? '' : $_REQUEST['next'];
 
-    $sort_asc = $this->link(sprintf($format, 'pics/file_up.gif', 'Aufsteigend nach &quot;'.$label.'&quot; sortieren'), array ('order_col' => $this->name, 'order_type' => 'asc', 'next' => $next));
-    $sort_desc = $this->link(sprintf($format, 'pics/file_down.gif', 'Absteigend nach &quot;'.$label.'&quot; sortieren'), array ('order_col' => $this->name, 'order_type' => 'desc', 'next' => $next));
+    $sort_asc = $this->link(sprintf($format, 'media/file_up.gif', 'Aufsteigend nach &quot;'.$label.'&quot; sortieren'), array ('order_col' => $this->name, 'order_type' => 'asc', 'next' => $next));
+    $sort_desc = $this->link(sprintf($format, 'media/file_down.gif', 'Absteigend nach &quot;'.$label.'&quot; sortieren'), array ('order_col' => $this->name, 'order_type' => 'desc', 'next' => $next));
 
     return $label.$sort_asc.$sort_desc;
   }
 
   /**
    * Fügt der Spalte einen Wert hinzu, der von einer Spalte abhängig ist.
-   * 
+   *
    * @param $cond_column Name der Spalte die geprüft werden soll [Default ist die eigene Column]
    * @param $cond_value Wert, auf den geprüft werden soll
    * @param $text Text der ausgegeben werden soll
