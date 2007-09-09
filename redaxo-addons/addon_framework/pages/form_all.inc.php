@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: form_all.inc.php,v 1.3 2007/09/09 11:00:06 kills Exp $
+ * @version $Id: form_all.inc.php,v 1.4 2007/09/09 12:01:34 kills Exp $
  */
 
 echo '<h1>Diese Demo zeigt alle Formularfelder</h1>';
@@ -39,35 +39,35 @@ $fieldEntryId->setValue($oid);
 
 $fields = array();
 
-$field = & new textField('name', 'Artikelname');
+$field = & new textField('name', 'Feldname');
 $field->setValue('test');
 $fields[] = $field;
 
-$field = & new readOnlyField('name', 'Artikelname');
+$field = & new readOnlyField('name', 'Feldname');
 $field->setValue('test');
 $fields[] = $field;
 
-$field = & new readOnlyTextField('name', 'Artikelname');
+$field = & new readOnlyTextField('name', 'Feldname');
 $field->setValue('test');
 $fields[] = $field;
 
-$field = & new dateField('name', 'Artikelname');
+$field = & new dateField('name', 'Feldname');
 $fields[] = $field;
 
-$field = & new wysiwygDateField('name', 'Artikelname');
+$field = & new wysiwygDateField('name', 'Feldname');
 $fields[] = $field;
 
-$field = & new radioField('name', 'Artikelname');
+$field = & new radioField('name', 'Feldname');
 $field->addRadio('ab', 'ab3');
 $field->addRadio('cd', 'cd3');
 $fields[] = $field;
 
-$field = & new checkboxField('name', 'Artikelname');
+$field = & new checkboxField('name', 'Feldname');
 $field->addBox('ab', 'ab1');
 $field->addBox('cd', 'cd1');
 $fields[] = $field;
 
-$field = & new selectField('name', 'Artikelname');
+$field = & new selectField('name', 'Feldname');
 $field->addOption('ab', 'ab2');
 $field->addOption('cd', 'cd2');
 $fields[] = $field;
@@ -75,13 +75,13 @@ $fields[] = $field;
 $field = & new htmlField('<p>hier steht beliebiges markup!</p>');
 $fields[] = $field;
 
-$field = & new textAreaField('name', 'Artikelname');
+$field = & new textAreaField('name', 'Feldname');
 $fields[] = $field;
 
-$field = & new rexLinkButtonField('name', 'Artikelname');
+$field = & new rexLinkButtonField('name', 'Feldname');
 $fields[] = $field;
 
-$field = & new rexMediaButtonField('name', 'Artikelname');
+$field = & new rexMediaButtonField('name', 'Feldname');
 $fields[] = $field;
 
 //------------------------------> Add Fields: Section[Allgemein]
