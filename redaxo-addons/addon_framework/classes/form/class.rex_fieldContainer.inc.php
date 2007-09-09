@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_fieldContainer.inc.php,v 1.2 2007/09/08 09:40:52 kills Exp $
+ * @version $Id: class.rex_fieldContainer.inc.php,v 1.3 2007/09/09 10:22:58 kills Exp $
  */
 
 /**
@@ -93,7 +93,7 @@ class rexFieldContainer
 
     for ($i = 0; $i < $this->numFields(); $i++)
     {
-      $values[$fields[$i]->getName()] = $fields[$i]->getValue();
+      $values[$fields[$i]->getRawName()] = $fields[$i]->getValue();
     }
 
     return $values;
@@ -128,7 +128,7 @@ class rexFieldContainer
           continue;
         }
 
-        if ($field->getName() == $name)
+        if ($field->getRawName() == $name)
         {
           return $field;
         }
