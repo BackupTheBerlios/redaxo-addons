@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.radioField.inc.php,v 1.5 2007/09/02 14:00:29 kills Exp $
+ * @version $Id: field.radioField.inc.php,v 1.6 2007/09/09 11:00:28 kills Exp $
  */
 
 class radioField extends rexFormMultiValueField
@@ -73,9 +73,6 @@ class radioField extends rexFormMultiValueField
     $s = '<div id="'.$id.'">';
     foreach ($this->getRadios() as $box)
     {
-//      echo '<pre>';
-//      var_dump($box);
-//      echo '</pre>';
       $boxid = $id . $i;
       $checked = '';
       if (in_array($box[1], $value))
