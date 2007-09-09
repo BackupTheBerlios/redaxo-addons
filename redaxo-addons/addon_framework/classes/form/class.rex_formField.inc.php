@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formField.inc.php,v 1.14 2007/09/08 10:25:18 kills Exp $
+ * @version $Id: class.rex_formField.inc.php,v 1.15 2007/09/09 10:34:56 kills Exp $
  */
 
 class rexFormField
@@ -339,7 +339,7 @@ class rexFormField
   function _getValidatorId($criteria)
   {
     $section = & $this->getSection();
-    return $section->getLabel().'->'.$this->getName().'['.$criteria.']';
+    return $section->getId().'->'.$this->getName().'['.$criteria.']';
   }
 
   function getValidators()

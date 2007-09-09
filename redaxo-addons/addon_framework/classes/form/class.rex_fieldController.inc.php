@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_fieldController.inc.php,v 1.4 2007/09/08 09:40:52 kills Exp $
+ * @version $Id: class.rex_fieldController.inc.php,v 1.5 2007/09/09 10:34:58 kills Exp $
  */
 
 define('CONTROLLER_INSERT_MODE', 1);
@@ -161,7 +161,7 @@ class rexFieldController extends rexFieldContainer
       $form = & $this->getForm();
       $validator = & $form->getValidator();
 
-      $var_identifier = 'validation_errors_'.$form->getName().'_'.$this->getTableName().'::'.$this->getLabel();
+      $var_identifier = 'validation_errors_'.$form->getName().'_'.$this->getTableName().'::'.$this->getId();
       $errors = $validator->get_template_vars($var_identifier);
 
       $this->errors = $errors === null ? array () : $errors;
