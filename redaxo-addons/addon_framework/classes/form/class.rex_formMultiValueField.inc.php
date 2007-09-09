@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formMultiValueField.inc.php,v 1.8 2007/09/02 14:00:28 kills Exp $
+ * @version $Id: class.rex_formMultiValueField.inc.php,v 1.9 2007/09/09 11:00:06 kills Exp $
  */
 
 class rexFormMultiValueField extends rexFormField
@@ -16,6 +16,7 @@ class rexFormMultiValueField extends rexFormField
   {
     $this->rexFormField($name, $label, $tags, $id);
     $this->values = array ();
+    $this->setValueManager(new rex_internalMultiValueManager($this));
   }
 
   /**

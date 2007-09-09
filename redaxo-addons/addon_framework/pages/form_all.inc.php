@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: form_all.inc.php,v 1.2 2007/08/24 12:19:54 kills Exp $
+ * @version $Id: form_all.inc.php,v 1.3 2007/09/09 11:00:06 kills Exp $
  */
 
 echo '<h1>Diese Demo zeigt alle Formularfelder</h1>';
@@ -58,18 +58,18 @@ $field = & new wysiwygDateField('name', 'Artikelname');
 $fields[] = $field;
 
 $field = & new radioField('name', 'Artikelname');
-$field->addRadio('ab', 'ab');
-$field->addRadio('cd', 'cd');
+$field->addRadio('ab', 'ab3');
+$field->addRadio('cd', 'cd3');
 $fields[] = $field;
 
 $field = & new checkboxField('name', 'Artikelname');
-$field->addBox('ab', 'ab');
-$field->addBox('cd', 'cd');
+$field->addBox('ab', 'ab1');
+$field->addBox('cd', 'cd1');
 $fields[] = $field;
 
 $field = & new selectField('name', 'Artikelname');
-$field->addOption('ab', 'ab');
-$field->addOption('cd', 'cd');
+$field->addOption('ab', 'ab2');
+$field->addOption('cd', 'cd2');
 $fields[] = $field;
 
 $field = & new htmlField('<p>hier steht beliebiges markup!</p>');
