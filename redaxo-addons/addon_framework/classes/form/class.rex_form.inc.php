@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_form.inc.php,v 1.6 2007/09/02 14:00:28 kills Exp $
+ * @version $Id: class.rex_form.inc.php,v 1.7 2007/09/09 10:39:33 kills Exp $
  */
 
 // Form Komponenten einbinden
@@ -16,10 +16,7 @@ require_once $FormBasedir.'/class.rex_fieldContainer.inc.php';
 require_once $FormBasedir.'/class.rex_fieldController.inc.php';
 require_once $FormBasedir.'/class.rex_formSection.inc.php';
 require_once $FormBasedir.'/class.rex_formField.inc.php';
-
 require_once $FormBasedir.'/../../functions/function_rex_form.inc.php';
-
-require_once $FormBasedir.'/../class.rex_formatter.inc.php';
 
 define('FORM_INFO_MSG', 0);
 define('FORM_WARNING_MSG', 1);
