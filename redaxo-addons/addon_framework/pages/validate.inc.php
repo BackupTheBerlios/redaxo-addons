@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: validate.inc.php,v 1.2 2007/08/24 10:35:36 kills Exp $
+ * @version $Id: validate.inc.php,v 1.3 2007/09/09 10:55:14 kills Exp $
  */
 
 echo '<h1>Diese Demo zeigt wie man Felder validieren kann</h1>';
@@ -41,15 +41,7 @@ $fieldName = & new textField('name', 'Artikelname');
 $fieldName->addValidator('notEmpty', 'Name darf nicht Leer sein!', false, false);
 
 $fieldPath = & new textField('path', 'Pfad');
-$fieldPath->addValidator('notEmpty', 'Pfad darf nicht Leer sein!');
-
-//------------------------------> Fields[Meta]
-
-$fieldDesc = & new textAreaField('description', 'Beschreibung');
-$fieldDesc->addValidator('notEmpty', 'Die Beschreibung darf nicht Leer sein!', false, false);
-
-$fieldKeys = & new textField('keywords', 'Suchbegriffe');
-$fieldKeys->addValidator('notEmpty', 'Die Suchbegriffe dürfen nicht Leer sein!');
+$fieldPath->addValidator('isLength:5', 'Pfad muss mindestens 5 Zeichen lang sein!');
 
 $fieldLang = & new selectField('stuff', 'Sprache');
 $fieldLang->addValidator('notEmpty', 'Die Sprache darf nicht Leer sein!');
@@ -60,6 +52,22 @@ $fieldLang->addSQLOptions('SELECT name,id FROM rex_clang');
 $fieldLang->addOptions(array (array ('OPT1', '1'), array ('OPT2', '2')));
 // Einzelne Option hinzufügen
 $fieldLang->addOption('Einzel', '-1');
+
+//------------------------------> Fields[Meta]
+
+$fieldDesc = & new textAreaField('description', 'Beschreibung');
+$fieldDesc->addValidator('notEmpty', 'Die Beschreibung darf nicht Leer sein!', false, false);
+
+$fieldKeys = & new textField('keywords', 'Suchbegriffe');
+$fieldKeys->addValidator('notEmpty', 'Die Suchbegriffe dürfen nicht Leer sein!');
+
+//------------------------------> Fields[Meta2]
+
+$fieldDesc2 = & new textAreaField('description', 'Beschreibung');
+$fieldDesc2->addValidator('notEmpty', 'Die Beschreibung darf nicht Leer sein!', false, false);
+
+$fieldKeys2 = & new textField('keywords', 'Suchbegriffe');
+$fieldKeys2->addValidator('notEmpty', 'Die Suchbegriffe dürfen nicht Leer sein!');
 
 //------------------------------> Add Fields: Section[Allgemein]
 
@@ -74,10 +82,17 @@ $sectionMeta = & new rexFormSection('rex_addon_fw', 'Metadaten', array ('id' => 
 $sectionMeta->addField($fieldDesc);
 $sectionMeta->addField($fieldKeys);
 
+//------------------------------> Add Fields: Section[Meta2]
+
+$sectionMeta2 = & new rexFormSection('rex_addon_fw', 'Metadaten2', array ('id' => $oid+1));
+$sectionMeta2->addField($fieldDesc2);
+$sectionMeta2->addField($fieldKeys2);
+
 //------------------------------> Sections
 
 $form->addSection($sectionCommon);
 $form->addSection($sectionMeta);
+$form->addSection($sectionMeta2);
 
 //------------------------------> Add Fields: Form
 

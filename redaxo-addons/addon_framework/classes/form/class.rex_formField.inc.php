@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formField.inc.php,v 1.15 2007/09/09 10:34:56 kills Exp $
+ * @version $Id: class.rex_formField.inc.php,v 1.16 2007/09/09 10:55:14 kills Exp $
  */
 
 class rexFormField
@@ -328,7 +328,7 @@ class rexFormField
         'id' => $this->_getValidatorId($validator['criteria']),
         'message' => $validator['message'],
         'form' => $form->getName(),
-        'append' => 'validation_errors_'.$form->getName().'_'.$section->getTableName().'::'.$section->getLabel(),
+        'append' => 'validation_errors_'.$form->getName().'_'.$section->getTableName().'::'.$section->getId(),
         'halt' => $validator['halt']
       );
       // validierung starten
