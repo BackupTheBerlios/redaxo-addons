@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_formSection.inc.php,v 1.5 2007/09/02 14:00:28 kills Exp $
+ * @version $Id: class.rex_formSection.inc.php,v 1.6 2007/09/09 10:29:42 kills Exp $
  */
 
 class rexFormSection extends rexFieldController
@@ -97,16 +97,15 @@ class rexFormSection extends rexFieldController
 
   function get()
   {
-    $s = '';
-    $s .= '    <!-- rexSection start -->'. "\n";
-    $s .= '    <div class="a22-rexform-section">'. "\n";
-
     // Abschnittsanker
     $anchor = $this->getAnchor();
     if ($anchor != '')
-    {
-      $s .= '      <a name="'.$anchor.'"></a>'."\n";
-    }
+      $anchor = ' id="'. $anchor .'"';
+
+    $s = '';
+    $s .= '    <!-- rexSection start -->'. "\n";
+    $s .= '    <div class="a22-rexform-section"'. $anchor .'>'. "\n";
+
     $s .= '      <fieldset>'."\n";
 
     // Abschnittsüberschirft
