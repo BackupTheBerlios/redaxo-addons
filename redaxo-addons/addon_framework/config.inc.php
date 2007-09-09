@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: config.inc.php,v 1.5 2007/09/04 05:50:30 tbaddade Exp $
+ * @version $Id: config.inc.php,v 1.6 2007/09/09 10:23:29 kills Exp $
  */
 
 $mypage = 'addon_framework'; // only for this file
@@ -14,6 +14,7 @@ $REX['ADDON']['page'][$mypage] = $mypage;
 $REX['ADDON']['rxid'][$mypage] = '22';
 $REX['ADDON']['name'][$mypage] = 'Addon Framework';
 $REX['ADDON']['perm'][$mypage] = 'addon_framework[]';
+$REX['ADDON']['author'][$mypage] = "Markus Staab";
 
 $REX['PERM'][] = 'addon_framework[]';
 

@@ -3,6 +3,7 @@
 
 <h2>Changelog:</h2>
 <strong>Not yet released..</strong>
+- rexFormatter als rex_formatter in den R3.3 Core verschoben
 - Anpassungen für R3.3
 - rexFormatter:
   + neuer FormatType "custom", für Benutzer definierte Callbacks
