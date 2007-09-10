@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.dateField.inc.php,v 1.4 2007/09/09 12:01:34 kills Exp $
+ * @version $Id: field.dateField.inc.php,v 1.5 2007/09/10 16:54:16 kills Exp $
  */
 
 class dateField extends rexFormField
@@ -17,6 +17,28 @@ class dateField extends rexFormField
   function dateField($name, $label, $attributes = array (), $id = '')
   {
     $this->rexFormField($name, $label, $attributes, $id);
+  }
+
+  function buildSelectBoxes()
+  {
+    $select = new rex_select();
+    // hier muss getName() nicht $name verwendet werden (section Prefix!)
+    $select->setName($this->getName() . '[]');
+    $select->setSize(1);
+    $select->setStyle('width: 24%;');
+
+    $this->daySelect = $select;
+    $this->monthSelect = $select;
+    $this->yearSelect = $select;
+
+    foreach (range(1, 31) as $day)
+      $this->daySelect->addOption($day, $day);
+
+    foreach (range(1, 12) as $month)
+      $this->monthSelect->addOption($month, $month);
+
+    foreach (range(1995, 2050) as $year)
+      $this->yearSelect->addOption($year, $year);
   }
 
   /*
@@ -40,6 +62,8 @@ class dateField extends rexFormField
    */
   function _getValue()
   {
+    $this->buildSelectBoxes();
+
     $value = parent :: _getValue();
 
     if (!is_array($value))
@@ -73,25 +97,11 @@ class dateField extends rexFormField
 
   function get()
   {
-    $select = new rex_select();
-    $select->setName($this->getName() . '[]');
-    $select->setSize(1);
-    $select->setStyle('width: 24%;');
+    $this->buildSelectBoxes();
 
-    $this->daySelect = $select;
-    $this->monthSelect = $select;
-    $this->yearSelect = $select;
-
-    foreach (range(1, 31) as $day)
-      $this->daySelect->addOption($day, $day);
-
-    foreach (range(1, 12) as $month)
-      $this->monthSelect->addOption($month, $month);
-
-    foreach (range(2000, 2050) as $year)
-      $this->yearSelect->addOption($year, $year);
-
+    // Default Werte holen
     $this->getValue();
+
     // Id kann nur in get() gesetzt werden, da vorher die Referenzen zur Section+Form fehlen
     $this->daySelect->setId($this->getId() . '_day');
     $this->monthSelect->setId($this->getId() . '_month');
