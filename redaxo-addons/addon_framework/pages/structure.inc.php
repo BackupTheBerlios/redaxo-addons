@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: structure.inc.php,v 1.3 2007/08/24 10:35:36 kills Exp $
+ * @version $Id: structure.inc.php,v 1.4 2007/09/10 17:01:38 kills Exp $
  */
 
 echo '<h1>Diese Demo zeigt eine Nachbildung der Strukturverwaltung</h1>';
@@ -39,7 +39,7 @@ if ($func == '')
    *  Statische Spalten anlegen
    */
   // Icon Spalte
-  $colIcon = new staticColumn('<img src="pics/folder.gif"/>', '<img src="pics/folder_plus.gif"/>');
+  $colIcon = new staticColumn('<img src="media/folder.gif"/>', '<img src="media/folder_plus.gif"/>');
   // Icons zentrieren
   $colIcon->setHeadAttributes('style="text-align: center"');
   $colIcon->setBodyAttributes('style="text-align: center"');
