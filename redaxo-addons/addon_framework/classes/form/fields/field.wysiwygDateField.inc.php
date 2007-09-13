@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.wysiwygDateField.inc.php,v 1.4 2007/09/09 12:01:34 kills Exp $
+ * @version $Id: field.wysiwygDateField.inc.php,v 1.5 2007/09/13 19:49:17 kills Exp $
  */
 
 class wysiwygDateField extends readOnlyTextField
@@ -20,7 +20,7 @@ class wysiwygDateField extends readOnlyTextField
   	if($first)
   	{
   		$first = false;
-      $this->path = '../files/addon_framework/calendar/';
+      $this->path = '../files/tmp_/addon_framework/calendar/';
       echo $this->addHeaderFiles();
   	}
 
