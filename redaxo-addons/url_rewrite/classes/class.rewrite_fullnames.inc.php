@@ -6,7 +6,13 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rewrite_fullnames.inc.php,v 1.7 2006/12/19 21:19:30 kills Exp $
+ * @version $Id: class.rewrite_fullnames.inc.php,v 1.8 2007/09/18 09:24:11 vscope Exp $
+ */
+
+/**
+ * Update
+ * vscope update 18.09.07 (www.vscope.at)
+ * Params werden in der Syntax /+/var/value/ angehängt und automatisch ausgelesen
  */
 
 /**
@@ -14,22 +20,22 @@
  *
  *   1) .htaccess file in das root verzeichnis:
  *     RewriteEngine On
- *     RewriteCond %{REQUEST_URI}  !redaxo.* 
- *     RewriteCond %{REQUEST_URI}  !files.* 
- *     RewriteCond %{REQUEST_URI}  !js.* 
+ *     RewriteCond %{REQUEST_URI}  !redaxo.*
+ *     RewriteCond %{REQUEST_URI}  !files.*
+ *     RewriteCond %{REQUEST_URI}  !js.*
  *     RewriteRule ^(.*)$ index.php?%{QUERY_STRING} [L]
  *
  *   2) .htaccess file in das redaxo/ verzeichnis:
  *     RewriteEngine Off
- * 
+ *
  *   3) im Template folgende Zeile AM ANFANG des <head> ergänzen:
  *   <base href="htttp://www.meine_domain.de/pfad/zum/frontend" />
- * 
+ *
  *   4) Specials->Regenerate All starten
  *
  * @author office[at]vscope[dot]at Wolfgang Huttegger
  * @author <a href="http://www.vscope.at/">vscope new media</a>
- * 
+ *
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  */
@@ -37,7 +43,7 @@
 class myUrlRewriter extends rexUrlRewriter
 {
   var $use_levenshtein;
-  
+
   // Konstruktor
   function myUrlRewriter($use_levenshtein = true)
   {
@@ -64,11 +70,11 @@ class myUrlRewriter extends rexUrlRewriter
       // Parameter zählen nicht zum Pfad -> abschneiden
       if(($pos = strpos($path, '?')) !== false)
          $path = substr($path, 0, $pos);
-      
+
       // Anker zählen nicht zum Pfad -> abschneiden
       if(($pos = strpos($path, '#')) !== false)
          $path = substr($path, 0, $pos);
-         
+
       if ($path == '')
       {
         $article_id = $REX['START_ARTICLE_ID'];
@@ -78,7 +84,19 @@ class myUrlRewriter extends rexUrlRewriter
 			// Auch Urls die nicht auf "/" enden, sollen gefunden werden
       if(substr($path, -1) != '/')
         $path .= '/';
-        
+
+      // konvertiert params zu GET Variablen
+      if(strstr($path,"/+/")){
+        $tmp = explode("/+/",$path);
+        $path = $tmp[0]."/";
+         $vars = explode("/",$tmp[1]);
+         for($c=0;$c<count($vars);$c+=2){
+             if($vars[$c]!=""){
+               $_GET[$vars[$c]] = $vars[$c+1];
+             }
+         }
+      }
+
       foreach ($REXPATH as $key => $var)
       {
         foreach ($var as $k => $v)
@@ -98,7 +116,7 @@ class myUrlRewriter extends rexUrlRewriter
         {
           include($REX['INCLUDE_PATH'].'/clang.inc.php');
         }
-        
+
         if (is_array($REX['CLANG']))
         {
           foreach ($REX['CLANG'] as $key => $var)
@@ -143,9 +161,9 @@ class myUrlRewriter extends rexUrlRewriter
   	{
   		return $params['subject'];
   	}
-  	
+
     global $REX, $REXPATH;
-    
+
     if (!$REXPATH)
     {
       include_once ($REX['INCLUDE_PATH'].'/generated/files/pathlist.php');
@@ -155,7 +173,12 @@ class myUrlRewriter extends rexUrlRewriter
     $name = $params['name'];
     $clang = $params['clang'];
     $params = $params['params'];
-    $params = $params == '' ? '' : "?".$params;
+
+    // params umformatieren neue Syntax suchmaschienen freundlich
+    $params = str_replace("&","/",$params);
+    $params = str_replace("=","/",$params);
+    $params = $params == '' ? '' : "+".$params."/";
+
     $url = $REXPATH[$id][$clang].$params;
     return $url;
   }
@@ -170,7 +193,7 @@ if ($REX['REDAXO'])
     'ART_ADDED',   'ART_UPDATED',   'ART_DELETED',
     'CLANG_ADDED', 'CLANG_UPDATED', 'CLANG_DELETED',
     'ALL_GENERATED');
-  
+
   foreach($extensionPoints as $extensionPoint)
     rex_register_extension($extensionPoint, $extension);
 }
