@@ -60,7 +60,7 @@ if (count($years)==0)
    $error .= $I18N_STATS->msg("log_missing");
 }
 
-   
+
 if($error != '')
 {
 	echo "<table border=0 cellpadding=5 cellspacing=1 width=770><tr><td class=warning>".$error."</td></tr></table>";
@@ -68,7 +68,7 @@ if($error != '')
 else
 {
 
-	$monname = Array ( 
+	$monname = Array (
 			"01" => $I18N_STATS->msg("jan"),
 			"02" => $I18N_STATS->msg("feb"),
 			"03" => $I18N_STATS->msg("mar"),
@@ -120,7 +120,7 @@ else
 	// ACTING
 	//
 
-	if ( $subpage == 'stats' OR !isset($subpage) )
+	if ($subpage == '')
 	{
 		if ( !isset($show) && isset($year) && isset($month)) $show = "day";
 
