@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rewrite_fullnames.inc.php,v 1.9 2007/10/09 15:06:56 kills Exp $
+ * @version $Id: class.rewrite_fullnames.inc.php,v 1.10 2007/10/09 15:17:56 kills Exp $
  */
 
 /**
@@ -85,14 +85,15 @@ class myUrlRewriter extends rexUrlRewriter
       if(substr($path, -1) != '/')
         $path .= '/';
 
-      // konvertiert params zu GET Variablen
-      if(strstr($path,"/+/")){
-        $tmp = explode("/+/",$path);
-        $path = $tmp[0]."/";
-         $vars = explode("/",$tmp[1]);
+      // konvertiert params zu GET/REQUEST Variablen
+      if(strstr($path,'/+/')){
+        $tmp = explode('/+/',$path);
+        $path = $tmp[0].'/';
+         $vars = explode('/',$tmp[1]);
          for($c=0;$c<count($vars);$c+=2){
-             if($vars[$c]!=""){
+             if($vars[$c]!=''){
                $_GET[$vars[$c]] = $vars[$c+1];
+               $_REQUEST[$vars[$c]] = $vars[$c+1];
              }
          }
       }
