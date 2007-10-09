@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rewrite_fullnames.inc.php,v 1.8 2007/09/18 09:24:11 vscope Exp $
+ * @version $Id: class.rewrite_fullnames.inc.php,v 1.9 2007/10/09 15:06:56 kills Exp $
  */
 
 /**
@@ -208,7 +208,7 @@ function rex_rewriter_generate_pathnames($params = array ())
   {
     foreach ($result as $var)
     {
-      $article_names[$var['id']][$var['clang']]['name'] = rex_parseArticleName($var['name']);
+      $article_names[$var['id']][$var['clang']]['name'] = rex_parse_article_name($var['name']);
     }
   }
 
