@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rewrite_fullnames.inc.php,v 1.10 2007/10/09 15:17:56 kills Exp $
+ * @version $Id: class.rewrite_fullnames.inc.php,v 1.11 2007/10/12 20:23:29 kills Exp $
  */
 
 /**
@@ -176,9 +176,9 @@ class myUrlRewriter extends rexUrlRewriter
     $params = $params['params'];
 
     // params umformatieren neue Syntax suchmaschienen freundlich
-    $params = str_replace("&","/",$params);
-    $params = str_replace("=","/",$params);
-    $params = $params == '' ? '' : "+".$params."/";
+    $params = str_replace('&','/',$params);
+    $params = str_replace('=','/',$params);
+    $params = $params == '' ? '' : '+'.$params.'/';
 
     $url = $REXPATH[$id][$clang].$params;
     return $url;
