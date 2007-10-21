@@ -6,7 +6,7 @@
 
 <strong>1.0 - 18.09.2007</strong>
 - rewriteFullnames:
- + Beim EP ALL_GENERATED wird jetzt auch die pathlist neu generiert
+ + Parameter werden SuMa freundlich angehängt
 
 <strong>RC4 - 16.05.2006</strong>
 
