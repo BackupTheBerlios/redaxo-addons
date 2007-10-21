@@ -4,8 +4,10 @@ include_once $REX['INCLUDE_PATH'] . '/addons/addon_framework/classes/class.pclzi
 
 function rex_a22_extract_archive($file, $destFolder = null)
 {
+  global $REX;
+
   if(!$destFolder)
-    $destFolder = '../files/tmp_/addon_framework';
+    $destFolder = '../files/'. $REX['TEMP_PREFIX'] .'/addon_framework';
 
 	$archive = new PclZip($file);
 	if ($archive->extract(PCLZIP_OPT_PATH, $destFolder) == 0)
