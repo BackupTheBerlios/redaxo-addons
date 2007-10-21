@@ -1,5 +1,13 @@
 <h2>Changelog:</h2>
 
+<strong>1.1 - 21.10.2007</strong>
+
+- Anpassungen für REDAXO4.0
+
+<strong>1.0 - 18.09.2007</strong>
+- rewriteFullnames:
+ + Beim EP ALL_GENERATED wird jetzt auch die pathlist neu generiert
+
 <strong>RC4 - 16.05.2006</strong>
 
 - rewriteFullnames:
