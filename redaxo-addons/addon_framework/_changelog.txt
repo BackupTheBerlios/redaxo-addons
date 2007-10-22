@@ -1,8 +1,9 @@
 <h2>TODO:</h2>
 - [rexForm] isEditMode() erkennen an der Anzahl der affectedRows()
 
-<h2>Changelog:</h2>
+<h2>RC4 - 22.10.2007 (REDAXO 4.X)</h2>
 <strong>Not yet released..</strong>
+- Anpassungen für REDAXO4.0
 - rexFormatter als rex_formatter in den R3.3 Core verschoben
 - Anpassungen für R3.3
 - rexFormatter:
