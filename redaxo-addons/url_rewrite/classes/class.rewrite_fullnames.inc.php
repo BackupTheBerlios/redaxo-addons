@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rewrite_fullnames.inc.php,v 1.12 2007/10/21 12:54:54 kills Exp $
+ * @version $Id: class.rewrite_fullnames.inc.php,v 1.13 2007/10/22 10:36:57 kills Exp $
  */
 
 /**
@@ -20,9 +20,9 @@
  *
  *   1) .htaccess file in das root verzeichnis:
  *     RewriteEngine On
+ *     RewriteBase /
  *     RewriteCond %{REQUEST_URI}  !redaxo.*
  *     RewriteCond %{REQUEST_URI}  !files.*
- *     RewriteCond %{REQUEST_URI}  !js.*
  *     RewriteRule ^(.*)$ index.php?%{QUERY_STRING} [L]
  *
  *   2) .htaccess file in das redaxo/ verzeichnis:
