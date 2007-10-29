@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.selectField.inc.php,v 1.5 2007/09/02 14:00:29 kills Exp $
+ * @version $Id: field.selectField.inc.php,v 1.6 2007/10/29 16:53:03 kills Exp $
  */
 
 class selectField extends rexFormMultiValueField
@@ -61,12 +61,16 @@ class selectField extends rexFormMultiValueField
   /**
    * Aktiviert/Deaktiviert, dass mehrere Optionen zugleich gewählt werden können
    * @param $multiple true => aktivieren / false => deaktivieren
+   * @param $multiValueManager MultiValueManagerObjekt, dass den Speichervorgang handelt
    */
-  function setMultiple($multiple = true)
+  function setMultiple($multiple = true, $multiValueManager = null)
   {
     if($multiple)
     {
-      $this->setValueManager(new rex_internalMultiValueManager($this));
+      if(!$multiValueManager)
+        $multiValueManager = new rex_internalMultiValueManager($this);
+
+      $this->setValueManager($multiValueManager);
     }
     else
     {
