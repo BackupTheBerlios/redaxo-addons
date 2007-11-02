@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rewrite_fullnames.inc.php,v 1.13 2007/10/22 10:36:57 kills Exp $
+ * @version $Id: class.rewrite_fullnames.inc.php,v 1.14 2007/11/02 15:21:34 kills Exp $
  */
 
 /**
@@ -147,10 +147,10 @@ class myUrlRewriter extends rexUrlRewriter
       }
 
       if (!$article_id)
-      {
         $article_id = $REX['NOTFOUND_ARTICLE_ID'];
-        return true;
-      }
+
+      // clang auch im REX speichern
+      $REX['CUR_CLANG'] = $clang;
     }
   }
 
