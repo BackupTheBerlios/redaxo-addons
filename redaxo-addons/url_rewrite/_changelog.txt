@@ -1,5 +1,9 @@
 <h2>Changelog:</h2>
 
+<strong>1.1.1 - 02.11.2007</strong>
+
+- Bugfix: $REX['CUR_CLANG'] wurde nicht gesetzt
+
 <strong>1.1 - 21.10.2007</strong>
 
 - Anpassungen für REDAXO4.0
