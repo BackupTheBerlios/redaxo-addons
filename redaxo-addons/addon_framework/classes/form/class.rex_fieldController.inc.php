@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_fieldController.inc.php,v 1.7 2007/10/04 05:16:37 tbaddade Exp $
+ * @version $Id: class.rex_fieldController.inc.php,v 1.8 2007/11/12 11:24:20 kills Exp $
  */
 
 define('CONTROLLER_INSERT_MODE', 1);
@@ -79,7 +79,7 @@ class rexFieldController extends rexFieldContainer
     {
       $value = substr($value, 11);
     }
-    return $this->rexform->sql->escape($value);
+    return '\''. $this->rexform->sql->escape($value, '') . '\'';
   }
 
   function _getWhereString()
