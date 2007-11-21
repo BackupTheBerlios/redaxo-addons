@@ -1,5 +1,10 @@
 <h2>Changelog:</h2>
 
+<strong>1.1.2 - 02.11.2007</strong>
+
+- params rewrite jetzt konfigurierbar
+- Bugfix: wenn article_id oder clang als get/post parameter gesetzt sind, diese verwenden
+
 <strong>1.1.1 - 02.11.2007</strong>
 
 - Bugfix: $REX['CUR_CLANG'] wurde nicht gesetzt
