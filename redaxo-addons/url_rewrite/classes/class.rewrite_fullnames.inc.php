@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rewrite_fullnames.inc.php,v 1.14 2007/11/02 15:21:34 kills Exp $
+ * @version $Id: class.rewrite_fullnames.inc.php,v 1.15 2007/11/21 14:45:27 kills Exp $
  */
 
 /**
@@ -43,13 +43,16 @@
 class myUrlRewriter extends rexUrlRewriter
 {
   var $use_levenshtein;
+  var $use_params_rewrite;
 
   // Konstruktor
-  function myUrlRewriter($use_levenshtein = true)
+  function myUrlRewriter($use_levenshtein = true, $use_params_rewrite = true)
   {
     $this->use_levenshtein = $use_levenshtein;
+    $this->use_params_rewrite = $use_params_rewrite;
+
     // Parent Konstruktor aufrufen
-    $this->rexUrlRewriter();
+    parent::rexUrlRewriter();
   }
 
   // Parameter aus der URL für das Script verarbeiten
@@ -59,7 +62,6 @@ class myUrlRewriter extends rexUrlRewriter
 
     if (!$REX['REDAXO'])
     {
-
       $pathlist = $REX['INCLUDE_PATH'].'/generated/files/pathlist.php';
       include_once ($pathlist);
 
@@ -86,16 +88,19 @@ class myUrlRewriter extends rexUrlRewriter
         $path .= '/';
 
       // konvertiert params zu GET/REQUEST Variablen
-      if(strstr($path,'/+/')){
-        $tmp = explode('/+/',$path);
-        $path = $tmp[0].'/';
-         $vars = explode('/',$tmp[1]);
-         for($c=0;$c<count($vars);$c+=2){
-             if($vars[$c]!=''){
-               $_GET[$vars[$c]] = $vars[$c+1];
-               $_REQUEST[$vars[$c]] = $vars[$c+1];
-             }
-         }
+      if($this->use_params_rewrite)
+      {
+        if(strstr($path,'/+/')){
+          $tmp = explode('/+/',$path);
+          $path = $tmp[0].'/';
+           $vars = explode('/',$tmp[1]);
+           for($c=0;$c<count($vars);$c+=2){
+               if($vars[$c]!=''){
+                 $_GET[$vars[$c]] = $vars[$c+1];
+                 $_REQUEST[$vars[$c]] = $vars[$c+1];
+               }
+           }
+        }
       }
 
       foreach ($REXPATH as $key => $var)
@@ -166,8 +171,8 @@ class myUrlRewriter extends rexUrlRewriter
     if (!$REXPATH)
     {
       include_once ($REX['INCLUDE_PATH'].'/generated/files/pathlist.php');
-
     }
+
     $id = $params['id'];
     $name = $params['name'];
     $clang = $params['clang'];
@@ -175,9 +180,16 @@ class myUrlRewriter extends rexUrlRewriter
     $divider = $params['divider'];
 
     // params umformatieren neue Syntax suchmaschienen freundlich
-    $params = str_replace($divider,'/',$params);
-    $params = str_replace('=','/',$params);
-    $params = $params == '' ? '' : '+'.$params.'/';
+    if($this->use_params_rewrite)
+    {
+      $params = str_replace($divider,'/',$params);
+      $params = str_replace('=','/',$params);
+      $params = $params == '' ? '' : '+'.$params.'/';
+    }
+    else
+    {
+      $params = $params == '' ? '' : '?'.$params;
+    }
 
     $url = $REXPATH[$id][$clang].$params;
     return $url;
