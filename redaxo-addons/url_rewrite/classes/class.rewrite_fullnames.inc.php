@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rewrite_fullnames.inc.php,v 1.15 2007/11/21 14:45:27 kills Exp $
+ * @version $Id: class.rewrite_fullnames.inc.php,v 1.16 2007/11/21 14:46:05 kills Exp $
  */
 
 /**
@@ -62,6 +62,17 @@ class myUrlRewriter extends rexUrlRewriter
 
     if (!$REX['REDAXO'])
     {
+      // article_id wurde in den super-globals übergeben
+      if(rex_request('article_id', 'int'))
+        $article_id = rex_request('article_id', 'int');
+
+      // clang wurde in den super-globals übergeben
+      if(rex_request('clang', 'int'))
+        $clang = rex_request('clang', 'int');
+
+      if($article_id)
+        return true;
+
       $pathlist = $REX['INCLUDE_PATH'].'/generated/files/pathlist.php';
       include_once ($pathlist);
 
