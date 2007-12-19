@@ -4,7 +4,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_listComponent.inc.php,v 1.2 2007/09/06 17:13:11 kills Exp $
+ * @version $Id: class.rex_listComponent.inc.php,v 1.3 2007/12/19 12:37:31 kills Exp $
  */
 
 /**
@@ -24,13 +24,13 @@ class rexListComponent
     $this->rexlist = $rexlist;
   }
 
-  function link($value, $params = array (), $tags = '')
+  function link($value, $params = array (), $attr = array())
   {
     if (count($params) == 0)
     {
       $params = $this->params;
     }
-    return rex_listLink($value, $this->getGlobalParams(), $params, $tags);
+    return rex_listLink($value, $this->getGlobalParams(), $params, $attr);
   }
 
   function addGlobalParam($name, $value)

@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_listColumn.inc.php,v 1.3 2007/09/06 17:13:11 kills Exp $
+ * @version $Id: class.rex_listColumn.inc.php,v 1.4 2007/12/19 12:37:31 kills Exp $
  */
 
 
@@ -117,10 +117,11 @@ class rexListColumn extends rexListComponent
    * @param $cond_value Wert, auf den geprüft werden soll
    * @param $text Text der ausgegeben werden soll
    * @param $params Link-Parameter die auf $text als Link gesetzt werden sollen
+   * @param $attr Attribute, die in den Link direkt eingefügt werden sollen
    */
-  function addCondition($cond_column, $cond_value, $text, $params = array ())
+  function addCondition($cond_column, $cond_value, $text, $params = array (), $attr = array())
   {
-    $this->conditions[] = array ($cond_column, $cond_value, $text, $params);
+    $this->conditions[] = array ($cond_column, $cond_value, $text, $params, $attr);
   }
 
   /**
@@ -227,14 +228,16 @@ class rexListColumn extends rexListComponent
       // $condition[1] Wert, auf den geprüft werden soll
       // $condition[2] Text der ausgegeben werden soll
       // $condition[3] Link-Parameter die auf $text als Link gesetzt werden sollen
+      // $condition[4] Link-Attribute die in das a-tag gesetzt werden sollen
 
       // condition prüfen
       if (array_key_exists($condition[0], $row) && $row[$condition[0]] == $condition[1])
       {
         if (is_array($condition[3]))
         {
+          $attr = isset($condition[4]) ? $condition[4] : array();
           // Text mit den Parametern $condition[3] verlinken
-          return $this->link($condition[2], $this->parseArray($condition[3], $row));
+          return $this->link($condition[2], $this->parseArray($condition[3], $row), $attr);
         }
         else
         {
