@@ -6,7 +6,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: function_replace.inc.php,v 1.3 2008/01/10 13:18:18 kills Exp $
+ * @version $Id: function_replace.inc.php,v 1.4 2008/01/25 09:48:36 kills Exp $
  */
 
 function rex_glossar_replace($params)
@@ -61,8 +61,13 @@ function rex_glossar_replace($params)
 
     // Escape Shortcut for preg_match
     $escapedshortcut = preg_quote($shortcut, '/');
+    $escapedentitiesshortuct = htmlentities($escapedshortcut);
 
-    $search = '/((<[^>]*)|' . $escapedshortcut . ')/e';
+    if($escapedentitiesshortuct == $escapedshortcut)
+      $search = '/((<[^>]*)|' . $escapedshortcut . ')/e';
+    else
+      $search = '/((<[^>]*)|' . $escapedshortcut . '|'. $escapedentitiesshortuct .')/e';
+
     $replacer = _rex_glossar_parse_replace_format($replaceformat, array (
       'lang' => $language,
       'desc' => $description,
@@ -84,7 +89,7 @@ function rex_glossar_replace($params)
   // Ersetzungen durchführen
   $body = stripslashes(preg_replace($searches, $replaces, $body));
 
-  // Vorher ausgeschlossene Bereiche wieder einpflegen 
+  // Vorher ausgeschlossene Bereiche wieder einpflegen
   $body = str_replace($back_srch, $back_rplc, $body);
 
   return $header . $body;
