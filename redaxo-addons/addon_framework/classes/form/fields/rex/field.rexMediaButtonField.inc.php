@@ -4,17 +4,25 @@
  * Addon Framework Classes by <a href='mailto:staab@public-4u.de'>Markus Staab</a>
  * <a href='http://www.public-4u.de'>www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.rexMediaButtonField.inc.php,v 1.3 2007/09/03 09:58:42 tbaddade Exp $
+ * @version $Id: field.rexMediaButtonField.inc.php,v 1.4 2008/03/10 11:48:10 kills Exp $
  */
 
 class rexMediaButtonField extends popupButtonField
 {
   var $enablePreview;
+  var $previewUrl;
 
   function rexMediaButtonField($name, $label, $attributes = array (), $id = '')
   {
+    global $REX;
+
     $this->popupButtonField($name, $label, $attributes, $id);
     $this->enablePreview();
+
+    if(OOAddon::isAvailable('image_resize'))
+      $this->setPreviewUrl('index.php?rex_resize=100w__%filename%');
+    else
+      $this->setPreviewUrl($REX['MEDIAFOLDER'] .'/%filename%');
   }
 
   function enablePreview()
@@ -32,10 +40,18 @@ class rexMediaButtonField extends popupButtonField
     return $this->enablePreview;
   }
 
+  function setPreviewUrl($url)
+  {
+    $this->previewUrl = $url;
+  }
+
+  function previewUrl($filename)
+  {
+    return str_replace('%filename%', $filename, $this->previewUrl);
+  }
+
   function get()
   {
-    global $REX;
-
     $section =& $this->getSection();
     $form = $section->getForm();
     // Buttons erst hier einfügen, da vorher die ID noch nicht vorhanden ist
@@ -45,7 +61,7 @@ class rexMediaButtonField extends popupButtonField
 
     $preview = '';
     if($this->isPreviewEnabled() && $this->getValue() != '')
-      $preview = '<img class="preview" src="'. $REX['MEDIAFOLDER'] .'/'. $this->getValue() .'" />';
+      $preview = '<img class="preview" src="'. $this->previewUrl($this->getValue()) .'" />';
 
     return $preview . parent::get();
   }
