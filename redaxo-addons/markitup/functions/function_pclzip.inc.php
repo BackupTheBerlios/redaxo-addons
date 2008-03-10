@@ -7,10 +7,10 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  *
  * @package redaxo4
- * @version $Id: function_pclzip.inc.php,v 1.1 2008/02/20 13:50:47 kills Exp $
+ * @version $Id: function_pclzip.inc.php,v 1.2 2008/03/10 12:11:15 kills Exp $
  */
 
-include_once $REX['INCLUDE_PATH'] . '/addons/tinymce/classes/class.pclzip.inc.php';
+include_once $REX['INCLUDE_PATH'] . '/addons/markitup/classes/class.pclzip.inc.php';
 
 function rex_a287_extract_archive($file, $msg = '', $path=null )
 {
