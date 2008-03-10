@@ -4,7 +4,7 @@
  * Addon Framework Classes by <a href='mailto:staab@public-4u.de'>Markus Staab</a>
  * <a href='http://www.public-4u.de'>www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: field.rexMediaButtonField.inc.php,v 1.4 2008/03/10 11:48:10 kills Exp $
+ * @version $Id: field.rexMediaButtonField.inc.php,v 1.5 2008/03/10 11:49:12 kills Exp $
  */
 
 class rexMediaButtonField extends popupButtonField
@@ -60,7 +60,7 @@ class rexMediaButtonField extends popupButtonField
     $this->addButton( 'Medium hinzufügen', 'javascript:openMediaPool(\'&amp;action=media_upload&amp;subpage=add_file&amp;opener_form='. $form->getName() .'&amp;opener_input_field='. $this->getId() .'\');', 'file_add.gif');
 
     $preview = '';
-    if($this->isPreviewEnabled() && $this->getValue() != '')
+    if($this->isPreviewEnabled() && $this->getValue() != '' && OOMedia::_isImage($this->getValue()))
       $preview = '<img class="preview" src="'. $this->previewUrl($this->getValue()) .'" />';
 
     return $preview . parent::get();
