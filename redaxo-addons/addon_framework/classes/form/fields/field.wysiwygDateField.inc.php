@@ -3,9 +3,9 @@
 /**
  * Addon Framework Classes
  * @author staab[at]public-4u[dot]de Markus Staab
- * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
+ *
  * @package redaxo3
- * @version $Id: field.wysiwygDateField.inc.php,v 1.5 2007/09/13 19:49:17 kills Exp $
+ * @version $Id: field.wysiwygDateField.inc.php,v 1.6 2008/03/11 16:18:02 kills Exp $
  */
 
 class wysiwygDateField extends readOnlyTextField
@@ -17,17 +17,17 @@ class wysiwygDateField extends readOnlyTextField
   {
   	static $first = true;
 
-  	if($first)
-  	{
-  		$first = false;
-      $this->path = '../files/tmp_/addon_framework/calendar/';
-      echo $this->addHeaderFiles();
-  	}
-
   	if(empty($attributes['style']))
   	  $attributes['style'] = 'width: 165px;';
 
+    $this->path = '../files/addon_framework/calendar/';
     $this->readOnlyTextField($name, $label, $attributes, $id);
+
+  	if($first)
+  	{
+  		$first = false;
+      echo $this->addHeaderFiles();
+  	}
   }
 
   function addHeaderFiles()
