@@ -7,7 +7,7 @@
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  *
  * @package redaxo4
- * @version $Id: config.inc.php,v 1.2 2008/02/20 15:08:54 kills Exp $
+ * @version $Id: config.inc.php,v 1.3 2008/03/12 14:52:11 kills Exp $
  */
 
 $mypage = 'markitup';
@@ -55,7 +55,6 @@ if($REX['REDAXO'])
 
     $links  = '  <script type="text/javascript" src="'. $path .'jquery.pack.js"></script>'."\n".
               '  <script type="text/javascript" src="'. $path .'jquery.markitup.js"></script>'."\n".
-              '  <script type="text/javascript" src="'. $path .'rex_markitup.js"></script>'."\n".
               '  <script type="text/javascript" src="'. $path .'sets/'. $set .'/set.js"></script>'."\n".
               '  <script type="text/javascript">$(document).ready(function(){$(".markitup").markItUp('. $set .');})</script>'."\n".
               '  <link rel="stylesheet" type="text/css" href="'. $path .'skins/markitup/style.css" />'."\n".
