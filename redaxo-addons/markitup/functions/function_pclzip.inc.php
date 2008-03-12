@@ -3,11 +3,11 @@
 /**
  * markitup Addon
  *
- * @author staab[at]public-4u[dot]de Markus Staab
- * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
+ * @author markus[dot]staab[at]redaxo[dot]de Markus Staab
+
  *
  * @package redaxo4
- * @version $Id: function_pclzip.inc.php,v 1.2 2008/03/10 12:11:15 kills Exp $
+ * @version $Id: function_pclzip.inc.php,v 1.3 2008/03/12 14:54:12 kills Exp $
  */
 
 include_once $REX['INCLUDE_PATH'] . '/addons/markitup/classes/class.pclzip.inc.php';

@@ -3,11 +3,11 @@
 /**
  * markitup Addon
  *
- * @author staab[at]public-4u[dot]de Markus Staab
- * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
+ * @author markus[dot]staab[at]redaxo[dot]de Markus Staab
+
  *
  * @package redaxo4
- * @version $Id: uninstall.inc.php,v 1.1 2008/02/20 13:50:47 kills Exp $
+ * @version $Id: uninstall.inc.php,v 1.2 2008/03/12 14:54:12 kills Exp $
  */
 
 rex_deleteDir('../files/tmp_/markitup', true);

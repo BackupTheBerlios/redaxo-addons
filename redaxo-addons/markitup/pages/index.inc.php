@@ -3,14 +3,14 @@
 /**
  * TinyMCE Addon
  *
- * @author staab[at]public-4u[dot]de Markus Staab
- * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
+ * @author markus[dot]staab[at]redaxo[dot]de Markus Staab
+
  *
  * @author Dave Holloway
  * @author <a href="http://www.GN2-Netwerk.de">www.GN2-Netwerk.de</a>s
  *
  * @package redaxo4
- * @version $Id: index.inc.php,v 1.1 2008/02/20 13:50:47 kills Exp $
+ * @version $Id: index.inc.php,v 1.2 2008/03/12 14:54:12 kills Exp $
  */
 
 include $REX['INCLUDE_PATH']."/layout/top.php";
@@ -43,9 +43,7 @@ EOD;
 	</div>
 
 	<div class="rex-addon-content">
-		<p>
-			<a href="http://www.public-4u.de">Public-4u e.K.</a>
-		</p>
+		<p>Markus Staab</p>
 	</div>
 
 <?php
