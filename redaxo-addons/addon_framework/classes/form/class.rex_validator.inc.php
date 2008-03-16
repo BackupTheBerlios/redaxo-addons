@@ -5,7 +5,7 @@
  * @author staab[at]public-4u[dot]de Markus Staab
  * @author <a href="http://www.public-4u.de">www.public-4u.de</a>
  * @package redaxo3
- * @version $Id: class.rex_validator.inc.php,v 1.2 2007/08/24 10:35:36 kills Exp $
+ * @version $Id: class.rex_validator.inc.php,v 1.3 2008/03/16 13:15:35 kills Exp $
  */
 
 if (!class_exists('Smarty'))
@@ -116,8 +116,16 @@ class rexValidator extends Smarty
    */
   function _get_plugin_filepath($type, $name)
   {
+    static $func_exists = false;
+    if(!$func_exists)
+    {
+      // In einer Smarty Umgebung ist die Funktion bereits vorhanden
+      if(!function_exists('smarty_core_assemble_plugin_filepath'))
+        require_once (SMARTY_CORE_DIR.'core.assemble_plugin_filepath.php');
+
+      $func_exists = true;
+    }
     $_params = array ('type' => $type, 'name' => $name);
-    require_once (SMARTY_CORE_DIR.'core.assemble_plugin_filepath.php');
     return smarty_core_assemble_plugin_filepath($_params, $this);
   }
 
